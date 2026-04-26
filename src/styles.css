@@ -3,6 +3,22 @@
 @import "tw-animate-css";
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@500;700;900&family=Cormorant+Garamond:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&family=Archivo+Black&family=Space+Grotesk:wght@400;500;700&family=Pacifico&family=VT323&display=swap");
 
+/* Hero fade-in-up animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 /*
