@@ -1,13 +1,16 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { themes } from '../lib/themes';
+import React, { useState } from 'react';
+import { themes, ThemeDefinition } from '../lib/themes';
+import PreviewModal from './PreviewModal'; // Ensure this matches your Lovable file name
 
 export default function StyleGallery() {
+  // State to handle which theme is currently active in the modal
+  const [selectedTheme, setSelectedTheme] = useState<ThemeDefinition | null>(null);
+
   // Helper to safely grab themes
   const getTheme = (slug: string) => themes.find(t => t.slug === slug);
   
   return (
-    <section className="py-24 px-6 max-w-7xl mx-auto bg-white">
+    <section className="py-24 px-6 max-w-7xl mx-auto bg-white relative">
       <div className="mb-16">
         <h2 className="text-5xl font-black mb-4">Browse the lineup</h2>
         <p className="text-xl text-gray-600">Distinct directions for your detailing brand. Click any card to open its full demo.</p>
@@ -25,7 +28,7 @@ export default function StyleGallery() {
         
         {/* 01: OBSIDIAN ECO-CLEAN */}
         {getTheme('obsidian-eco') && (
-          <Link to="/theme/obsidian-eco" className="group block h-full">
+          <div onClick={() => setSelectedTheme(getTheme('obsidian-eco')!)} className="group block h-full cursor-pointer">
             <div className="h-[450px] rounded-2xl p-8 flex flex-col justify-between transition-transform duration-500 hover:-translate-y-2 border border-gray-100 shadow-sm hover:shadow-xl" style={{ backgroundColor: '#F5F5F1' }}>
               <div className="w-full flex justify-between items-start">
                 <span className="bg-white px-4 py-1 rounded-full text-[10px] font-bold tracking-widest text-[#7C8982] uppercase">Eco / Spa</span>
@@ -38,12 +41,12 @@ export default function StyleGallery() {
                 Preview Style
               </button>
             </div>
-          </Link>
+          </div>
         )}
 
         {/* 02: NIGHT VISION ARMOR */}
         {getTheme('night-vision') && (
-          <Link to="/theme/night-vision" className="group block h-full">
+          <div onClick={() => setSelectedTheme(getTheme('night-vision')!)} className="group block h-full cursor-pointer">
             <div className="h-[450px] rounded-xl p-8 flex flex-col justify-between transition-transform duration-500 hover:-translate-y-2 relative" style={{ backgroundColor: '#1A1D20', border: '1px solid #2C3539' }}>
               <div className="w-full flex justify-between items-start">
                 <span className="text-[10px] font-mono text-[#4ECDC4] tracking-widest">// NIGHT_VISION</span>
@@ -56,12 +59,12 @@ export default function StyleGallery() {
                 [ PREVIEW STYLE ]
               </button>
             </div>
-          </Link>
+          </div>
         )}
 
         {/* 03: DETAILFLOW */}
         {getTheme('detail-flow') && (
-          <Link to="/theme/detail-flow" className="group block h-full">
+          <div onClick={() => setSelectedTheme(getTheme('detail-flow')!)} className="group block h-full cursor-pointer">
             <div className="h-[450px] rounded-3xl p-8 flex flex-col justify-between transition-transform duration-500 hover:-translate-y-2 relative" style={{ backgroundColor: '#0B1221', border: '1px solid rgba(255,255,255,0.05)' }}>
               <div className="w-full flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-[#8BB0F9]"></div>
@@ -75,12 +78,12 @@ export default function StyleGallery() {
                 Preview Style
               </button>
             </div>
-          </Link>
+          </div>
         )}
 
         {/* 04: AERO SHINE */}
         {getTheme('aero-shine') && (
-          <Link to="/theme/aero-shine" className="group block h-full">
+          <div onClick={() => setSelectedTheme(getTheme('aero-shine')!)} className="group block h-full cursor-pointer">
             <div className="h-[450px] rounded p-8 flex flex-col justify-between transition-transform duration-500 hover:-translate-y-2 relative" style={{ backgroundColor: '#0A0A0A', border: '1px solid rgba(229,57,53,0.2)' }}>
               <div className="w-full flex justify-between items-start">
                 <span className="text-[10px] font-bold text-[#E53935] tracking-[0.2em] uppercase">Motorsport</span>
@@ -93,12 +96,12 @@ export default function StyleGallery() {
                 Preview Style &rarr;
               </button>
             </div>
-          </Link>
+          </div>
         )}
 
         {/* 05: PRISM */}
         {getTheme('prism') && (
-          <Link to="/theme/prism" className="group block h-full">
+          <div onClick={() => setSelectedTheme(getTheme('prism')!)} className="group block h-full cursor-pointer">
             <div className="h-[450px] rounded-xl p-8 flex flex-col justify-between transition-transform duration-500 hover:-translate-y-2 relative" style={{ backgroundColor: '#0A0510', border: '1px solid rgba(255,90,159,0.3)' }}>
               <div className="w-full flex justify-between items-start">
                 <span className="text-[10px] font-mono text-[#FF5A9F] tracking-[0.2em] drop-shadow-[0_0_5px_rgba(255,90,159,0.5)]">PRISM_OS</span>
@@ -111,12 +114,12 @@ export default function StyleGallery() {
                 Preview Style
               </button>
             </div>
-          </Link>
+          </div>
         )}
 
         {/* 06: VANTAGE */}
         {getTheme('vantage') && (
-          <Link to="/theme/vantage" className="group block h-full">
+          <div onClick={() => setSelectedTheme(getTheme('vantage')!)} className="group block h-full cursor-pointer">
             <div className="h-[450px] rounded-lg p-8 flex flex-col justify-between transition-transform duration-500 hover:-translate-y-2 border border-[#E8E4D9] shadow-sm hover:shadow-xl" style={{ backgroundColor: '#F5F2EB' }}>
               <div className="w-full flex justify-between items-start">
                 <span className="text-[10px] font-bold tracking-[0.3em] text-[#C2A476] uppercase">Members Only</span>
@@ -129,12 +132,12 @@ export default function StyleGallery() {
                 Preview Style
               </button>
             </div>
-          </Link>
+          </div>
         )}
 
         {/* 07: MUD, SWEAT & GEARS */}
         {getTheme('mud-sweat-gears') && (
-          <Link to="/theme/mud-sweat-gears" className="group block h-full">
+          <div onClick={() => setSelectedTheme(getTheme('mud-sweat-gears')!)} className="group block h-full cursor-pointer">
             <div className="h-[450px] p-8 flex flex-col justify-between transition-all duration-300 hover:translate-x-[2px] hover:translate-y-[2px] border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] bg-[#FFD600]">
               <div className="w-full flex justify-between items-start">
                 <span className="text-[10px] font-black tracking-[0.3em] text-black uppercase block">
@@ -149,5 +152,19 @@ export default function StyleGallery() {
                 Preview Style &rarr;
               </button>
             </div>
-          </Link>
+          </div>
         )}
+        
+      </div>
+
+      {/* Mount the Modal outside the grid */}
+      {selectedTheme && (
+        <PreviewModal 
+          isOpen={!!selectedTheme} 
+          onClose={() => setSelectedTheme(null)} 
+          theme={selectedTheme} 
+        />
+      )}
+    </section>
+  );
+}
