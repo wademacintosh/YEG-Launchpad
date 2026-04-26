@@ -105,7 +105,11 @@ const FONT_CORMORANT = "'Cormorant Garamond', Georgia, serif";
 const FONT_JETBRAINS = "'JetBrains Mono', ui-monospace, monospace";
 const FONT_ARCHIVO = "'Archivo Black', 'Inter', sans-serif";
 const FONT_PACIFICO = "'Pacifico', cursive";
+
 const FONT_VT = "'VT323', ui-monospace, monospace";
+
+// Export an array of all theme definitions for Navbar
+export const themes = Object.values(THEMES);
 
 export const THEMES: Record<ThemeSlug, ThemeDefinition> = {
   obsidian: {
