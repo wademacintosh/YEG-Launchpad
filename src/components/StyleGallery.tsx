@@ -1,138 +1,40 @@
-import { useMemo, useState } from "react";
-import { useNavigate } from "@tanstack/react-router";
-import { StyleCard, type StyleCategory, type StyleItem } from "./StyleCard";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { themes } from '../lib/themes';
+import { ArrowRight } from 'lucide-react';
 
-const STYLES: StyleItem[] = [
-  {
-    title: "Obsidian Eco-Clean",
-    tagline: "Minimal monochrome layout for waterless, eco-conscious detailing.",
-    category: "Modern",
-    variant: "obsidian-eco",
-    slug: "obsidian",
-  },
-  {
-    title: "Night Vision Armor",
-    tagline: "High-contrast dark UI built for ceramic coatings & PPF.",
-    category: "Modern",
-    variant: "night-vision",
-    slug: "night-vision",
-  },
-  {
-    title: "The Vantage Collective",
-    tagline: "Editorial luxury aesthetic for boutique exotic-car studios.",
-    category: "Luxury",
-    variant: "vantage",
-    slug: "vantage",
-  },
-  {
-    title: "Mud, Sweat & Gears",
-    tagline: "Bold rugged branding for off-road & truck wash specialists.",
-    category: "Rugged",
-    variant: "mud-sweat-gears",
-    slug: "mud-sweat-gears",
-  },
-  {
-    title: "DetailFlow Pro",
-    tagline: "Clean SaaS-style layout focused on online booking conversions.",
-    category: "Modern",
-    variant: "detailflow",
-    slug: "detailflow",
-  },
-  {
-    title: "Aero Shine Labs",
-    tagline: "Tech-lab vibe with motion accents for paint correction pros.",
-    category: "Modern",
-    variant: "aero-shine",
-    slug: "aero-shine",
-  },
-  {
-    title: "Route 66 Revive",
-    tagline: "Retro Americana branding for classic & restoration shops.",
-    category: "Rugged",
-    variant: "route66",
-    slug: "route-66",
-  },
-  {
-    title: "Prism Auto-Works",
-    tagline: "Vibrant gradient design for vinyl wraps & custom finishes.",
-    category: "Luxury",
-    variant: "prism",
-    slug: "prism",
-  },
-];
-
-const FILTERS: Array<"All" | StyleCategory> = ["All", "Luxury", "Rugged", "Modern"];
-
-export function StyleGallery() {
-  const navigate = useNavigate();
-  const [active, setActive] = useState<"All" | StyleCategory>("All");
-
-  const items = useMemo(
-    () => (active === "All" ? STYLES : STYLES.filter((s) => s.category === active)),
-    [active],
-  );
-
-  const handlePreview = (item: StyleItem) => {
-    navigate({ to: "/theme/$slug", params: { slug: item.slug } });
-  };
-
+export default function StyleGallery() {
   return (
-    <section id="gallery" className="bg-background py-20 sm:py-24">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
-          <div className="max-w-xl">
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-              The Showroom
-            </span>
-            <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-secondary sm:text-4xl">
-              Browse the lineup
-            </h2>
-            <p className="mt-3 text-base text-muted-foreground">
-              Eight distinct directions. Click any card to open its full demo site.
-            </p>
-          </div>
-
-          {/* Filter toggle */}
-          <div
-            role="tablist"
-            aria-label="Filter styles by category"
-            className="inline-flex flex-wrap items-center gap-1 rounded-lg border border-border bg-muted p-1"
+    <section className="py-20 px-6 max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {themes.map((theme) => (
+          <div 
+            key={theme.id}
+            className="group relative overflow-hidden border border-black/10 p-6 transition-all hover:shadow-xl"
+            style={{ backgroundColor: theme.colors.background }}
           >
-            {FILTERS.map((f) => {
-              const isActive = active === f;
-              return (
-                <button
-                  key={f}
-                  role="tab"
-                  aria-selected={isActive}
-                  onClick={() => setActive(f)}
-                  className={[
-                    "rounded-md px-4 py-1.5 text-sm font-semibold transition-all",
-                    isActive
-                      ? "bg-secondary text-secondary-foreground shadow-sm"
-                      : "text-muted-foreground hover:text-secondary",
-                  ].join(" ")}
-                >
-                  {f}
-                </button>
-              );
-            })}
+            <div className="flex justify-between items-start mb-8">
+              <span className="text-xs font-bold uppercase tracking-widest opacity-50">
+                {theme.category}
+              </span>
+            </div>
+            
+            <h3 className="text-3xl font-black mb-2 italic uppercase leading-none" style={{ color: theme.colors.text }}>
+              {theme.name}
+            </h3>
+            <p className="text-sm mb-8 opacity-70 leading-relaxed">
+              {theme.description}
+            </p>
+
+            <Link 
+              to={`/theme/${theme.id}`}
+              className="inline-flex items-center gap-2 font-bold uppercase text-sm group-hover:gap-4 transition-all"
+              style={{ color: theme.colors.primary }}
+            >
+              Preview Style <ArrowRight size={16} />
+            </Link>
           </div>
-        </div>
-
-        {/* Grid */}
-        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {items.map((item) => (
-            <StyleCard key={item.title} item={item} onPreview={handlePreview} />
-          ))}
-        </div>
-
-        {items.length === 0 && (
-          <p className="mt-12 text-center text-sm text-muted-foreground">
-            No styles match this filter yet.
-          </p>
-        )}
+        ))}
       </div>
     </section>
   );
