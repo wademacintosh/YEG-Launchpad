@@ -1,4 +1,4 @@
-import { type ReactNode } from "react";
+import { type ReactNode, type MouseEvent } from "react";
 
 export type StyleCategory = "Luxury" | "Rugged" | "Modern";
 
@@ -60,7 +60,12 @@ function CardShell({
 }
 
 /* ---------- 1. Obsidian Eco-Clean ---------- */
-function ObsidianEcoCard({ item }: StyleCardProps) {
+function ObsidianEcoCard({ item, onPreview }: StyleCardProps) {
+  const handleClick = (e: MouseEvent) => {
+    e.preventDefault();
+    onPreview?.(item);
+  };
+
   return (
     <CardShell
       className="rounded-2xl border border-[#cfd8cf] shadow-[0_1px_2px_rgb(0_0_0/0.04),0_8px_24px_-12px_rgb(0_0_0/0.12)] hover:shadow-[0_24px_48px_-20px_rgb(122_140_126/0.45)]"
@@ -90,7 +95,8 @@ function ObsidianEcoCard({ item }: StyleCardProps) {
           </p>
         </div>
         <a
-          href={`/preview/${item.variant}`}
+          href="#"
+          onClick={handleClick}
           className="mt-auto w-full rounded-full border py-3 text-center text-xs font-medium uppercase tracking-[0.3em] transition-colors hover:bg-[#7A8C7E] hover:text-white"
           style={{
             borderColor: "#7A8C7E",
@@ -106,7 +112,12 @@ function ObsidianEcoCard({ item }: StyleCardProps) {
 }
 
 /* ---------- 2. Night Vision Armor ---------- */
-function NightVisionCard({ item }: StyleCardProps) {
+function NightVisionCard({ item, onPreview }: StyleCardProps) {
+  const handleClick = (e: MouseEvent) => {
+    e.preventDefault();
+    onPreview?.(item);
+  };
+
   return (
     <CardShell
       className="shadow-neon-cyan shadow-neon-cyan-hover rounded-md"
@@ -138,7 +149,8 @@ function NightVisionCard({ item }: StyleCardProps) {
         </h3>
         <p className="mt-2 text-xs leading-relaxed text-zinc-400">&gt; {item.tagline}</p>
         <a
-          href={`/preview/${item.variant}`}
+          href="#"
+          onClick={handleClick}
           className="mt-6 w-full rounded-sm border border-cyan-400/60 bg-cyan-400/5 py-3 text-center text-xs font-bold uppercase tracking-[0.25em] text-cyan-300 transition-all hover:bg-cyan-400/15 hover:text-cyan-200 hover:shadow-[0_0_16px_rgb(34_211_238/0.5)]"
         >
           [ Preview Style ]
@@ -149,7 +161,12 @@ function NightVisionCard({ item }: StyleCardProps) {
 }
 
 /* ---------- 3. The Vantage Collective ---------- */
-function VantageCard({ item }: StyleCardProps) {
+function VantageCard({ item, onPreview }: StyleCardProps) {
+  const handleClick = (e: MouseEvent) => {
+    e.preventDefault();
+    onPreview?.(item);
+  };
+
   return (
     <CardShell
       className="rounded-none border border-[#0a1628]/15 shadow-[0_1px_2px_rgb(0_0_0/0.04),0_12px_30px_-16px_rgb(10_22_40/0.4)] hover:shadow-[0_24px_60px_-24px_rgb(184_151_102/0.45)]"
@@ -185,7 +202,8 @@ function VantageCard({ item }: StyleCardProps) {
           {item.tagline}
         </p>
         <a
-          href={`/preview/${item.variant}`}
+          href="#"
+          onClick={handleClick}
           className="group/btn flex items-center justify-between border-t pt-4 text-[11px] uppercase tracking-[0.3em] transition-colors"
           style={{
             borderColor: "#0a1628",
@@ -204,7 +222,12 @@ function VantageCard({ item }: StyleCardProps) {
 }
 
 /* ---------- 4. Mud, Sweat & Gears ---------- */
-function MudSweatGearsCard({ item }: StyleCardProps) {
+function MudSweatGearsCard({ item, onPreview }: StyleCardProps) {
+  const handleClick = (e: MouseEvent) => {
+    e.preventDefault();
+    onPreview?.(item);
+  };
+
   return (
     <CardShell className="shadow-brutal shadow-brutal-hover rounded-none border-4 border-black" hoverClassName="">
       <div
@@ -225,7 +248,8 @@ function MudSweatGearsCard({ item }: StyleCardProps) {
           {item.tagline}
         </p>
         <a
-          href={`/preview/${item.variant}`}
+          href="#"
+          onClick={handleClick}
           className="mt-5 w-full border-4 border-black bg-black py-3 text-center text-sm font-black uppercase tracking-widest text-[#FFD400] transition-colors hover:bg-[#FFD400] hover:text-black"
           style={{ fontFamily: "'Archivo Black', sans-serif" }}
         >
@@ -237,7 +261,12 @@ function MudSweatGearsCard({ item }: StyleCardProps) {
 }
 
 /* ---------- 5. DetailFlow Pro ---------- */
-function DetailFlowCard({ item }: StyleCardProps) {
+function DetailFlowCard({ item, onPreview }: StyleCardProps) {
+  const handleClick = (e: MouseEvent) => {
+    e.preventDefault();
+    onPreview?.(item);
+  };
+
   return (
     <CardShell className="rounded-3xl" hoverClassName="hover:-translate-y-1 hover:scale-[1.02]">
       <div className="relative flex flex-1 flex-col overflow-hidden rounded-3xl">
@@ -273,7 +302,8 @@ function DetailFlowCard({ item }: StyleCardProps) {
           <h3 className="text-xl font-bold tracking-tight text-white drop-shadow">{item.title}</h3>
           <p className="mt-1.5 text-xs leading-relaxed text-white/80">{item.tagline}</p>
           <a
-            href={`/preview/${item.variant}`}
+            href="#"
+            onClick={handleClick}
             className="mt-5 w-full rounded-full border border-white/40 bg-white/25 py-2.5 text-center text-sm font-semibold text-white backdrop-blur-md transition-all hover:bg-white/35 hover:shadow-[0_8px_24px_-8px_rgb(255_255_255/0.4)]"
           >
             Preview Style
@@ -285,7 +315,12 @@ function DetailFlowCard({ item }: StyleCardProps) {
 }
 
 /* ---------- 6. Aero Shine Labs ---------- */
-function AeroShineCard({ item }: StyleCardProps) {
+function AeroShineCard({ item, onPreview }: StyleCardProps) {
+  const handleClick = (e: MouseEvent) => {
+    e.preventDefault();
+    onPreview?.(item);
+  };
+
   return (
     <CardShell
       className="rounded-xl border border-[#e10600]/40 shadow-[0_8px_30px_-12px_rgb(225_6_0/0.3)] hover:shadow-[0_20px_40px_-12px_rgb(225_6_0/0.6)]"
@@ -323,7 +358,8 @@ function AeroShineCard({ item }: StyleCardProps) {
           {item.tagline}
         </p>
         <a
-          href={`/preview/${item.variant}`}
+          href="#"
+          onClick={handleClick}
           className="relative mt-5 w-full overflow-hidden rounded-sm border-l-4 border-[#e10600] bg-white/5 py-3 text-center text-xs font-bold uppercase italic tracking-[0.25em] text-white backdrop-blur transition-all hover:bg-[#e10600] hover:border-white"
           style={{ fontFamily: "'Space Grotesk', sans-serif" }}
         >
@@ -335,7 +371,12 @@ function AeroShineCard({ item }: StyleCardProps) {
 }
 
 /* ---------- 7. Route 66 Revive ---------- */
-function Route66Card({ item }: StyleCardProps) {
+function Route66Card({ item, onPreview }: StyleCardProps) {
+  const handleClick = (e: MouseEvent) => {
+    e.preventDefault();
+    onPreview?.(item);
+  };
+
   return (
     <CardShell
       className="rounded-xl border-2 border-[#1f1f1f] shadow-[4px_4px_0_0_#1f1f1f] hover:shadow-[6px_6px_0_0_#1f1f1f]"
@@ -387,7 +428,8 @@ function Route66Card({ item }: StyleCardProps) {
           </p>
         </div>
         <a
-          href={`/preview/${item.variant}`}
+          href="#"
+          onClick={handleClick}
           className="shadow-sticker shadow-sticker-hover relative block w-full rounded-full border-2 border-[#1f1f1f] bg-[#7C1D1D] py-3 text-center text-sm font-black uppercase tracking-wider text-[#f7eed7] transition-all"
         >
           Preview Style
@@ -398,7 +440,12 @@ function Route66Card({ item }: StyleCardProps) {
 }
 
 /* ---------- 8. Prism Auto-Works ---------- */
-function PrismCard({ item }: StyleCardProps) {
+function PrismCard({ item, onPreview }: StyleCardProps) {
+  const handleClick = (e: MouseEvent) => {
+    e.preventDefault();
+    onPreview?.(item);
+  };
+
   return (
     <CardShell
       className="rounded-xl border border-fuchsia-500/40 shadow-[0_8px_30px_-8px_rgb(217_70_239/0.5)] hover:shadow-[0_20px_50px_-10px_rgb(217_70_239/0.8)]"
@@ -458,7 +505,8 @@ function PrismCard({ item }: StyleCardProps) {
           </p>
         </div>
         <a
-          href={`/preview/${item.variant}`}
+          href="#"
+          onClick={handleClick}
           className="relative mt-5 block w-full overflow-hidden rounded-md py-3 text-center text-sm font-bold uppercase tracking-[0.25em] text-white transition-all hover:tracking-[0.3em]"
           style={{
             background: "linear-gradient(90deg, #c026d3 0%, #7c3aed 50%, #ec4899 100%)",
