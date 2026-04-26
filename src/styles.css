@@ -2,7 +2,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@500;700;900&family=Cormorant+Garamond:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&family=Archivo+Black&family=Space+Grotesk:wght@400;500;700&family=Pacifico&family=VT323&display=swap");
 
 @theme {
-  /* Keep your theme variables here */
+  --font-sans: "Inter", ui-sans-serif, system-ui;
+  --color-primary: #FF6600;
+  --color-asphalt: #2C2C2C;
+  --color-silver: #BDC3C7;
 }
 
-/* Rest of your CSS below */
+:root {
+  --background: #FFFFFF;
+  --foreground: #2C2C2C;
+}
+
+@layer base {
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+  }
+}
