@@ -1,5 +1,4 @@
 import { type ReactNode } from "react";
-import Link from "next/link"; // Added for page navigation
 
 export type StyleCategory = "Luxury" | "Rugged" | "Modern";
 
@@ -90,7 +89,7 @@ function ObsidianEcoCard({ item }: StyleCardProps) {
             {item.tagline}
           </p>
         </div>
-        <Link
+        <a
           href={`/preview/${item.variant}`}
           className="mt-auto w-full rounded-full border py-3 text-center text-xs font-medium uppercase tracking-[0.3em] transition-colors hover:bg-[#7A8C7E] hover:text-white"
           style={{
@@ -100,7 +99,7 @@ function ObsidianEcoCard({ item }: StyleCardProps) {
           }}
         >
           Preview Style
-        </Link>
+        </a>
       </div>
     </CardShell>
   );
@@ -138,12 +137,12 @@ function NightVisionCard({ item }: StyleCardProps) {
           {item.title} <span className="animate-pulse text-cyan-400">_</span>
         </h3>
         <p className="mt-2 text-xs leading-relaxed text-zinc-400">&gt; {item.tagline}</p>
-        <Link
+        <a
           href={`/preview/${item.variant}`}
           className="mt-6 w-full rounded-sm border border-cyan-400/60 bg-cyan-400/5 py-3 text-center text-xs font-bold uppercase tracking-[0.25em] text-cyan-300 transition-all hover:bg-cyan-400/15 hover:text-cyan-200 hover:shadow-[0_0_16px_rgb(34_211_238/0.5)]"
         >
           [ Preview Style ]
-        </Link>
+        </a>
       </div>
     </CardShell>
   );
@@ -185,7 +184,7 @@ function VantageCard({ item }: StyleCardProps) {
         >
           {item.tagline}
         </p>
-        <Link
+        <a
           href={`/preview/${item.variant}`}
           className="group/btn flex items-center justify-between border-t pt-4 text-[11px] uppercase tracking-[0.3em] transition-colors"
           style={{
@@ -198,7 +197,7 @@ function VantageCard({ item }: StyleCardProps) {
           <span className="transition-transform group-hover/btn:translate-x-1" style={{ color: "#B89766" }}>
             →
           </span>
-        </Link>
+        </a>
       </div>
     </CardShell>
   );
@@ -225,13 +224,13 @@ function MudSweatGearsCard({ item }: StyleCardProps) {
         <p className="flex-1 text-sm font-bold leading-snug text-black" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
           {item.tagline}
         </p>
-        <Link
+        <a
           href={`/preview/${item.variant}`}
           className="mt-5 w-full border-4 border-black bg-black py-3 text-center text-sm font-black uppercase tracking-widest text-[#FFD400] transition-colors hover:bg-[#FFD400] hover:text-black"
           style={{ fontFamily: "'Archivo Black', sans-serif" }}
         >
           → PREVIEW STYLE
-        </Link>
+        </a>
       </div>
     </CardShell>
   );
@@ -273,12 +272,12 @@ function DetailFlowCard({ item }: StyleCardProps) {
           </div>
           <h3 className="text-xl font-bold tracking-tight text-white drop-shadow">{item.title}</h3>
           <p className="mt-1.5 text-xs leading-relaxed text-white/80">{item.tagline}</p>
-          <Link
+          <a
             href={`/preview/${item.variant}`}
             className="mt-5 w-full rounded-full border border-white/40 bg-white/25 py-2.5 text-center text-sm font-semibold text-white backdrop-blur-md transition-all hover:bg-white/35 hover:shadow-[0_8px_24px_-8px_rgb(255_255_255/0.4)]"
           >
             Preview Style
-          </Link>
+          </a>
         </div>
       </div>
     </CardShell>
@@ -323,13 +322,13 @@ function AeroShineCard({ item }: StyleCardProps) {
         <p className="relative text-xs italic leading-relaxed text-white/75" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
           {item.tagline}
         </p>
-        <Link
+        <a
           href={`/preview/${item.variant}`}
           className="relative mt-5 w-full overflow-hidden rounded-sm border-l-4 border-[#e10600] bg-white/5 py-3 text-center text-xs font-bold uppercase italic tracking-[0.25em] text-white backdrop-blur transition-all hover:bg-[#e10600] hover:border-white"
           style={{ fontFamily: "'Space Grotesk', sans-serif" }}
         >
           Preview Style →
-        </Link>
+        </a>
       </div>
     </CardShell>
   );
@@ -387,12 +386,12 @@ function Route66Card({ item }: StyleCardProps) {
             {item.tagline}
           </p>
         </div>
-        <Link
+        <a
           href={`/preview/${item.variant}`}
-          className="shadow-sticker shadow-sticker-hover relative w-full rounded-full border-2 border-[#1f1f1f] bg-[#7C1D1D] py-3 text-center text-sm font-black uppercase tracking-wider text-[#f7eed7] transition-all"
+          className="shadow-sticker shadow-sticker-hover relative block w-full rounded-full border-2 border-[#1f1f1f] bg-[#7C1D1D] py-3 text-center text-sm font-black uppercase tracking-wider text-[#f7eed7] transition-all"
         >
           Preview Style
-        </Link>
+        </a>
       </div>
     </CardShell>
   );
@@ -458,16 +457,16 @@ function PrismCard({ item }: StyleCardProps) {
             {item.tagline}
           </p>
         </div>
-        <Link
+        <a
           href={`/preview/${item.variant}`}
-          className="relative mt-5 w-full overflow-hidden rounded-md py-3 text-center text-sm font-bold uppercase tracking-[0.25em] text-white transition-all hover:tracking-[0.3em]"
+          className="relative mt-5 block w-full overflow-hidden rounded-md py-3 text-center text-sm font-bold uppercase tracking-[0.25em] text-white transition-all hover:tracking-[0.3em]"
           style={{
             background: "linear-gradient(90deg, #c026d3 0%, #7c3aed 50%, #ec4899 100%)",
             boxShadow: "0 0 0 1px rgba(255,255,255,0.15), 0 8px 24px -8px rgba(217,70_239,0.6)",
           }}
         >
           ▸ Preview Style
-        </Link>
+        </a>
       </div>
     </CardShell>
   );
