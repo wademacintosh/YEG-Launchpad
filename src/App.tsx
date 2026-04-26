@@ -1,13 +1,15 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './pages/index'; // Ensure this matches your file path
-import ThemePage from './pages/theme/$slug'; // Adjust to match your theme page file
+import HomePage from './pages/HomePage';
+import ThemePage from './pages/ThemePage';
 
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/theme/:slug" element={<ThemePage />} />
+        {/* Fallback for 404s */}
+        <Route path="*" element={<HomePage />} />
       </Routes>
     </BrowserRouter>
   );
