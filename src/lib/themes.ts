@@ -1,11 +1,7 @@
 /**
  * Per-theme content & visual tokens that drive both the gallery cards
  * and the full /theme/$slug demo pages.
- *
- * Each theme defines its OWN palette + font stack so its dedicated page
- * truly looks like a different brand.
  */
-
 export type ThemeSlug =
   | "obsidian"
   | "night-vision"
@@ -21,7 +17,6 @@ export type ThemeCategory = "Luxury" | "Rugged" | "Modern";
 export interface ServiceItem {
   title: string;
   description: string;
-  /** Lucide icon name (resolved via the icon map in components) */
   icon:
     | "Sparkles"
     | "ShieldCheck"
@@ -41,12 +36,10 @@ export interface ServiceItem {
 export interface ResultItem {
   label: string;
   caption: string;
-  /** Two-color CSS gradient used for the placeholder image tile */
   gradient: string;
 }
 
 export interface ThemeTokens {
-  /** Colors */
   bg: string;
   surface: string;
   fg: string;
@@ -54,20 +47,15 @@ export interface ThemeTokens {
   accent: string;
   accentFg: string;
   border: string;
-
-  /** Typography (full CSS font-family stacks) */
   fontHeading: string;
   fontBody: string;
-
-  /** Style flags */
-  radius: string; // e.g. "1rem", "0px"
+  radius: string;
   buttonShape: "pill" | "square" | "sticker" | "brutal";
   uppercaseHeadings: boolean;
 }
 
 export interface ThemeDefinition {
   slug: ThemeSlug;
-  /** Used by the gallery card variant dispatcher */
   variant:
     | "obsidian-eco"
     | "night-vision"
@@ -81,35 +69,28 @@ export interface ThemeDefinition {
   shortTitle: string;
   tagline: string;
   category: ThemeCategory;
-  /** Hero copy */
   heroEyebrow: string;
   heroHeadline: string;
   heroSub: string;
   heroCta: string;
-  /** Three services for the Services section */
   services: [ServiceItem, ServiceItem, ServiceItem];
-  /** Six tiles for the Results gallery */
   results: ResultItem[];
-  /** Contact section copy */
   contactHeadline: string;
   contactSub: string;
-  /** Visual tokens that style the whole page */
   tokens: ThemeTokens;
 }
 
-const FONT_INTER =
-  "'Inter', ui-sans-serif, system-ui, sans-serif";
+const FONT_INTER = "'Inter', ui-sans-serif, system-ui, sans-serif";
 const FONT_SPACE_GROTESK = "'Space Grotesk', 'Inter', sans-serif";
 const FONT_PLAYFAIR = "'Playfair Display', Georgia, serif";
 const FONT_CORMORANT = "'Cormorant Garamond', Georgia, serif";
 const FONT_JETBRAINS = "'JetBrains Mono', ui-monospace, monospace";
 const FONT_ARCHIVO = "'Archivo Black', 'Inter', sans-serif";
 const FONT_PACIFICO = "'Pacifico', cursive";
-
 const FONT_VT = "'VT323', ui-monospace, monospace";
 
-// Export an array of all theme definitions for Navbar
-export const themes = Object.values(THEMES);
+// NOTE: We define the object FIRST, then export the array at the bottom 
+// to avoid the "initialization" error in production builds.
 
 export const THEMES: Record<ThemeSlug, ThemeDefinition> = {
   obsidian: {
@@ -117,33 +98,16 @@ export const THEMES: Record<ThemeSlug, ThemeDefinition> = {
     variant: "obsidian-eco",
     title: "Obsidian Eco-Clean",
     shortTitle: "Obsidian",
-    tagline:
-      "Minimal monochrome layout for waterless, eco-conscious detailing.",
+    tagline: "Minimal monochrome layout for waterless, eco-conscious detailing.",
     category: "Modern",
     heroEyebrow: "01 — Eco · Waterless",
     heroHeadline: "Detailing in harmony with the planet.",
-    heroSub:
-      "A quiet, monochrome studio for waterless and steam detailing — every surface treated with intention, every drop accounted for.",
+    heroSub: "A quiet, monochrome studio for waterless and steam detailing.",
     heroCta: "Book a Quiet Detail",
     services: [
-      {
-        title: "Steam Interior Refresh",
-        description:
-          "Plant-based steam treatment removes grime without a single litre of waste water.",
-        icon: "Droplets",
-      },
-      {
-        title: "Hand-Polish Restoration",
-        description:
-          "Slow, hand-applied polishing brings back depth without aggressive compounds.",
-        icon: "Sparkles",
-      },
-      {
-        title: "Eco Ceramic Sealant",
-        description:
-          "A low-VOC ceramic sealant that protects paint for up to 18 months.",
-        icon: "ShieldCheck",
-      },
+      { title: "Steam Interior Refresh", description: "Plant-based steam treatment.", icon: "Droplets" },
+      { title: "Hand-Polish Restoration", description: "Slow, hand-applied polishing.", icon: "Sparkles" },
+      { title: "Eco Ceramic Sealant", description: "Low-VOC ceramic sealant.", icon: "ShieldCheck" },
     ],
     results: [
       { label: "Waterless full detail", caption: "Tesla Model 3", gradient: "linear-gradient(135deg,#cfd8cf,#7A8C7E)" },
@@ -154,8 +118,7 @@ export const THEMES: Record<ThemeSlug, ThemeDefinition> = {
       { label: "Glass restore", caption: "Genesis G70", gradient: "linear-gradient(135deg,#eef2ec,#3a4a3d)" },
     ],
     contactHeadline: "Reserve a quiet appointment.",
-    contactSub:
-      "Tell us about your vehicle. We respond within one business day.",
+    contactSub: "We respond within one business day.",
     tokens: {
       bg: "#eef2ec",
       surface: "#ffffff",
@@ -171,7 +134,6 @@ export const THEMES: Record<ThemeSlug, ThemeDefinition> = {
       uppercaseHeadings: false,
     },
   },
-
   "night-vision": {
     slug: "night-vision",
     variant: "night-vision",
@@ -180,29 +142,13 @@ export const THEMES: Record<ThemeSlug, ThemeDefinition> = {
     tagline: "High-contrast dark UI built for ceramic coatings & PPF.",
     category: "Modern",
     heroEyebrow: "// 02_NIGHT_VISION_ARMOR",
-    heroHeadline: "Armor your paint. Run silent. Run dark.",
-    heroSub:
-      "Nano-ceramic coatings and self-healing paint protection film, calibrated by certified installers.",
+    heroHeadline: "Armor your paint. Run silent.",
+    heroSub: "Nano-ceramic coatings and self-healing paint protection film.",
     heroCta: "[ Initialize Quote ]",
     services: [
-      {
-        title: "Ceramic Pro 9H",
-        description:
-          "Lab-grade nano-coating with up to 7 years of hydrophobic protection.",
-        icon: "ShieldCheck",
-      },
-      {
-        title: "PPF Full Front",
-        description:
-          "Self-healing film engineered to absorb stone chips at highway speed.",
-        icon: "Zap",
-      },
-      {
-        title: "Headlight Restore",
-        description:
-          "Multi-stage UV restoration with sealant for perfect light output.",
-        icon: "Gauge",
-      },
+      { title: "Ceramic Pro 9H", description: "Lab-grade nano-coating.", icon: "ShieldCheck" },
+      { title: "PPF Full Front", description: "Self-healing film.", icon: "Zap" },
+      { title: "Headlight Restore", description: "Multi-stage UV restoration.", icon: "Gauge" },
     ],
     results: [
       { label: "Ceramic 9H", caption: "Porsche 911", gradient: "linear-gradient(135deg,#0b1020,#22d3ee)" },
@@ -213,8 +159,7 @@ export const THEMES: Record<ThemeSlug, ThemeDefinition> = {
       { label: "Glass Coating", caption: "GR Supra", gradient: "linear-gradient(135deg,#111,#67e8f9)" },
     ],
     contactHeadline: "Request_quote.exe",
-    contactSub:
-      "Drop your vehicle details — operator on standby 09:00–18:00 MST.",
+    contactSub: "Operator on standby 09:00–18:00 MST.",
     tokens: {
       bg: "#1a1a1a",
       surface: "#111111",
@@ -230,7 +175,6 @@ export const THEMES: Record<ThemeSlug, ThemeDefinition> = {
       uppercaseHeadings: true,
     },
   },
-
   vantage: {
     slug: "vantage",
     variant: "vantage",
@@ -239,29 +183,13 @@ export const THEMES: Record<ThemeSlug, ThemeDefinition> = {
     tagline: "Editorial luxury aesthetic for boutique exotic-car studios.",
     category: "Luxury",
     heroEyebrow: "Vol. III · Members Only",
-    heroHeadline: "An atelier for cars that deserve more than a wash.",
-    heroSub:
-      "By appointment only. White-glove detailing and concours-level preparation for collectors across Alberta.",
+    heroHeadline: "An atelier for cars that deserve more.",
+    heroSub: "White-glove detailing and concours-level preparation.",
     heroCta: "Request Membership",
     services: [
-      {
-        title: "Concours Preparation",
-        description:
-          "Full multi-day correction & detailing for shows, auctions and rallies.",
-        icon: "Diamond",
-      },
-      {
-        title: "Heritage Leather Care",
-        description:
-          "Hand-conditioning of original leather, stitching and trim.",
-        icon: "Sparkles",
-      },
-      {
-        title: "Storage Detailing",
-        description:
-          "Quarterly maintenance for vehicles in private collections.",
-        icon: "Star",
-      },
+      { title: "Concours Preparation", description: "Multi-day correction.", icon: "Diamond" },
+      { title: "Heritage Leather Care", description: "Hand-conditioning.", icon: "Sparkles" },
+      { title: "Storage Detailing", description: "Quarterly maintenance.", icon: "Star" },
     ],
     results: [
       { label: "Concours prep", caption: "Aston Martin DB11", gradient: "linear-gradient(135deg,#f5f1ea,#B89766)" },
@@ -272,8 +200,7 @@ export const THEMES: Record<ThemeSlug, ThemeDefinition> = {
       { label: "Heritage refresh", caption: "Mercedes 280SL", gradient: "linear-gradient(135deg,#B89766,#f5f1ea)" },
     ],
     contactHeadline: "Membership Inquiries",
-    contactSub:
-      "Share a few details about your vehicle. Our concierge will respond personally.",
+    contactSub: "Our concierge will respond personally.",
     tokens: {
       bg: "#f5f1ea",
       surface: "#ffffff",
@@ -289,38 +216,21 @@ export const THEMES: Record<ThemeSlug, ThemeDefinition> = {
       uppercaseHeadings: false,
     },
   },
-
   "mud-sweat-gears": {
     slug: "mud-sweat-gears",
     variant: "mud-sweat-gears",
     title: "Mud, Sweat & Gears",
     shortTitle: "Mud · Sweat · Gears",
-    tagline: "Bold rugged branding for off-road & truck wash specialists.",
+    tagline: "Bold rugged branding for off-road specialists.",
     category: "Rugged",
     heroEyebrow: "★ EST. 2018 · YEG ALBERTA",
     heroHeadline: "WE EAT MUD FOR BREAKFAST.",
-    heroSub:
-      "Heavy-duty wash bays for trucks, lifted rigs and overland builds. No appointments. No nonsense.",
+    heroSub: "Heavy-duty wash bays for trucks and overland builds.",
     heroCta: "GET IT CLEANED",
     services: [
-      {
-        title: "Undercarriage Blast",
-        description:
-          "200-bar pressure wash strips mud, salt and trail debris from every angle.",
-        icon: "Mountain",
-      },
-      {
-        title: "Engine Bay Detail",
-        description:
-          "Degrease, dress and protect every hose and harness in your bay.",
-        icon: "Wrench",
-      },
-      {
-        title: "Off-Road Recovery Wash",
-        description:
-          "Full clean-up after a weekend in the bush — including interior shake-out.",
-        icon: "Car",
-      },
+      { title: "Undercarriage Blast", description: "200-bar pressure wash.", icon: "Mountain" },
+      { title: "Engine Bay Detail", description: "Degrease and protect.", icon: "Wrench" },
+      { title: "Off-Road Recovery Wash", description: "Full clean-up.", icon: "Car" },
     ],
     results: [
       { label: "Trail recovery", caption: "Ford F-250", gradient: "linear-gradient(135deg,#FFD400,#000)" },
@@ -331,7 +241,7 @@ export const THEMES: Record<ThemeSlug, ThemeDefinition> = {
       { label: "Tire & wheel", caption: "Bronco Raptor", gradient: "linear-gradient(135deg,#000,#FFD400)" },
     ],
     contactHeadline: "ROLL IN. WE'LL HANDLE IT.",
-    contactSub: "Drop us a message. We answer in plain English.",
+    contactSub: "We answer in plain English.",
     tokens: {
       bg: "#FFD400",
       surface: "#ffffff",
@@ -347,38 +257,21 @@ export const THEMES: Record<ThemeSlug, ThemeDefinition> = {
       uppercaseHeadings: true,
     },
   },
-
   detailflow: {
     slug: "detailflow",
     variant: "detailflow",
     title: "DetailFlow Pro",
     shortTitle: "DetailFlow",
-    tagline: "Clean SaaS-style layout focused on online booking conversions.",
+    tagline: "Clean SaaS-style layout focused on booking.",
     category: "Modern",
     heroEyebrow: "Online booking · 24/7",
     heroHeadline: "Book your detail in 30 seconds.",
-    heroSub:
-      "Live availability, transparent pricing and SMS confirmations. Built for shops that ship work, not paperwork.",
+    heroSub: "Live availability and transparent pricing.",
     heroCta: "Check Availability",
     services: [
-      {
-        title: "Express Detail",
-        description:
-          "Wash, vacuum, interior wipe-down and tire shine in 60 minutes flat.",
-        icon: "Zap",
-      },
-      {
-        title: "Signature Detail",
-        description:
-          "Two-stage exterior decontamination plus full interior reset.",
-        icon: "Sparkles",
-      },
-      {
-        title: "Subscription Plan",
-        description:
-          "Monthly maintenance details with priority booking and member rates.",
-        icon: "ShieldCheck",
-      },
+      { title: "Express Detail", description: "Wash and vacuum in 60 mins.", icon: "Zap" },
+      { title: "Signature Detail", description: "Two-stage decontamination.", icon: "Sparkles" },
+      { title: "Subscription Plan", description: "Monthly maintenance.", icon: "ShieldCheck" },
     ],
     results: [
       { label: "Express", caption: "Honda Civic", gradient: "linear-gradient(135deg,#60a5fa,#0f172a)" },
@@ -389,7 +282,7 @@ export const THEMES: Record<ThemeSlug, ThemeDefinition> = {
       { label: "Family SUV", caption: "Kia Telluride", gradient: "linear-gradient(135deg,#0f172a,#c084fc)" },
     ],
     contactHeadline: "Have a question first?",
-    contactSub: "Send a quick message — we typically reply in under an hour.",
+    contactSub: "We typically reply in under an hour.",
     tokens: {
       bg: "#0f172a",
       surface: "rgba(255,255,255,0.06)",
@@ -405,38 +298,21 @@ export const THEMES: Record<ThemeSlug, ThemeDefinition> = {
       uppercaseHeadings: false,
     },
   },
-
   "aero-shine": {
     slug: "aero-shine",
     variant: "aero-shine",
     title: "Aero Shine Labs",
     shortTitle: "Aero Shine",
-    tagline: "Tech-lab vibe with motion accents for paint correction pros.",
+    tagline: "Tech-lab vibe for paint correction pros.",
     category: "Modern",
     heroEyebrow: "// VELOCITY · v6.0",
-    heroHeadline: "Paint correction at race-team precision.",
-    heroSub:
-      "Multi-stage cutting, polishing and finishing — measured with paint-depth gauges and finished under controlled lighting.",
+    heroHeadline: "Paint correction precision.",
+    heroSub: "Measured with paint-depth gauges.",
     heroCta: "Start Correction",
     services: [
-      {
-        title: "1-Step Enhancement",
-        description:
-          "Removes 60–70% of light defects for a fast, dramatic refresh.",
-        icon: "Zap",
-      },
-      {
-        title: "2-Step Correction",
-        description:
-          "Cut and polish process restores up to 90% of paint clarity.",
-        icon: "Gauge",
-      },
-      {
-        title: "Show-Car Finish",
-        description:
-          "Multi-stage refinement for shows, builds and feature cars.",
-        icon: "Star",
-      },
+      { title: "1-Step Enhancement", description: "Removes 60–70% of defects.", icon: "Zap" },
+      { title: "2-Step Correction", description: "Restores up to 90% clarity.", icon: "Gauge" },
+      { title: "Show-Car Finish", description: "Multi-stage refinement.", icon: "Star" },
     ],
     results: [
       { label: "2-step correction", caption: "Subaru WRX", gradient: "linear-gradient(135deg,#0d0f12,#e10600)" },
@@ -447,7 +323,7 @@ export const THEMES: Record<ThemeSlug, ThemeDefinition> = {
       { label: "Wet sand & finish", caption: "Camaro ZL1", gradient: "linear-gradient(135deg,#0d0f12,#e10600)" },
     ],
     contactHeadline: "Bring your project to the lab.",
-    contactSub: "Send paint condition notes — we'll respond with a plan.",
+    contactSub: "Send paint condition notes.",
     tokens: {
       bg: "#0d0f12",
       surface: "#16191f",
@@ -463,38 +339,21 @@ export const THEMES: Record<ThemeSlug, ThemeDefinition> = {
       uppercaseHeadings: true,
     },
   },
-
   "route-66": {
     slug: "route-66",
     variant: "route66",
     title: "Route 66 Revive",
     shortTitle: "Route 66",
-    tagline: "Retro Americana branding for classic & restoration shops.",
+    tagline: "Retro Americana branding for classic shops.",
     category: "Rugged",
     heroEyebrow: "★ EST. 1955 · STILL ROLLING ★",
-    heroHeadline: "Bringing classics back to the open road.",
-    heroSub:
-      "Restoration-grade detailing for vintage cars, hot rods and Sunday cruisers. Old-school care with modern products.",
+    heroHeadline: "Bringing classics back.",
+    heroSub: "Restoration-grade detailing for vintage cars.",
     heroCta: "Book the Diner",
     services: [
-      {
-        title: "Chrome Revival",
-        description:
-          "Hand-polish for bumpers, trim and grilles — the way it left the factory.",
-        icon: "Sparkles",
-      },
-      {
-        title: "Original Paint Care",
-        description:
-          "Gentle correction techniques that preserve thin, original finishes.",
-        icon: "PaintBucket",
-      },
-      {
-        title: "Garage-Kept Wash",
-        description:
-          "Two-bucket wash and ceramic sealant for show-night ready cruisers.",
-        icon: "Car",
-      },
+      { title: "Chrome Revival", description: "Hand-polish for bumpers.", icon: "Sparkles" },
+      { title: "Original Paint Care", description: "Gentle correction.", icon: "PaintBucket" },
+      { title: "Garage-Kept Wash", description: "Two-bucket wash.", icon: "Car" },
     ],
     results: [
       { label: "Chrome polish", caption: "'67 Mustang", gradient: "linear-gradient(135deg,#f7eed7,#7C1D1D)" },
@@ -505,7 +364,7 @@ export const THEMES: Record<ThemeSlug, ThemeDefinition> = {
       { label: "Sunday detail", caption: "'70 Chevelle", gradient: "linear-gradient(135deg,#7C1D1D,#1f1f1f)" },
     ],
     contactHeadline: "Pull on up to the shop.",
-    contactSub: "Send us your ride's story — we love a good one.",
+    contactSub: "Send us your ride's story.",
     tokens: {
       bg: "#f7eed7",
       surface: "#ffffff",
@@ -521,38 +380,21 @@ export const THEMES: Record<ThemeSlug, ThemeDefinition> = {
       uppercaseHeadings: false,
     },
   },
-
   prism: {
     slug: "prism",
     variant: "prism",
     title: "Prism Auto-Works",
     shortTitle: "Prism",
-    tagline: "Vibrant gradient design for vinyl wraps & custom finishes.",
+    tagline: "Vibrant gradient design for custom finishes.",
     category: "Luxury",
     heroEyebrow: "▲ PRISM_OS · ニューレトロ",
-    heroHeadline: "Wrap it. Light it. Make it loud.",
-    heroSub:
-      "Full-vehicle vinyl wraps, color-shift films and custom finishes. Your car, broadcast in technicolor.",
+    heroHeadline: "Wrap it. Make it loud.",
+    heroSub: "Full-vehicle vinyl wraps and custom finishes.",
     heroCta: "▸ Configure Wrap",
     services: [
-      {
-        title: "Color-Shift Wrap",
-        description:
-          "Premium iridescent and chameleon films from Inozetek and KPMF.",
-        icon: "Sparkles",
-      },
-      {
-        title: "Satin Color Change",
-        description:
-          "Full-vehicle satin wraps in 200+ colors with 5-year warranty.",
-        icon: "PaintBucket",
-      },
-      {
-        title: "Accent + Trim",
-        description:
-          "Roof, mirror, hood and chrome-delete kits installed in a day.",
-        icon: "Star",
-      },
+      { title: "Color-Shift Wrap", description: "Iridescent films.", icon: "Sparkles" },
+      { title: "Satin Color Change", description: "200+ colors available.", icon: "PaintBucket" },
+      { title: "Accent + Trim", description: "Chrome-delete kits.", icon: "Star" },
     ],
     results: [
       { label: "Color-shift wrap", caption: "BMW M4", gradient: "linear-gradient(135deg,#c026d3,#7c3aed)" },
@@ -563,8 +405,7 @@ export const THEMES: Record<ThemeSlug, ThemeDefinition> = {
       { label: "Custom livery", caption: "Supra MK5", gradient: "linear-gradient(135deg,#fef08a,#ec4899)" },
     ],
     contactHeadline: "▸ Start a wrap project",
-    contactSub:
-      "Tell us your vehicle and color direction — we'll send mockups.",
+    contactSub: "We'll send mockups.",
     tokens: {
       bg: "#0a0014",
       surface: "rgba(124,58,237,0.15)",
@@ -581,6 +422,9 @@ export const THEMES: Record<ThemeSlug, ThemeDefinition> = {
     },
   },
 };
+
+// EXPORTS AT THE BOTTOM (Fixes the "ReferenceError")
+export const themes = Object.values(THEMES);
 
 export const THEME_LIST: ThemeDefinition[] = [
   THEMES.obsidian,
