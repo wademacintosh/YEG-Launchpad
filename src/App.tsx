@@ -3,49 +3,102 @@ import { StyleGallery } from "./components/StyleGallery";
 import { StyleItem } from "./components/StyleCard";
 
 /* -------------------------------------------------------------------------- */
-/* 1. UNIQUE LAYOUT COMPONENTS                        */
+/* 1. UNIQUE LAYOUT COMPONENTS                                                */
 /* -------------------------------------------------------------------------- */
 
-// OBSIDIAN: Minimal, Centered, Serif
+// OBSIDIAN: Minimal, Centered, Serif - Vibe: High-End Boutique Detailing
 const ObsidianLayout = ({ item, onBack }: { item: StyleItem; onBack: () => void }) => (
   <div className="min-h-screen bg-[#eef2ec] text-[#1f2a22] font-serif p-8">
     <nav className="flex justify-between border-b border-black/10 pb-4 mb-20 font-sans text-[10px] tracking-widest uppercase">
-      <button onClick={onBack}>← Back</button>
-      <span>Studio Concept / 01</span>
+      <button onClick={onBack} className="hover:opacity-60 transition-opacity">← Gallery</button>
+      <span>Bespoke Correction & Coating</span>
     </nav>
-    <main className="max-w-3xl mx-auto text-center space-y-12">
-      <h1 className="text-8xl font-medium leading-none tracking-tighter italic">Pure Detail.</h1>
-      <p className="text-2xl leading-relaxed opacity-80 max-w-xl mx-auto">{item.tagline}</p>
-      <div className="pt-10">
-        <button className="px-12 py-4 border border-[#1f2a22] rounded-full hover:bg-[#1f2a22] hover:text-white transition-all uppercase text-xs tracking-[0.3em]">
-          Book Detail
+    <main className="max-w-4xl mx-auto text-center space-y-16">
+      <h1 className="text-7xl md:text-8xl font-medium leading-none tracking-tighter italic">Flawless Reflection.</h1>
+      <p className="text-xl md:text-2xl leading-relaxed opacity-80 max-w-2xl mx-auto">
+        {item.tagline} Our multi-stage paint correction process removes 95%+ of clear coat defects, permanently restoring your vehicle's factory brilliance.
+      </p>
+      
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left font-sans text-sm mt-20 pt-16 border-t border-black/10">
+        <div>
+          <h3 className="font-serif italic text-2xl mb-4">Stage I</h3>
+          <p className="opacity-70 mb-4">Enhancement polish paired with a 1-year silica sealant. Ideal for well-maintained vehicles.</p>
+          <span className="tracking-widest uppercase text-[10px]">From $450</span>
+        </div>
+        <div>
+          <h3 className="font-serif italic text-2xl mb-4">Stage II</h3>
+          <p className="opacity-70 mb-4">Heavy defect removal followed by a finishing polish and 5-year 9H Ceramic Coating.</p>
+          <span className="tracking-widest uppercase text-[10px]">From $900</span>
+        </div>
+        <div>
+          <h3 className="font-serif italic text-2xl mb-4">Concierge</h3>
+          <p className="opacity-70 mb-4">Wheels-off detail, interior restoration, glass polishing, and lifetime self-healing coating.</p>
+          <span className="tracking-widest uppercase text-[10px]">From $2,200</span>
+        </div>
+      </div>
+
+      <div className="pt-16 pb-10">
+        <button className="px-12 py-4 border border-[#1f2a22] rounded-full hover:bg-[#1f2a22] hover:text-[#eef2ec] transition-all uppercase text-xs tracking-[0.3em] font-sans">
+          Request Consultation
         </button>
       </div>
     </main>
   </div>
 );
 
-// NIGHT VISION: Grid-based, Cyber, Monospace
+// NIGHT VISION: Grid-based, Cyber, Monospace - Vibe: High-Tech PPF & Nano-Coatings
 const NightVisionLayout = ({ item, onBack }: { item: StyleItem; onBack: () => void }) => (
   <div className="min-h-screen bg-[#0a0a0a] text-[#22d3ee] font-mono p-4">
-    <div className="border border-[#22d3ee]/30 min-h-[95vh] relative overflow-hidden">
+    <div className="border border-[#22d3ee]/30 min-h-[95vh] relative overflow-hidden flex flex-col">
       <nav className="p-6 border-b border-[#22d3ee]/30 flex justify-between text-[10px]">
-        <button onClick={onBack} className="hover:bg-[#22d3ee] hover:text-black px-2 uppercase underline">Back_to_Studio</button>
-        <span className="animate-pulse">● SYSTEM_ACTIVE</span>
+        <button onClick={onBack} className="hover:bg-[#22d3ee] hover:text-black px-2 uppercase underline">Abort_Process</button>
+        <span className="animate-pulse">● NANOTECH_SYSTEMS_ONLINE</span>
       </nav>
-      <div className="grid grid-cols-12 h-full">
-        <div className="col-span-12 lg:col-span-7 p-12 border-b lg:border-b-0 lg:border-r border-[#22d3ee]/30">
-          <h1 className="text-6xl font-bold uppercase tracking-tighter mb-8 leading-none">
-            {item.title} <span className="block text-2xl mt-4 opacity-50">Status: Protected</span>
+      <div className="grid grid-cols-12 flex-1">
+        <div className="col-span-12 lg:col-span-8 p-8 md:p-12 border-b lg:border-b-0 lg:border-r border-[#22d3ee]/30">
+          <h1 className="text-4xl md:text-6xl font-bold uppercase tracking-tighter mb-8 leading-none">
+            {item.title} 
+            <span className="block text-xl mt-4 text-[#22d3ee]/60 font-normal">Active Armor / Paint Protection Film</span>
           </h1>
-          <p className="text-lg opacity-80 max-w-md">{item.tagline}</p>
+          <p className="text-lg opacity-80 max-w-2xl mb-12">
+            {item.tagline} Deploying 8-mil, self-healing aliphatic polyurethane elastomers to shield vulnerable impact zones from kinetic debris and chemical etching.
+          </p>
+          
+          <table className="w-full text-sm text-left border-collapse border border-[#22d3ee]/20">
+            <thead>
+              <tr className="bg-[#22d3ee]/10 text-[#22d3ee]">
+                <th className="p-3 border border-[#22d3ee]/20 uppercase">Module</th>
+                <th className="p-3 border border-[#22d3ee]/20 uppercase">Coverage</th>
+                <th className="p-3 border border-[#22d3ee]/20 uppercase">Spec</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="p-3 border border-[#22d3ee]/20">Track Pack</td>
+                <td className="p-3 border border-[#22d3ee]/20">Bumper, Hood, Fenders, Mirrors</td>
+                <td className="p-3 border border-[#22d3ee]/20">10-Year Warranty</td>
+              </tr>
+              <tr>
+                <td className="p-3 border border-[#22d3ee]/20">Full Stealth</td>
+                <td className="p-3 border border-[#22d3ee]/20">100% Exterior Surfaces</td>
+                <td className="p-3 border border-[#22d3ee]/20">Satin/Matte Conversion</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <div className="col-span-12 lg:col-span-5 p-12 bg-[#22d3ee]/5">
-          <div className="space-y-6">
+        <div className="col-span-12 lg:col-span-4 p-8 md:p-12 bg-[#22d3ee]/5 flex flex-col justify-center">
+          <div className="space-y-8">
             <div className="h-1 bg-[#22d3ee] w-full" />
-            <p className="text-[10px] uppercase tracking-widest">Armor-Clad Protection Systems Installed Here</p>
-            <button className="w-full py-4 bg-[#22d3ee] text-black font-bold uppercase text-xs shadow-[0_0_20px_rgba(34,211,238,0.5)]">
-              Initiate Scan
+            <div>
+              <p className="text-[10px] uppercase tracking-widest mb-2">System Diagnostics</p>
+              <ul className="text-xs space-y-2 opacity-80">
+                <li>[ OK ] Hydrophobic Topcoat</li>
+                <li>[ OK ] UV Resistance</li>
+                <li>[ OK ] Laser-Cut Templates</li>
+              </ul>
+            </div>
+            <button className="w-full py-4 bg-[#22d3ee] text-black font-bold uppercase text-xs shadow-[0_0_20px_rgba(34,211,238,0.3)] hover:shadow-[0_0_30px_rgba(34,211,238,0.6)] transition-all">
+              Initialize Quote
             </button>
           </div>
         </div>
@@ -54,49 +107,181 @@ const NightVisionLayout = ({ item, onBack }: { item: StyleItem; onBack: () => vo
   </div>
 );
 
-// VANTAGE: Asymmetrical, Luxury, Sans/Serif mix
+// VANTAGE: Asymmetrical, Luxury, Sans/Serif mix - Vibe: Exotics & Vintage Concourse Prep
 const VantageLayout = ({ item, onBack }: { item: StyleItem; onBack: () => void }) => (
   <div className="min-h-screen bg-[#f5f1ea] text-[#0a1628] p-0">
     <div className="flex flex-col md:flex-row min-h-screen">
-      <aside className="w-full md:w-1/3 p-12 flex flex-col justify-between border-r border-black/5">
-        <button onClick={onBack} className="text-xs uppercase tracking-widest text-left">← Gallery</button>
-        <div>
-          <span className="text-[10px] uppercase tracking-[0.4em] text-[#B89766] mb-4 block">The Collective</span>
-          <h1 className="text-5xl font-bold font-serif leading-tight">Refined <br/> Aesthetic.</h1>
+      <aside className="w-full md:w-1/3 p-12 flex flex-col justify-between border-r border-black/5 bg-white">
+        <button onClick={onBack} className="text-xs uppercase tracking-widest text-left hover:text-[#B89766] transition-colors">← Collections</button>
+        <div className="mt-20 md:mt-0">
+          <span className="text-[10px] uppercase tracking-[0.4em] text-[#B89766] mb-4 block">The Exotics Division</span>
+          <h1 className="text-5xl font-bold font-serif leading-tight">Concourse <br/> Preparation.</h1>
+          <p className="mt-8 text-sm opacity-60 leading-relaxed">
+            Specializing in vintage restorations, hypercar maintenance, and pre-auction detailing. Swissvax authorized facility.
+          </p>
         </div>
       </aside>
-      <main className="flex-1 p-12 md:p-24 flex flex-col justify-center">
-        <p className="text-3xl font-serif italic mb-12 max-w-lg leading-snug">{item.tagline}</p>
-        <div className="flex gap-8 items-center border-t border-black/10 pt-12">
-          <button className="px-10 py-4 bg-[#0a1628] text-white text-[10px] uppercase tracking-widest">Reserve Session</button>
-          <span className="text-[10px] uppercase tracking-widest opacity-40">Edmonton, AB</span>
+      <main className="flex-1 p-12 md:p-24 flex flex-col justify-center bg-[#f5f1ea]">
+        <p className="text-3xl md:text-4xl font-serif italic mb-16 max-w-xl leading-snug">
+          "{item.tagline} We preserve automotive heritage through meticulous, non-invasive detailing methodologies."
+        </p>
+        
+        <div className="grid md:grid-cols-2 gap-12 mb-16">
+          <div className="border-l border-[#B89766] pl-6">
+            <h4 className="uppercase tracking-widest text-xs font-bold mb-2">Heritage Care</h4>
+            <p className="text-sm opacity-70">Single-stage paint preservation, leather feeding, and dry-ice engine bay cleaning.</p>
+          </div>
+          <div className="border-l border-[#B89766] pl-6">
+            <h4 className="uppercase tracking-widest text-xs font-bold mb-2">Executive Protocol</h4>
+            <p className="text-sm opacity-70">Monthly maintenance washes, interior sanitization, and priority scheduling for your daily driver.</p>
+          </div>
+        </div>
+
+        <div className="flex flex-wrap gap-8 items-center border-t border-black/10 pt-12">
+          <button className="px-10 py-4 bg-[#0a1628] text-white text-[10px] uppercase tracking-widest hover:bg-[#B89766] transition-colors">
+            Reserve a Bay
+          </button>
+          <span className="text-[10px] uppercase tracking-widest opacity-40">Climate-Controlled Studio • Edmonton</span>
         </div>
       </main>
     </div>
   </div>
 );
 
-// MUD, SWEAT & GEARS: Brutalist, Heavy, Bright
+// MUD, SWEAT & GEARS: Brutalist, Heavy, Bright - Vibe: Off-road, Trucks, Heavy Duty Washes
 const MudLayout = ({ item, onBack }: { item: StyleItem; onBack: () => void }) => (
-  <div className="min-h-screen bg-[#FFD400] text-black font-black p-0 border-[16px] border-black">
-    <nav className="p-8 border-b-8 border-black flex justify-between items-center bg-white">
-      <button onClick={onBack} className="bg-black text-[#FFD400] px-6 py-2 uppercase transform -rotate-2">Back</button>
-      <span className="text-2xl">RUGGED_LAB</span>
+  <div className="min-h-screen bg-[#FFD400] text-black font-black p-0 border-[16px] border-black flex flex-col">
+    <nav className="p-6 md:p-8 border-b-8 border-black flex justify-between items-center bg-white">
+      <button onClick={onBack} className="bg-black text-[#FFD400] px-6 py-2 uppercase transform -rotate-2 hover:rotate-0 transition-transform">Back</button>
+      <span className="text-xl md:text-2xl tracking-tighter">DEGREASE_LAB</span>
     </nav>
-    <div className="p-12">
-      <h1 className="text-[10vw] leading-[0.8] uppercase mb-12 italic transform -rotate-1">{item.title}</h1>
-      <div className="bg-black text-white p-8 max-w-2xl transform rotate-1">
-        <p className="text-2xl uppercase tracking-tighter">{item.tagline}</p>
+    <div className="p-6 md:p-12 flex-1 flex flex-col justify-center overflow-hidden">
+      <h1 className="text-[12vw] leading-[0.8] uppercase mb-8 italic transform -rotate-1 break-words">
+        {item.title || "DIRT DESTROYED."}
+      </h1>
+      <div className="bg-black text-white p-6 md:p-8 max-w-3xl transform rotate-1 shadow-[10px_10px_0px_#fff]">
+        <p className="text-xl md:text-3xl uppercase tracking-tighter">{item.tagline} WE CLEAN THE RIGS THAT ACTUALLY WORK FOR A LIVING.</p>
       </div>
-      <button className="mt-12 text-4xl uppercase underline decoration-8 underline-offset-8 hover:text-white transition-colors">
-        GET A QUOTE NOW →
+      
+      <div className="mt-16 flex flex-wrap gap-4 uppercase text-xl md:text-2xl transform -rotate-1">
+        <span className="bg-white px-4 py-2 border-4 border-black">Mud Extraction</span>
+        <span className="bg-white px-4 py-2 border-4 border-black">Undercarriage Blast</span>
+        <span className="bg-white px-4 py-2 border-4 border-black">Lift-Kit Detailing</span>
+        <span className="bg-white px-4 py-2 border-4 border-black">Fleet Wash</span>
+      </div>
+
+      <button className="mt-16 text-3xl md:text-5xl uppercase underline decoration-8 underline-offset-8 hover:text-white transition-colors text-left self-start">
+        BOOK THE HEAVY WASH →
       </button>
     </div>
   </div>
 );
 
+// PRISM: Colorful, Gradient, Modern - Vibe: Vinyl Wraps, Color Change, Gloss Enhancement
+const PrismLayout = ({ item, onBack }: { item: StyleItem; onBack: () => void }) => (
+  <div className="min-h-screen bg-slate-900 text-white p-6 md:p-12 font-sans overflow-hidden relative">
+    {/* Background Gradients */}
+    <div className="absolute top-[-20%] left-[-10%] w-[60vw] h-[60vw] bg-fuchsia-600/30 blur-[120px] rounded-full mix-blend-screen pointer-events-none" />
+    <div className="absolute bottom-[-20%] right-[-10%] w-[60vw] h-[60vw] bg-cyan-500/30 blur-[120px] rounded-full mix-blend-screen pointer-events-none" />
+    
+    <nav className="relative z-10 flex justify-between items-center mb-24">
+      <button onClick={onBack} className="text-sm font-semibold tracking-wide hover:text-cyan-400 transition-colors flex items-center gap-2">
+        <span>←</span> Studio
+      </button>
+      <div className="text-xs uppercase tracking-[0.2em] font-bold bg-white/10 px-4 py-2 rounded-full backdrop-blur-md">
+        Aesthetics & Styling
+      </div>
+    </nav>
+    
+    <main className="relative z-10 max-w-5xl mx-auto flex flex-col md:flex-row gap-16 items-center">
+      <div className="flex-1 space-y-8">
+        <h1 className="text-6xl md:text-8xl font-black tracking-tighter leading-none bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-fuchsia-500 to-amber-400">
+          {item.title}
+        </h1>
+        <p className="text-xl md:text-2xl font-light leading-relaxed text-slate-300">
+          {item.tagline} Transform your vehicle's aesthetic with premium color-change vinyl wraps, chrome deletes, and extreme gloss enhancement polishing.
+        </p>
+        <div className="flex gap-4 pt-8">
+          <button className="px-8 py-4 bg-white text-slate-900 rounded-full font-bold hover:bg-slate-200 transition-colors">
+            Explore Colors
+          </button>
+          <button className="px-8 py-4 bg-white/10 rounded-full font-bold backdrop-blur-md hover:bg-white/20 transition-colors">
+            Gloss Packages
+          </button>
+        </div>
+      </div>
+      
+      <div className="w-full md:w-1/3 space-y-4">
+        <div className="bg-white/5 backdrop-blur-xl p-6 rounded-3xl border border-white/10">
+          <h3 className="font-bold text-xl mb-2 text-fuchsia-400">Full Vehicle Wraps</h3>
+          <p className="text-sm text-slate-400">Over 300+ colors from 3M, Avery, and Inozetek. Protect original paint while standing out.</p>
+        </div>
+        <div className="bg-white/5 backdrop-blur-xl p-6 rounded-3xl border border-white/10">
+          <h3 className="font-bold text-xl mb-2 text-cyan-400">Ceramic Washes</h3>
+          <p className="text-sm text-slate-400">PH-neutral foam cannons with Si02 infused sealants to boost gloss and maintain your wrap.</p>
+        </div>
+      </div>
+    </main>
+  </div>
+);
+
+// DETAILFLOW: Smooth, UI-focused, Corporate - Vibe: Mobile Detailing SaaS / Subscription App
+const DetailFlowLayout = ({ item, onBack }: { item: StyleItem; onBack: () => void }) => (
+  <div className="min-h-screen bg-[#F9FAFB] text-slate-800 font-sans">
+    <header className="bg-white border-b border-slate-200 px-8 py-4 flex justify-between items-center sticky top-0 z-50">
+      <div className="flex items-center gap-6">
+        <button onClick={onBack} className="text-slate-400 hover:text-slate-800 transition-colors p-2 -ml-2">
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+        </button>
+        <span className="font-bold text-xl tracking-tight text-blue-600">Wash<span className="text-slate-800">Flow</span></span>
+      </div>
+      <nav className="hidden md:flex gap-6 text-sm font-medium text-slate-500">
+        <a href="#" className="hover:text-blue-600">Services</a>
+        <a href="#" className="hover:text-blue-600">Fleet Management</a>
+        <a href="#" className="hover:text-blue-600">Pricing</a>
+      </nav>
+      <button className="bg-blue-600 text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-blue-700 shadow-sm">
+        Book Mobile Wash
+      </button>
+    </header>
+
+    <main className="max-w-6xl mx-auto px-8 py-16">
+      <div className="text-center max-w-3xl mx-auto mb-16">
+        <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 text-slate-900">
+          {item.title}. <br/> <span className="text-blue-600">Delivered to your driveway.</span>
+        </h1>
+        <p className="text-lg text-slate-500 mb-8">
+          {item.tagline} Professional mobile auto detailing powered by simple online booking. We bring the water, power, and expertise directly to your home or office.
+        </p>
+      </div>
+
+      <div className="grid md:grid-cols-3 gap-8">
+        <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 flex flex-col">
+          <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mb-6 font-bold">1</div>
+          <h3 className="text-xl font-bold mb-3">Select Package</h3>
+          <p className="text-slate-500 text-sm flex-1 mb-6">From basic exterior maintenance washes to full interior deep cleans and pet hair removal.</p>
+          <button className="w-full py-3 border border-slate-200 rounded-lg text-sm font-semibold hover:bg-slate-50">View Tiers</button>
+        </div>
+        <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 flex flex-col">
+          <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mb-6 font-bold">2</div>
+          <h3 className="text-xl font-bold mb-3">Pick a Time</h3>
+          <p className="text-slate-500 text-sm flex-1 mb-6">Choose a 2-hour arrival window that fits your schedule. Same-day appointments available.</p>
+          <button className="w-full py-3 border border-slate-200 rounded-lg text-sm font-semibold hover:bg-slate-50">Check Availability</button>
+        </div>
+        <div className="bg-blue-600 p-8 rounded-2xl shadow-md flex flex-col text-white">
+          <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mb-6 font-bold">3</div>
+          <h3 className="text-xl font-bold mb-3">Subscribe & Save</h3>
+          <p className="text-blue-100 text-sm flex-1 mb-6">Join our WashClub for bi-weekly or monthly maintenance detailing. Never drive a dirty car again.</p>
+          <button className="w-full py-3 bg-white text-blue-600 rounded-lg text-sm font-bold hover:bg-slate-50">Join WashClub</button>
+        </div>
+      </div>
+    </main>
+  </div>
+);
+
+
 /* -------------------------------------------------------------------------- */
-/* 2. MAIN APP CONTROLLER                            */
+/* 2. MAIN APP CONTROLLER                                                     */
 /* -------------------------------------------------------------------------- */
 
 function App() {
@@ -114,19 +299,21 @@ function App() {
   if (view === "preview" && activeStyle) {
     // Choose the layout based on the variant
     switch (activeStyle.variant) {
-      case "obsidian-eco": return <ObsidianLayout item={activeStyle} onBack={goBack} />;
-      case "night-vision": return <NightVisionLayout item={activeStyle} onBack={goBack} />;
-      case "vantage": return <VantageLayout item={activeStyle} onBack={goBack} />;
-      case "mud-sweat-gears": return <MudLayout item={activeStyle} onBack={goBack} />;
+      case "obsidian-eco": 
+        return <ObsidianLayout item={activeStyle} onBack={goBack} />;
+      case "night-vision": 
+        return <NightVisionLayout item={activeStyle} onBack={goBack} />;
+      case "vantage": 
+        return <VantageLayout item={activeStyle} onBack={goBack} />;
+      case "mud-sweat-gears": 
+        return <MudLayout item={activeStyle} onBack={goBack} />;
+      case "prism":
+        return <PrismLayout item={activeStyle} onBack={goBack} />;
+      case "detail-flow":
+        return <DetailFlowLayout item={activeStyle} onBack={goBack} />;
       default:
-        // Fallback for other styles (Prism, DetailFlow, etc.)
-        return (
-          <div className="min-h-screen bg-white p-20">
-             <button onClick={goBack} className="mb-10 underline">← Back</button>
-             <h1 className="text-6xl font-bold uppercase">{activeStyle.title}</h1>
-             <p className="text-2xl mt-4">{activeStyle.tagline}</p>
-          </div>
-        );
+        // Expanded fallback to catch any unhandled variants with a clean detailing layout
+        return <DetailFlowLayout item={activeStyle} onBack={goBack} />;
     }
   }
 
