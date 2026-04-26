@@ -21,6 +21,7 @@ export interface StyleItem {
 
 interface StyleCardProps {
   item: StyleItem;
+  onPreview: (item: StyleItem) => void;
 }
 
 /* ---------- Shared building blocks ---------- */
