@@ -1,4 +1,5 @@
 import { type ReactNode } from "react";
+import type { ThemeSlug } from "@/lib/themes";
 
 export type StyleCategory = "Luxury" | "Rugged" | "Modern";
 
@@ -17,6 +18,7 @@ export interface StyleItem {
   tagline: string;
   category: StyleCategory;
   variant: StyleVariant;
+  slug: ThemeSlug;
 }
 
 interface StyleCardProps {
