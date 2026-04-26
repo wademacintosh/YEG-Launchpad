@@ -421,6 +421,62 @@ const Route66Layout = ({ item, onBack }: { item: StyleItem; onBack: () => void }
   </div>
 );
 
+// AERO LAB: Tech-lab vibe, motion accents, dark mode with red
+const AeroLabLayout = ({ item, onBack }: { item: StyleItem; onBack: () => void }) => (
+  <div className="min-h-screen bg-[#0f0f11] text-white font-sans overflow-hidden">
+    {/* Header */}
+    <header className="flex justify-between items-center p-6 md:p-8 border-b border-white/10">
+      <button onClick={onBack} className="text-[#FF2A2A] hover:text-red-400 font-mono text-sm uppercase tracking-widest flex items-center gap-2 transition-colors">
+        <span className="text-lg">←</span> Abort Sequence
+      </button>
+      <div className="font-mono text-xs text-white/50 tracking-[0.3em] uppercase">
+        v2.0 // RPM
+      </div>
+    </header>
+
+    {/* Main Content */}
+    <main className="max-w-6xl mx-auto px-6 py-20 relative">
+      {/* Motion Accent Line */}
+      <div className="absolute top-0 left-6 w-1 h-full bg-gradient-to-b from-[#FF2A2A] to-transparent opacity-50 hidden md:block"></div>
+
+      <div className="md:pl-16">
+        <div className="inline-block bg-[#FF2A2A]/10 border border-[#FF2A2A]/30 text-[#FF2A2A] text-xs font-mono px-3 py-1 mb-8 uppercase tracking-widest">
+          // Velocity Series
+        </div>
+        
+        <h1 className="text-5xl md:text-8xl font-black italic tracking-tighter mb-6 uppercase text-transparent bg-clip-text bg-gradient-to-br from-white to-white/50">
+          {item.title || "Aero Shine Labs"}
+        </h1>
+        
+        <p className="text-xl text-white/60 max-w-2xl font-light leading-relaxed mb-16">
+          {item.tagline || "Tech-lab vibe with motion accents for paint correction pros."} Precision polishing engineered for peak optical clarity and aerodynamics.
+        </p>
+
+        {/* Services Grid */}
+        <div className="grid md:grid-cols-2 gap-6">
+          <div className="bg-white/5 border border-white/10 p-8 hover:border-[#FF2A2A]/50 transition-colors group">
+            <div className="text-[#FF2A2A] font-mono text-sm mb-4 group-hover:translate-x-2 transition-transform">01 // Correction</div>
+            <h3 className="text-2xl font-bold mb-3 italic uppercase tracking-tight">Multi-Stage Compounding</h3>
+            <p className="text-white/50 text-sm">Leveling clear coat anomalies with rotary precision to permanently remove swirls, holograms, and rids.</p>
+          </div>
+          <div className="bg-white/5 border border-white/10 p-8 hover:border-[#FF2A2A]/50 transition-colors group">
+            <div className="text-[#FF2A2A] font-mono text-sm mb-4 group-hover:translate-x-2 transition-transform">02 // Protection</div>
+            <h3 className="text-2xl font-bold mb-3 italic uppercase tracking-tight">Aerospace Coatings</h3>
+            <p className="text-white/50 text-sm">Curing high-solids ceramic resins at infrared temperatures for unmatched hydrophobic performance.</p>
+          </div>
+        </div>
+
+        <div className="mt-16">
+          <button className="bg-[#FF2A2A] hover:bg-red-700 text-white font-bold uppercase tracking-widest text-sm px-10 py-5 transition-all skew-x-[-10deg] flex items-center gap-3">
+            <span className="skew-x-[10deg]">Initialize Calibration</span>
+            <span className="skew-x-[10deg] text-xl">→</span>
+          </button>
+        </div>
+      </div>
+    </main>
+  </div>
+);
+
 /* -------------------------------------------------------------------------- */
 /* 2. MAIN APP CONTROLLER                                                     */
 /* -------------------------------------------------------------------------- */
@@ -455,6 +511,10 @@ function App() {
       case "route-66":
       case "route66":
         return <Route66Layout item={activeStyle} onBack={goBack} />;
+      case "aero-lab":
+      case "aerolab":
+      case "aero-shine-labs":
+        return <AeroLabLayout item={activeStyle} onBack={goBack} />;
       default:
         // Expanded fallback to catch any unhandled variants with a clean detailing layout
         return <DetailFlowLayout item={activeStyle} onBack={goBack} />;
