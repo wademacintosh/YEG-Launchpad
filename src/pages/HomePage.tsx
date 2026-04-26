@@ -1,22 +1,16 @@
 import React from 'react';
-import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
-import StyleGallery from '../components/StyleGallery';
 import BridgeDivider from '../components/BridgeDivider';
+import StyleGallery from '../components/StyleGallery';
+// import Footer from '../components/Footer'; (if you have it here)
 
-/**
- * Using a named function before exporting it helps the 
- * bundler avoid the "Temporal Dead Zone" (the 'ig' error).
- */
-function HomePage() {
+export default function HomePage() {
   return (
-    <main className="min-h-screen bg-white">
-      <Navbar />
+    <div className="min-h-screen bg-white">
       <Hero />
+      {/* The new Walterdale Bridge SVG sits right here */}
       <BridgeDivider />
       <StyleGallery />
-    </main>
+    </div>
   );
 }
-
-export default HomePage;
