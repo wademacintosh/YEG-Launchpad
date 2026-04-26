@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { themes, type ThemeSlug } from "@/lib/themes";
 import logo from "@/assets/yeg-launchpad-logo.png";
 
 export function Navbar() {
@@ -13,18 +14,20 @@ export function Navbar() {
             loading="eager"
             decoding="async"
           />
-          <span className="sr-only">YEG Launchpad — Style Selector</span>
-          <span
-            aria-hidden="true"
-            className="hidden h-8 w-px bg-border sm:block"
-          />
-          <span
-            aria-hidden="true"
-            className="hidden text-[11px] font-semibold uppercase tracking-[0.22em] text-muted-foreground sm:block"
-          >
-            Style Selector
-          </span>
+          <span className="sr-only">YEG Launchpad</span>
         </a>
+
+        <nav className="hidden items-center gap-1 sm:flex">
+          {themes.map((theme) => (
+            <a
+              key={theme.slug}
+              href={`/theme/${theme.slug}`}
+              className="rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent/50 hover:text-foreground"
+            >
+              {theme.title}
+            </a>
+          ))}
+        </nav>
 
         <Button
           asChild

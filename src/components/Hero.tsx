@@ -21,22 +21,21 @@ export function Hero() {
       <div className="relative mx-auto flex max-w-7xl flex-col items-center px-4 py-20 text-center sm:px-6 sm:py-24 lg:px-8 lg:py-32">
         <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-accent/30 bg-white/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-accent">
           <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-          Auto Detailing · Web Catalog
+          PREMIUM DIGITAL DETAILING
         </span>
 
         <h1 className="max-w-4xl text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl xl:text-7xl">
-          Pick Your Finish:{" "}
-          <span className="text-primary">8 Signature</span> Website Styles
+          Give Your Shop a <span className="text-primary">Showroom-Ready</span> Digital Finish.
         </h1>
 
         <p className="mt-6 max-w-2xl text-base text-accent sm:text-lg lg:text-xl">
-          Select the digital aesthetic that matches your shop's horsepower.
+          You wouldn't hand over a car with streaks; don't settle for a messy website. Choose from 8 signature styles crafted for elite detailers.
         </p>
 
         <div className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-xs font-medium uppercase tracking-wider text-accent/80">
-          <span>· Conversion-Tuned</span>
-          <span>· Mobile-First</span>
-          <span>· Built in Edmonton</span>
+          <span>· CONVERSION-TUNED</span>
+          <span>· MOBILE-OPTIMIZED</span>
+          <span>· EDMONTON BORN</span>
         </div>
       </div>
     </section>
