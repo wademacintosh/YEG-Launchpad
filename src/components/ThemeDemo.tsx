@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { themes } from '../lib/themes';
-import { ArrowLeft, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 
 export default function ThemeDemo() {
   const { slug } = useParams();
@@ -15,16 +15,11 @@ export default function ThemeDemo() {
         </Link>
         <h1 className="text-xl font-bold uppercase tracking-tighter" style={{ color: theme.colors.primary }}>{theme.name}</h1>
       </nav>
-
       <main className="max-w-4xl mx-auto py-20 px-6 text-center">
-        <span className="inline-block px-3 py-1 rounded-full text-xs font-bold mb-4" style={{ backgroundColor: theme.colors.primary, color: '#fff' }}>
-          {theme.category}
-        </span>
         <h2 className="text-5xl md:text-7xl font-black mb-6 leading-none" style={{ fontFamily: theme.fonts.display || theme.fonts.sans }}>
           {theme.description}
         </h2>
-        <button className="mt-8 px-8 py-4 text-lg font-bold transition-all hover:scale-105" 
-                style={{ backgroundColor: theme.colors.primary, color: '#fff', borderRadius: theme.id === 'mud-sweat-gears' ? '0px' : '99px' }}>
+        <button className="mt-8 px-8 py-4 text-lg font-bold" style={{ backgroundColor: theme.colors.primary, color: '#fff' }}>
           Book This Style
         </button>
       </main>
