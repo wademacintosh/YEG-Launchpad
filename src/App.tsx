@@ -9,7 +9,7 @@ function App() {
       <Routes>
         <Route element={<RootLayout />}>
           <Route path="/" element={<HomePage />} />
-          {/* This ':slug' must match the useParams() in ThemePage */}
+          {/* This ':slug' is the key that connects the gallery to the page */}
           <Route path="/theme/:slug" element={<ThemePage />} />
         </Route>
       </Routes>
