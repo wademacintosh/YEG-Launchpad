@@ -226,59 +226,200 @@ const PrismLayout = ({ item, onBack }: { item: StyleItem; onBack: () => void }) 
 );
 
 // DETAILFLOW: Smooth, UI-focused, Corporate - Vibe: Mobile Detailing SaaS / Subscription App
-const DetailFlowLayout = ({ item, onBack }: { item: StyleItem; onBack: () => void }) => (
-  <div className="min-h-screen bg-[#F9FAFB] text-slate-800 font-sans">
-    <header className="bg-white border-b border-slate-200 px-8 py-4 flex justify-between items-center sticky top-0 z-50">
-      <div className="flex items-center gap-6">
-        <button onClick={onBack} className="text-slate-400 hover:text-slate-800 transition-colors p-2 -ml-2">
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+const DetailFlowLayout = ({ item, onBack }: { item: StyleItem; onBack: () => void }) => {
+  const [billingCycle, setBillingCycle] = useState<"one-time" | "monthly">("monthly");
+
+  return (
+    <div className="min-h-screen bg-[#F8FAFC] text-slate-800 font-sans selection:bg-blue-200">
+      {/* APP HEADER */}
+      <header className="bg-white border-b border-slate-200 px-6 py-4 flex justify-between items-center sticky top-0 z-50">
+        <div className="flex items-center gap-6">
+          <button 
+            onClick={onBack} 
+            className="text-slate-400 hover:text-slate-800 transition-colors p-2 -ml-2 rounded-lg hover:bg-slate-50"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+          </button>
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+              <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <span className="font-bold text-xl tracking-tight text-slate-900">
+              Detail<span className="text-blue-600">Flow</span>
+            </span>
+          </div>
+        </div>
+        <nav className="hidden md:flex gap-8 text-sm font-medium text-slate-500">
+          <a href="#" className="hover:text-blue-600 transition-colors">How it Works</a>
+          <a href="#" className="hover:text-blue-600 transition-colors">Fleet API</a>
+          <a href="#" className="text-slate-900">Pricing</a>
+        </nav>
+        <button className="bg-slate-900 text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-slate-800 shadow-sm transition-all active:scale-95">
+          Sign In
         </button>
-        <span className="font-bold text-xl tracking-tight text-blue-600">Wash<span className="text-slate-800">Flow</span></span>
-      </div>
-      <nav className="hidden md:flex gap-6 text-sm font-medium text-slate-500">
-        <a href="#" className="hover:text-blue-600">Services</a>
-        <a href="#" className="hover:text-blue-600">Fleet Management</a>
-        <a href="#" className="hover:text-blue-600">Pricing</a>
-      </nav>
-      <button className="bg-blue-600 text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-blue-700 shadow-sm">
-        Book Mobile Wash
+      </header>
+
+      <main className="max-w-5xl mx-auto px-6 py-20">
+        {/* HERO SECTION */}
+        <div className="text-center max-w-3xl mx-auto mb-20">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-xs font-bold uppercase tracking-wider mb-8">
+            <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></span>
+            Now Serving Edmonton & Area
+          </div>
+          <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight mb-6 text-slate-900 leading-tight">
+            {item?.title || "Car care on auto-pilot."}
+          </h1>
+          <p className="text-xl text-slate-500 mb-10 leading-relaxed">
+            {item?.tagline || "Book a top-tier mobile detailer in 60 seconds."} We bring the water, power, and perfection directly to your driveway.
+          </p>
+          
+          {/* BILLING TOGGLE */}
+          <div className="flex items-center justify-center gap-4">
+            <span className={`text-sm font-medium ${billingCycle === "one-time" ? "text-slate-900" : "text-slate-400"}`}>One-Time Wash</span>
+            <button 
+              onClick={() => setBillingCycle(prev => prev === "one-time" ? "monthly" : "one-time")}
+              className="w-14 h-8 bg-blue-600 rounded-full relative p-1 transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2"
+            >
+              <div className={`w-6 h-6 bg-white rounded-full shadow-sm transform transition-transform duration-200 ease-in-out ${billingCycle === "monthly" ? "translate-x-6" : "translate-x-0"}`} />
+            </button>
+            <span className={`text-sm font-medium flex items-center gap-2 ${billingCycle === "monthly" ? "text-slate-900" : "text-slate-400"}`}>
+              WashClub Sub 
+              <span className="bg-green-100 text-green-700 text-[10px] uppercase font-bold px-2 py-0.5 rounded-full">Save 20%</span>
+            </span>
+          </div>
+        </div>
+
+        {/* PRICING / BOOKING CARDS */}
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          {/* Card 1: The Standard */}
+          <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow relative overflow-hidden flex flex-col">
+            <h3 className="text-2xl font-bold mb-2">The Standard</h3>
+            <p className="text-slate-500 text-sm mb-6">Perfect for bi-weekly maintenance and a spotless daily driver.</p>
+            <div className="mb-8">
+              <span className="text-4xl font-extrabold text-slate-900">
+                ${billingCycle === "monthly" ? "120" : "150"}
+              </span>
+              <span className="text-slate-500 font-medium">/wash</span>
+            </div>
+            <ul className="space-y-4 mb-8 flex-1 text-sm text-slate-600">
+              <li className="flex items-center gap-3">
+                <svg className="w-5 h-5 text-blue-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                Ph-Neutral Foam Wash
+              </li>
+              <li className="flex items-center gap-3">
+                <svg className="w-5 h-5 text-blue-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                Wheel & Tire Decontamination
+              </li>
+              <li className="flex items-center gap-3">
+                <svg className="w-5 h-5 text-blue-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                Interior Vacuum & Wipe Down
+              </li>
+            </ul>
+            <button className="w-full py-4 bg-slate-50 text-slate-900 border border-slate-200 rounded-xl text-sm font-bold hover:bg-slate-100 transition-colors">
+              Book Standard
+            </button>
+          </div>
+
+          {/* Card 2: The Reset (Highlighted) */}
+          <div className="bg-slate-900 p-8 rounded-3xl shadow-xl border border-slate-800 relative overflow-hidden flex flex-col text-white">
+            <div className="absolute top-0 right-0 bg-blue-600 text-white text-xs font-bold uppercase tracking-wider py-1.5 px-4 rounded-bl-xl">
+              Most Popular
+            </div>
+            <h3 className="text-2xl font-bold mb-2">The Reset</h3>
+            <p className="text-slate-400 text-sm mb-6">A complete deep-clean inside and out. Makes it look factory fresh.</p>
+            <div className="mb-8">
+              <span className="text-4xl font-extrabold text-white">
+                ${billingCycle === "monthly" ? "260" : "325"}
+              </span>
+              <span className="text-slate-400 font-medium">/wash</span>
+            </div>
+            <ul className="space-y-4 mb-8 flex-1 text-sm text-slate-300">
+              <li className="flex items-center gap-3">
+                <svg className="w-5 h-5 text-blue-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                Everything in Standard
+              </li>
+              <li className="flex items-center gap-3">
+                <svg className="w-5 h-5 text-blue-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                Clay Bar & Iron Decontamination
+              </li>
+              <li className="flex items-center gap-3">
+                <svg className="w-5 h-5 text-blue-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                Hot Water Extraction (Seats/Carpets)
+              </li>
+              <li className="flex items-center gap-3">
+                <svg className="w-5 h-5 text-blue-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                6-Month Ceramic Sealant
+              </li>
+            </ul>
+            <button className="w-full py-4 bg-blue-600 text-white rounded-xl text-sm font-bold hover:bg-blue-500 shadow-[0_0_20px_rgba(37,99,235,0.3)] transition-all">
+              Book The Reset
+            </button>
+          </div>
+        </div>
+      </main>
+    </div>
+  );
+};
+
+// ROUTE 66: Classic Americana, Vintage Garage, Retro - Vibe: Hot Rods, Classics, Hand Wax
+const Route66Layout = ({ item, onBack }: { item: StyleItem; onBack: () => void }) => (
+  <div className="min-h-screen bg-[#FDF8E7] text-[#1a1a1a] font-sans border-t-[12px] border-[#D9381E]">
+    <div className="border-b-4 border-[#1a1a1a] px-8 py-4 flex justify-between items-center bg-white">
+      <button onClick={onBack} className="text-sm font-bold uppercase tracking-widest hover:text-[#D9381E] transition-colors">
+        ← Exit Highway
       </button>
-    </header>
+      <div className="flex items-center gap-2">
+        <span className="text-2xl text-[#D9381E]">★</span>
+        <span className="font-black text-xl tracking-tighter uppercase hidden md:inline-block">Classic Wash & Lube</span>
+        <span className="text-2xl text-[#D9381E]">★</span>
+      </div>
+    </div>
 
-    <main className="max-w-6xl mx-auto px-8 py-16">
-      <div className="text-center max-w-3xl mx-auto mb-16">
-        <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 text-slate-900">
-          {item.title}. <br/> <span className="text-blue-600">Delivered to your driveway.</span>
-        </h1>
-        <p className="text-lg text-slate-500 mb-8">
-          {item.tagline} Professional mobile auto detailing powered by simple online booking. We bring the water, power, and expertise directly to your home or office.
-        </p>
+    <main className="max-w-5xl mx-auto px-6 py-16 text-center">
+      <div className="inline-block border-4 border-[#1a1a1a] px-6 py-2 mb-8 bg-white shadow-[6px_6px_0px_#D9381E] transform -rotate-2">
+        <span className="font-black uppercase tracking-widest text-[#1a1a1a]">Established 1954</span>
+      </div>
+      
+      <h1 className="text-6xl md:text-8xl font-black uppercase tracking-tighter text-[#1a1a1a] mb-6 drop-shadow-sm">
+        {item.title || "Old School Shine."}
+      </h1>
+      
+      <p className="text-xl md:text-2xl font-serif italic text-gray-700 max-w-2xl mx-auto mb-16 leading-relaxed">
+        {item.tagline || "We don't do ceramic coatings here. Just elbow grease, heavy compound, and hand-rubbed Carnauba wax."}
+      </p>
+
+      <div className="grid md:grid-cols-3 gap-8 text-left">
+        <div className="bg-white border-4 border-[#1a1a1a] p-8 shadow-[8px_8px_0px_#1a2a3a] hover:-translate-y-1 hover:shadow-[12px_12px_0px_#1a2a3a] transition-all">
+          <h3 className="text-2xl font-black uppercase mb-4 text-[#D9381E]">The Sunday Cruiser</h3>
+          <p className="font-medium text-sm mb-6 text-gray-600">Hand wash, chamois dry, white-wall tire scrub, and a fresh coat of Brazilian Carnauba.</p>
+          <span className="font-black text-2xl">$150</span>
+        </div>
+        
+        <div className="bg-white border-4 border-[#1a1a1a] p-8 shadow-[8px_8px_0px_#1a2a3a] hover:-translate-y-1 hover:shadow-[12px_12px_0px_#1a2a3a] transition-all">
+          <h3 className="text-2xl font-black uppercase mb-4 text-[#D9381E]">Chrome & Metal</h3>
+          <p className="font-medium text-sm mb-6 text-gray-600">Machine polishing for vintage bumpers, grilles, and exhaust tips to a flawless mirror finish.</p>
+          <span className="font-black text-2xl">$85 <span className="text-sm">/ hr</span></span>
+        </div>
+        
+        <div className="bg-[#1a2a3a] text-white border-4 border-[#1a1a1a] p-8 shadow-[8px_8px_0px_#D9381E] hover:-translate-y-1 hover:shadow-[12px_12px_0px_#D9381E] transition-all">
+          <h3 className="text-2xl font-black uppercase mb-4 text-[#FDF8E7]">Full Restoration</h3>
+          <p className="font-medium text-sm mb-6 text-gray-300">Heavy oxidation removal, multi-stage cutting, and vintage interior conditioning.</p>
+          <span className="font-black text-xl text-[#D9381E] bg-white px-3 py-1 border-2 border-[#D9381E]">Quote Only</span>
+        </div>
       </div>
 
-      <div className="grid md:grid-cols-3 gap-8">
-        <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 flex flex-col">
-          <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mb-6 font-bold">1</div>
-          <h3 className="text-xl font-bold mb-3">Select Package</h3>
-          <p className="text-slate-500 text-sm flex-1 mb-6">From basic exterior maintenance washes to full interior deep cleans and pet hair removal.</p>
-          <button className="w-full py-3 border border-slate-200 rounded-lg text-sm font-semibold hover:bg-slate-50">View Tiers</button>
-        </div>
-        <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 flex flex-col">
-          <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mb-6 font-bold">2</div>
-          <h3 className="text-xl font-bold mb-3">Pick a Time</h3>
-          <p className="text-slate-500 text-sm flex-1 mb-6">Choose a 2-hour arrival window that fits your schedule. Same-day appointments available.</p>
-          <button className="w-full py-3 border border-slate-200 rounded-lg text-sm font-semibold hover:bg-slate-50">Check Availability</button>
-        </div>
-        <div className="bg-blue-600 p-8 rounded-2xl shadow-md flex flex-col text-white">
-          <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mb-6 font-bold">3</div>
-          <h3 className="text-xl font-bold mb-3">Subscribe & Save</h3>
-          <p className="text-blue-100 text-sm flex-1 mb-6">Join our WashClub for bi-weekly or monthly maintenance detailing. Never drive a dirty car again.</p>
-          <button className="w-full py-3 bg-white text-blue-600 rounded-lg text-sm font-bold hover:bg-slate-50">Join WashClub</button>
-        </div>
+      <div className="mt-20">
+         <button className="bg-[#D9381E] text-white font-black text-xl md:text-2xl uppercase tracking-wider px-10 py-5 border-4 border-[#1a1a1a] shadow-[8px_8px_0px_#1a1a1a] hover:translate-y-1 hover:shadow-[4px_4px_0px_#1a1a1a] transition-all active:translate-y-2 active:shadow-none">
+           Pull Into The Bay
+         </button>
       </div>
     </main>
   </div>
 );
-
 
 /* -------------------------------------------------------------------------- */
 /* 2. MAIN APP CONTROLLER                                                     */
@@ -311,6 +452,9 @@ function App() {
         return <PrismLayout item={activeStyle} onBack={goBack} />;
       case "detail-flow":
         return <DetailFlowLayout item={activeStyle} onBack={goBack} />;
+      case "route-66":
+      case "route66":
+        return <Route66Layout item={activeStyle} onBack={goBack} />;
       default:
         // Expanded fallback to catch any unhandled variants with a clean detailing layout
         return <DetailFlowLayout item={activeStyle} onBack={goBack} />;
