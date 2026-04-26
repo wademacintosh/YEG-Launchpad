@@ -109,7 +109,7 @@ function ObsidianEcoCard({ item, onPreview }: StyleCardProps) {
           </p>
         </div>
 
-        <button
+        <button onClick={() => onPreview(item)}
           className="mt-auto w-full rounded-full border py-3 text-xs font-medium uppercase tracking-[0.3em] transition-colors hover:bg-[#7A8C7E] hover:text-white"
           style={{
             borderColor: "#7A8C7E",
@@ -167,7 +167,7 @@ function NightVisionCard({ item, onPreview }: StyleCardProps) {
           &gt; {item.tagline}
         </p>
 
-        <button className="mt-6 w-full rounded-sm border border-cyan-400/60 bg-cyan-400/5 py-3 text-xs font-bold uppercase tracking-[0.25em] text-cyan-300 transition-all hover:bg-cyan-400/15 hover:text-cyan-200 hover:shadow-[0_0_16px_rgb(34_211_238/0.5)]">
+        <button onClick={() => onPreview(item)} className="mt-6 w-full rounded-sm border border-cyan-400/60 bg-cyan-400/5 py-3 text-xs font-bold uppercase tracking-[0.25em] text-cyan-300 transition-all hover:bg-cyan-400/15 hover:text-cyan-200 hover:shadow-[0_0_16px_rgb(34_211_238/0.5)]">
           [ Preview Style ]
         </button>
       </div>
@@ -230,7 +230,7 @@ function VantageCard({ item, onPreview }: StyleCardProps) {
           {item.tagline}
         </p>
 
-        <button
+        <button onClick={() => onPreview(item)}
           className="group/btn flex items-center justify-between border-t pt-4 text-[11px] uppercase tracking-[0.3em] transition-colors"
           style={{
             borderColor: "#0a1628",
@@ -292,7 +292,7 @@ function MudSweatGearsCard({ item, onPreview }: StyleCardProps) {
           {item.tagline}
         </p>
 
-        <button
+        <button onClick={() => onPreview(item)}
           className="mt-5 w-full border-4 border-black bg-black py-3 text-sm font-black uppercase tracking-widest text-[#FFD400] transition-colors hover:bg-[#FFD400] hover:text-black"
           style={{ fontFamily: "'Archivo Black', sans-serif" }}
         >
@@ -357,7 +357,7 @@ function DetailFlowCard({ item, onPreview }: StyleCardProps) {
             {item.tagline}
           </p>
 
-          <button className="mt-5 w-full rounded-full border border-white/40 bg-white/25 py-2.5 text-sm font-semibold text-white backdrop-blur-md transition-all hover:bg-white/35 hover:shadow-[0_8px_24px_-8px_rgb(255_255_255/0.4)]">
+          <button onClick={() => onPreview(item)} className="mt-5 w-full rounded-full border border-white/40 bg-white/25 py-2.5 text-sm font-semibold text-white backdrop-blur-md transition-all hover:bg-white/35 hover:shadow-[0_8px_24px_-8px_rgb(255_255_255/0.4)]">
             Preview Style
           </button>
         </div>
@@ -420,7 +420,7 @@ function AeroShineCard({ item, onPreview }: StyleCardProps) {
           {item.tagline}
         </p>
 
-        <button
+        <button onClick={() => onPreview(item)}
           className="relative mt-5 w-full overflow-hidden rounded-sm border-l-4 border-[#e10600] bg-white/5 py-3 text-xs font-bold uppercase italic tracking-[0.25em] text-white backdrop-blur transition-all hover:bg-[#e10600] hover:border-white"
           style={{ fontFamily: "'Space Grotesk', sans-serif" }}
         >
@@ -497,7 +497,7 @@ function Route66Card({ item, onPreview }: StyleCardProps) {
           </p>
         </div>
 
-        <button className="shadow-sticker shadow-sticker-hover relative w-full rounded-full border-2 border-[#1f1f1f] bg-[#7C1D1D] py-3 text-sm font-black uppercase tracking-wider text-[#f7eed7] transition-all">
+        <button onClick={() => onPreview(item)} className="shadow-sticker shadow-sticker-hover relative w-full rounded-full border-2 border-[#1f1f1f] bg-[#7C1D1D] py-3 text-sm font-black uppercase tracking-wider text-[#f7eed7] transition-all">
           Preview Style
         </button>
       </div>
@@ -577,7 +577,7 @@ function PrismCard({ item, onPreview }: StyleCardProps) {
           </p>
         </div>
 
-        <button
+        <button onClick={() => onPreview(item)}
           className="relative mt-5 w-full overflow-hidden rounded-md py-3 text-sm font-bold uppercase tracking-[0.25em] text-white transition-all hover:tracking-[0.3em]"
           style={{
             background:
@@ -598,20 +598,21 @@ function PrismCard({ item, onPreview }: StyleCardProps) {
 export function StyleCard({ item, onPreview }: StyleCardProps) {
   switch (item.variant) {
     case "obsidian-eco":
-      return <ObsidianEcoCard item={item} />;
+      return <ObsidianEcoCard item={item} onPreview={onPreview} />;
     case "night-vision":
-      return <NightVisionCard item={item} />;
+      return <NightVisionCard item={item} onPreview={onPreview} />;
     case "vantage":
-      return <VantageCard item={item} />;
+      return <VantageCard item={item} onPreview={onPreview} />;
     case "mud-sweat-gears":
-      return <MudSweatGearsCard item={item} />;
+      return <MudSweatGearsCard item={item} onPreview={onPreview} />;
     case "detailflow":
-      return <DetailFlowCard item={item} />;
+      return <DetailFlowCard item={item} onPreview={onPreview} />;
     case "aero-shine":
-      return <AeroShineCard item={item} />;
+      return <AeroShineCard item={item} onPreview={onPreview} />;
     case "route66":
-      return <Route66Card item={item} />;
+      return <Route66Card item={item} onPreview={onPreview} />;
     case "prism":
-      return <PrismCard item={item} />;
+      return <PrismCard item={item} onPreview={onPreview} />;
   }
+}
 }
