@@ -1,7 +1,9 @@
-import { useMemo, useState } from "react";
-import { StyleCard, type StyleCategory, type StyleItem } from "./StyleCard";
-import PreviewModal from "./PreviewModal";
-import { themes } from "../lib/themes";
+import { useState } from "react";
+import { StyleCard, type StyleItem, type StyleCategory } from "./StyleCard";
+
+interface StyleGalleryProps {
+  onPreview: (item: StyleItem) => void;
+}
 
 const STYLES: StyleItem[] = [
   {
@@ -32,7 +34,7 @@ const STYLES: StyleItem[] = [
     title: "DetailFlow Pro",
     tagline: "Clean SaaS-style layout focused on online booking conversions.",
     category: "Modern",
-    variant: "detailflow", // Maps to detail-flow in your lib
+    variant: "detailflow",
   },
   {
     title: "Aero Shine Labs",
@@ -43,106 +45,61 @@ const STYLES: StyleItem[] = [
   {
     title: "Route 66 Revive",
     tagline: "Retro Americana branding for classic & restoration shops.",
-    category: "Rugged",
+    category: "Luxury",
     variant: "route66",
   },
   {
     title: "Prism Auto-Works",
     tagline: "Vibrant gradient design for vinyl wraps & custom finishes.",
-    category: "Luxury",
+    category: "Modern",
     variant: "prism",
   },
 ];
 
-const FILTERS: Array<"All" | StyleCategory> = ["All", "Luxury", "Rugged", "Modern"];
+const CATEGORIES: (StyleCategory | "All")[] = ["All", "Luxury", "Rugged", "Modern"];
 
-export default function StyleGallery() {
-  const [active, setActive] = useState<"All" | StyleCategory>("All");
-  const [previewItem, setPreviewItem] = useState<StyleItem | null>(null);
-  const [modalOpen, setModalOpen] = useState(false);
+export function StyleGallery({ onPreview }: StyleGalleryProps) {
+  const [activeCategory, setActiveCategory] = useState<StyleCategory | "All">("All");
 
-  const items = useMemo(
-    () => (active === "All" ? STYLES : STYLES.filter((s) => s.category === active)),
-    [active],
+  const filteredStyles = STYLES.filter(
+    (style) => activeCategory === "All" || style.category === activeCategory
   );
 
-  // Map the selected StyleItem back to your global ThemeDefinition
-  const fullTheme = useMemo(() => {
-    if (!previewItem) return null;
-    // Handle the slight difference in slug naming for detail-flow
-    const searchSlug = previewItem.variant === "detailflow" ? "detail-flow" : previewItem.variant;
-    return themes.find(t => t.slug === searchSlug) || null;
-  }, [previewItem]);
-
-  const handlePreview = (item: StyleItem) => {
-    setPreviewItem(item);
-    setModalOpen(true);
-  };
-
   return (
-    <section id="gallery" className="bg-background py-20 sm:py-24">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
-          <div className="max-w-xl">
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-              The Showroom
-            </span>
-            <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-secondary sm:text-4xl">
-              Browse the lineup
-            </h2>
-            <p className="mt-3 text-base text-muted-foreground">
-              Eight distinct directions. Each engineered to convert visitors into booked detailing jobs.
-            </p>
-          </div>
-
-          {/* Filter toggle */}
-          <div
-            role="tablist"
-            aria-label="Filter styles by category"
-            className="inline-flex flex-wrap items-center gap-1 rounded-lg border border-border bg-muted p-1"
+    <section className="px-6 max-w-7xl mx-auto">
+      {/* Category Filter */}
+      <div className="flex flex-wrap justify-center gap-4 mb-16">
+        {CATEGORIES.map((cat) => (
+          <button
+            key={cat}
+            onClick={() => setActiveCategory(cat)}
+            className={`px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest transition-all border ${
+              activeCategory === cat
+                ? "bg-black text-white border-black"
+                : "bg-transparent text-muted-foreground border-silver/40 hover:border-black"
+            }`}
           >
-            {FILTERS.map((f) => {
-              const isActive = active === f;
-              return (
-                <button
-                  key={f}
-                  role="tab"
-                  aria-selected={isActive}
-                  onClick={() => setActive(f)}
-                  className={[
-                    "rounded-md px-4 py-1.5 text-sm font-semibold transition-all",
-                    isActive
-                      ? "bg-secondary text-secondary-foreground shadow-sm"
-                      : "text-muted-foreground hover:text-secondary",
-                  ].join(" ")}
-                >
-                  {f}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Grid */}
-        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {items.map((item) => (
-            <StyleCard key={item.title} item={item} onPreview={handlePreview} />
-          ))}
-        </div>
-
-        {items.length === 0 && (
-          <p className="mt-12 text-center text-sm text-muted-foreground">
-            No styles match this filter yet.
-          </p>
-        )}
+            {cat}
+          </button>
+        ))}
       </div>
 
-      <PreviewModal
-        theme={fullTheme}
-        isOpen={modalOpen}
-        onClose={() => setModalOpen(false)}
-      />
+      {/* Style Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {filteredStyles.map((item) => (
+          <StyleCard 
+            key={item.variant} 
+            item={item} 
+            onPreview={onPreview} 
+          />
+        ))}
+      </div>
+
+      {filteredStyles.length === 0 && (
+        <p className="text-center py-20 text-muted-foreground italic">
+          No styles found in this category.
+        </p>
+      )}
     </section>
   );
 }
