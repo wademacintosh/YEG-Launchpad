@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { StyleCard, type StyleCategory, type StyleItem } from "./StyleCard";
+import { PreviewModal } from "./PreviewModal";
 
 const STYLES: StyleItem[] = [
   {
@@ -56,14 +57,21 @@ const FILTERS: Array<"All" | StyleCategory> = ["All", "Luxury", "Rugged", "Moder
 
 export function StyleGallery() {
   const [active, setActive] = useState<"All" | StyleCategory>("All");
+  const [previewItem, setPreviewItem] = useState<StyleItem | null>(null);
+  const [modalOpen, setModalOpen] = useState(false);
 
   const items = useMemo(
     () => (active === "All" ? STYLES : STYLES.filter((s) => s.category === active)),
     [active],
   );
 
+  const handlePreview = (item: StyleItem) => {
+    setPreviewItem(item);
+    setModalOpen(true);
+  };
+
   return (
-    <section className="bg-background py-20 sm:py-24">
+    <section id="gallery" className="bg-background py-20 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
@@ -110,7 +118,7 @@ export function StyleGallery() {
         {/* Grid */}
         <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {items.map((item) => (
-            <StyleCard key={item.title} item={item} />
+            <StyleCard key={item.title} item={item} onPreview={handlePreview} />
           ))}
         </div>
 
@@ -120,6 +128,12 @@ export function StyleGallery() {
           </p>
         )}
       </div>
+
+      <PreviewModal
+        item={previewItem}
+        open={modalOpen}
+        onOpenChange={setModalOpen}
+      />
     </section>
   );
 }
