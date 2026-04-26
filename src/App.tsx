@@ -494,30 +494,52 @@ function App() {
   const goBack = () => setView("gallery");
 
   if (view === "preview" && activeStyle) {
-    // Choose the layout based on the variant
-    switch (activeStyle.variant) {
-      case "obsidian-eco": 
-        return <ObsidianLayout item={activeStyle} onBack={goBack} />;
-      case "night-vision": 
-        return <NightVisionLayout item={activeStyle} onBack={goBack} />;
-      case "vantage": 
-        return <VantageLayout item={activeStyle} onBack={goBack} />;
-      case "mud-sweat-gears": 
-        return <MudLayout item={activeStyle} onBack={goBack} />;
-      case "prism":
-        return <PrismLayout item={activeStyle} onBack={goBack} />;
-      case "detail-flow":
-        return <DetailFlowLayout item={activeStyle} onBack={goBack} />;
-      case "route-66":
-      case "route66":
-        return <Route66Layout item={activeStyle} onBack={goBack} />;
-      case "aero-lab":
-      case "aerolab":
-      case "aero-shine-labs":
-        return <AeroLabLayout item={activeStyle} onBack={goBack} />;
-      default:
-        // Expanded fallback to catch any unhandled variants with a clean detailing layout
-        return <DetailFlowLayout item={activeStyle} onBack={goBack} />;
+    // Helper function to loosely match the variant or title
+    const isStyle = (keyword: string) => {
+      const variantStr = (activeStyle.variant || "").toLowerCase();
+      const titleStr = (activeStyle.title || "").toLowerCase();
+      return variantStr.includes(keyword) || titleStr.includes(keyword);
+    };
+
+    // Flexible routing that doesn't rely on exact string matches
+    if (isStyle("obsidian") || isStyle("eco")) {
+      return <ObsidianLayout item={activeStyle} onBack={goBack} />;
+    } 
+    else if (isStyle("night") || isStyle("armor") || isStyle("vision")) {
+      return <NightVisionLayout item={activeStyle} onBack={goBack} />;
+    } 
+    else if (isStyle("vantage")) {
+      return <VantageLayout item={activeStyle} onBack={goBack} />;
+    } 
+    else if (isStyle("mud") || isStyle("sweat") || isStyle("gears")) {
+      return <MudLayout item={activeStyle} onBack={goBack} />;
+    } 
+    else if (isStyle("prism")) {
+      return <PrismLayout item={activeStyle} onBack={goBack} />;
+    } 
+    else if (isStyle("route") || isStyle("66") || isStyle("revive")) {
+      return <Route66Layout item={activeStyle} onBack={goBack} />;
+    } 
+    else if (isStyle("aero") || isStyle("shine")) {
+      return <AeroLabLayout item={activeStyle} onBack={goBack} />;
+    } 
+    else if (isStyle("detail") || isStyle("flow")) {
+      return <DetailFlowLayout item={activeStyle} onBack={goBack} />;
+    } 
+    else {
+      // Ultimate fallback if absolutely nothing matches
+      return (
+        <div className="min-h-screen p-10 bg-red-50 text-red-900 flex flex-col items-start">
+          <button onClick={goBack} className="mb-4 underline font-bold hover:text-red-700">← Back</button>
+          <div className="bg-white p-8 rounded-lg shadow-sm border border-red-200">
+            <h1 className="text-2xl font-bold mb-2">Routing Error</h1>
+            <p className="mb-4">Could not match layout for this item. Please check the data.</p>
+            <pre className="bg-red-100 p-4 rounded text-sm overflow-auto">
+              <code>{JSON.stringify(activeStyle, null, 2)}</code>
+            </pre>
+          </div>
+        </div>
+      );
     }
   }
 
