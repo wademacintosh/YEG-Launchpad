@@ -1,28 +1,28 @@
 import { Button } from "@/components/ui/button";
+import logo from "@/assets/yeg-launchpad-logo.png";
 
 export function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/85 backdrop-blur-md">
-      <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <a href="/" className="flex items-center gap-2.5" aria-label="YEG Launchpad home">
-          <span className="flex h-9 w-9 items-center justify-center rounded-md bg-secondary text-primary">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              className="h-5 w-5"
-              aria-hidden="true"
-            >
-              <path d="M12 2 4 14h6l-2 8 10-14h-6l2-6z" />
-            </svg>
-          </span>
-          <span className="flex flex-col leading-none">
-            <span className="text-base font-extrabold tracking-tight text-secondary">
-              YEG Launchpad
-            </span>
-            <span className="text-[10px] font-medium uppercase tracking-[0.18em] text-muted-foreground">
-              Style Selector
-            </span>
+      <div className="mx-auto flex h-20 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        <a href="/" className="flex items-center gap-3" aria-label="YEG Launchpad — High Level Business Solutions">
+          <img
+            src={logo}
+            alt="YEG Launchpad logo"
+            className="h-12 w-auto sm:h-14"
+            loading="eager"
+            decoding="async"
+          />
+          <span className="sr-only">YEG Launchpad — Style Selector</span>
+          <span
+            aria-hidden="true"
+            className="hidden h-8 w-px bg-border sm:block"
+          />
+          <span
+            aria-hidden="true"
+            className="hidden text-[11px] font-semibold uppercase tracking-[0.22em] text-muted-foreground sm:block"
+          >
+            Style Selector
           </span>
         </a>
 
