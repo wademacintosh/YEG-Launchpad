@@ -6,15 +6,16 @@ import ThemeDemo from '../components/ThemeDemo';
 export default function ThemePage() {
   const { slug } = useParams<{ slug: string }>();
   
-  // Find theme by slug instead of id
+  // Important: Find the theme by slug, not by ID
   const theme = themes.find(t => t.slug === slug);
 
+  // If the theme isn't found, go back home instead of showing a blank error
   if (!theme) {
     return <Navigate to="/" replace />;
   }
 
   return (
-    <div style={{ backgroundColor: theme.tokens.bg, minHeight: '100vh' }}>
+    <div className="min-h-screen" style={{ backgroundColor: theme.tokens.bg }}>
       <ThemeDemo theme={theme} />
     </div>
   );
