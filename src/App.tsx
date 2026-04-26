@@ -2,147 +2,143 @@ import { useState } from "react";
 import { StyleGallery } from "./components/StyleGallery";
 import { StyleItem } from "./components/StyleCard";
 
-// This contains the unique "DNA" for each style
-const STYLE_DETAILS = {
-  "obsidian-eco": {
-    title: "Obsidian Eco-Clean",
-    desc: "Minimal monochrome layout for waterless detailing.",
-    bg: "#eef2ec",
-    text: "#1f2a22",
-    accent: "#7A8C7E",
-    font: "'Cormorant Garamond', serif"
-  },
-  "night-vision": {
-    title: "Night Vision Armor",
-    desc: "High-contrast dark UI built for ceramic coatings & PPF.",
-    bg: "#1a1a1a",
-    text: "#22d3ee",
-    accent: "#22d3ee",
-    font: "'JetBrains Mono', monospace"
-  },
-  "vantage": {
-    title: "The Vantage Collective",
-    desc: "Editorial luxury aesthetic for boutique exotic-car studios.",
-    bg: "#f5f1ea",
-    text: "#0a1628",
-    accent: "#B89766",
-    font: "'Playfair Display', serif"
-  },
-  "mud-sweat-gears": {
-    title: "Mud, Sweat & Gears",
-    desc: "Bold rugged branding for off-road & truck wash specialists.",
-    bg: "#FFD400",
-    text: "#000000",
-    accent: "#000000",
-    font: "'Archivo Black', sans-serif"
-  },
-  "detailflow": {
-    title: "DetailFlow Pro",
-    desc: "Clean SaaS-style layout focused on online booking conversions.",
-    bg: "#0f172a",
-    text: "#ffffff",
-    accent: "#60a5fa",
-    font: "sans-serif"
-  },
-  "aero-shine": {
-    title: "Aero Shine Labs",
-    desc: "Tech-lab vibe with motion accents for paint correction pros.",
-    bg: "#000000",
-    text: "#ffffff",
-    accent: "#e10600",
-    font: "'Space Grotesk', sans-serif"
-  },
-  "route66": {
-    title: "Route 66 Revive",
-    desc: "Retro Americana branding for classic & restoration shops.",
-    bg: "#f7eed7",
-    text: "#7C1D1D",
-    accent: "#0d8a8a",
-    font: "'Pacifico', cursive"
-  },
-  "prism": {
-    title: "Prism Auto-Works",
-    desc: "Vibrant gradient design for vinyl wraps & custom finishes.",
-    bg: "#0a0014",
-    text: "#ffffff",
-    accent: "#c026d3",
-    font: "'Space Grotesk', sans-serif"
-  }
-};
+/* -------------------------------------------------------------------------- */
+/* 1. UNIQUE LAYOUT COMPONENTS                        */
+/* -------------------------------------------------------------------------- */
+
+// OBSIDIAN: Minimal, Centered, Serif
+const ObsidianLayout = ({ item, onBack }: { item: StyleItem; onBack: () => void }) => (
+  <div className="min-h-screen bg-[#eef2ec] text-[#1f2a22] font-serif p-8">
+    <nav className="flex justify-between border-b border-black/10 pb-4 mb-20 font-sans text-[10px] tracking-widest uppercase">
+      <button onClick={onBack}>← Back</button>
+      <span>Studio Concept / 01</span>
+    </nav>
+    <main className="max-w-3xl mx-auto text-center space-y-12">
+      <h1 className="text-8xl font-medium leading-none tracking-tighter italic">Pure Detail.</h1>
+      <p className="text-2xl leading-relaxed opacity-80 max-w-xl mx-auto">{item.tagline}</p>
+      <div className="pt-10">
+        <button className="px-12 py-4 border border-[#1f2a22] rounded-full hover:bg-[#1f2a22] hover:text-white transition-all uppercase text-xs tracking-[0.3em]">
+          Book Detail
+        </button>
+      </div>
+    </main>
+  </div>
+);
+
+// NIGHT VISION: Grid-based, Cyber, Monospace
+const NightVisionLayout = ({ item, onBack }: { item: StyleItem; onBack: () => void }) => (
+  <div className="min-h-screen bg-[#0a0a0a] text-[#22d3ee] font-mono p-4">
+    <div className="border border-[#22d3ee]/30 min-h-[95vh] relative overflow-hidden">
+      <nav className="p-6 border-b border-[#22d3ee]/30 flex justify-between text-[10px]">
+        <button onClick={onBack} className="hover:bg-[#22d3ee] hover:text-black px-2 uppercase underline">Back_to_Studio</button>
+        <span className="animate-pulse">● SYSTEM_ACTIVE</span>
+      </nav>
+      <div className="grid grid-cols-12 h-full">
+        <div className="col-span-12 lg:col-span-7 p-12 border-b lg:border-b-0 lg:border-r border-[#22d3ee]/30">
+          <h1 className="text-6xl font-bold uppercase tracking-tighter mb-8 leading-none">
+            {item.title} <span className="block text-2xl mt-4 opacity-50">Status: Protected</span>
+          </h1>
+          <p className="text-lg opacity-80 max-w-md">{item.tagline}</p>
+        </div>
+        <div className="col-span-12 lg:col-span-5 p-12 bg-[#22d3ee]/5">
+          <div className="space-y-6">
+            <div className="h-1 bg-[#22d3ee] w-full" />
+            <p className="text-[10px] uppercase tracking-widest">Armor-Clad Protection Systems Installed Here</p>
+            <button className="w-full py-4 bg-[#22d3ee] text-black font-bold uppercase text-xs shadow-[0_0_20px_rgba(34,211,238,0.5)]">
+              Initiate Scan
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+// VANTAGE: Asymmetrical, Luxury, Sans/Serif mix
+const VantageLayout = ({ item, onBack }: { item: StyleItem; onBack: () => void }) => (
+  <div className="min-h-screen bg-[#f5f1ea] text-[#0a1628] p-0">
+    <div className="flex flex-col md:flex-row min-h-screen">
+      <aside className="w-full md:w-1/3 p-12 flex flex-col justify-between border-r border-black/5">
+        <button onClick={onBack} className="text-xs uppercase tracking-widest text-left">← Gallery</button>
+        <div>
+          <span className="text-[10px] uppercase tracking-[0.4em] text-[#B89766] mb-4 block">The Collective</span>
+          <h1 className="text-5xl font-bold font-serif leading-tight">Refined <br/> Aesthetic.</h1>
+        </div>
+      </aside>
+      <main className="flex-1 p-12 md:p-24 flex flex-col justify-center">
+        <p className="text-3xl font-serif italic mb-12 max-w-lg leading-snug">{item.tagline}</p>
+        <div className="flex gap-8 items-center border-t border-black/10 pt-12">
+          <button className="px-10 py-4 bg-[#0a1628] text-white text-[10px] uppercase tracking-widest">Reserve Session</button>
+          <span className="text-[10px] uppercase tracking-widest opacity-40">Edmonton, AB</span>
+        </div>
+      </main>
+    </div>
+  </div>
+);
+
+// MUD, SWEAT & GEARS: Brutalist, Heavy, Bright
+const MudLayout = ({ item, onBack }: { item: StyleItem; onBack: () => void }) => (
+  <div className="min-h-screen bg-[#FFD400] text-black font-black p-0 border-[16px] border-black">
+    <nav className="p-8 border-b-8 border-black flex justify-between items-center bg-white">
+      <button onClick={onBack} className="bg-black text-[#FFD400] px-6 py-2 uppercase transform -rotate-2">Back</button>
+      <span className="text-2xl">RUGGED_LAB</span>
+    </nav>
+    <div className="p-12">
+      <h1 className="text-[10vw] leading-[0.8] uppercase mb-12 italic transform -rotate-1">{item.title}</h1>
+      <div className="bg-black text-white p-8 max-w-2xl transform rotate-1">
+        <p className="text-2xl uppercase tracking-tighter">{item.tagline}</p>
+      </div>
+      <button className="mt-12 text-4xl uppercase underline decoration-8 underline-offset-8 hover:text-white transition-colors">
+        GET A QUOTE NOW →
+      </button>
+    </div>
+  </div>
+);
+
+/* -------------------------------------------------------------------------- */
+/* 2. MAIN APP CONTROLLER                            */
+/* -------------------------------------------------------------------------- */
 
 function App() {
   const [view, setView] = useState<"gallery" | "preview">("gallery");
   const [activeStyle, setActiveStyle] = useState<StyleItem | null>(null);
 
-  // Function to enter Preview Mode
   const handlePreview = (item: StyleItem) => {
     setActiveStyle(item);
     setView("preview");
-    window.scrollTo(0, 0); // Scroll to top of "new page"
+    window.scrollTo(0, 0);
   };
 
-  // If in Preview Mode, show the Style's "Page"
-  if (view === "preview" && activeStyle) {
-    const details = STYLE_DETAILS[activeStyle.variant];
-    
-    return (
-      <div 
-        className="min-h-screen transition-colors duration-700" 
-        style={{ backgroundColor: details.bg, color: details.text, fontFamily: details.font }}
-      >
-        <nav className="flex justify-between items-center p-8 border-b border-black/10">
-          <button 
-            onClick={() => setView("gallery")}
-            className="uppercase text-xs tracking-widest hover:opacity-50 font-sans"
-          >
-            ← Back to Studio
-          </button>
-          <span className="uppercase text-[10px] tracking-[0.5em] opacity-60 font-sans">
-            Style: {details.title}
-          </span>
-        </nav>
+  const goBack = () => setView("gallery");
 
-        <main className="max-w-5xl mx-auto py-32 px-10">
-          <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-1000">
-            <h1 className="text-7xl md:text-9xl font-bold tracking-tighter leading-tight uppercase">
-              {details.title}
-            </h1>
-            <p className="text-xl md:text-2xl max-w-2xl opacity-80 leading-relaxed">
-              {details.desc} This landing page layout is engineered for Edmonton's top-tier automotive professionals.
-            </p>
-            <div className="pt-10">
-              <button 
-                className="px-12 py-5 text-sm font-bold uppercase tracking-widest transition-all hover:scale-105"
-                style={{ backgroundColor: details.accent, color: details.bg === '#000000' || details.bg === '#0a0014' ? '#fff' : details.bg }}
-              >
-                Book Your Transformation
-              </button>
-            </div>
+  if (view === "preview" && activeStyle) {
+    // Choose the layout based on the variant
+    switch (activeStyle.variant) {
+      case "obsidian-eco": return <ObsidianLayout item={activeStyle} onBack={goBack} />;
+      case "night-vision": return <NightVisionLayout item={activeStyle} onBack={goBack} />;
+      case "vantage": return <VantageLayout item={activeStyle} onBack={goBack} />;
+      case "mud-sweat-gears": return <MudLayout item={activeStyle} onBack={goBack} />;
+      default:
+        // Fallback for other styles (Prism, DetailFlow, etc.)
+        return (
+          <div className="min-h-screen bg-white p-20">
+             <button onClick={goBack} className="mb-10 underline">← Back</button>
+             <h1 className="text-6xl font-bold uppercase">{activeStyle.title}</h1>
+             <p className="text-2xl mt-4">{activeStyle.tagline}</p>
           </div>
-        </main>
-      </div>
-    );
+        );
+    }
   }
 
-  // Default View: The Studio Gallery
   return (
     <div className="min-h-screen bg-[#fafafa]">
       <header className="py-20 text-center px-6">
         <h1 className="text-sm uppercase tracking-[0.5em] mb-4 text-muted-foreground">YEG Launchpad</h1>
         <h2 className="text-5xl font-bold tracking-tighter uppercase mb-6">Launch Your Brand</h2>
-        <p className="max-w-xl mx-auto text-muted-foreground">
-          Premium detailing visual identities for Edmonton's elite automotive shops.
-        </p>
       </header>
-
       <main className="pb-32">
-        {/* Pass our handlePreview function into the gallery */}
         <StyleGallery onPreview={handlePreview} />
       </main>
-
-      <footer className="py-10 border-t border-silver/30 text-center text-[10px] uppercase tracking-widest text-muted-foreground">
-        Walterdale · Edmonton · 2026
-      </footer>
     </div>
   );
 }
