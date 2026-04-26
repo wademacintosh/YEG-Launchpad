@@ -1,16 +1,16 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { themes } from '../lib/themes';
 
 export default function StyleGallery() {
-  // Find specific themes to ensure we have data before rendering
-  const obsidianTheme = themes.find(t => t.slug === 'obsidian-eco');
-  const nightVisionTheme = themes.find(t => t.slug === 'night-vision');
+  // Helper to safely grab themes
+  const getTheme = (slug: string) => themes.find(t => t.slug === slug);
   
   return (
     <section className="py-24 px-6 max-w-7xl mx-auto bg-white">
       <div className="mb-16">
         <h2 className="text-5xl font-black mb-4">Browse the lineup</h2>
-        <p className="text-xl text-gray-600">Eight distinct directions. Click any card to open its full demo site.</p>
+        <p className="text-xl text-gray-600">Distinct directions for your detailing brand. Click any card to open its full demo.</p>
         
         {/* Filter Tags */}
         <div className="flex gap-4 mt-8 border border-gray-200 rounded-lg p-1 w-max">
@@ -21,75 +21,134 @@ export default function StyleGallery() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         
-        {/* CARD 01: Obsidian Eco-Clean */}
-        {obsidianTheme && (
-          <Link to={`/theme/${obsidianTheme.slug}`} className="group block">
-            <div className="h-[500px] rounded-2xl p-10 flex flex-col items-center justify-between transition-transform duration-500 hover:-translate-y-2 border border-gray-100 shadow-sm hover:shadow-xl relative" style={{ backgroundColor: '#F6F7F2' }}>
+        {/* 01: OBSIDIAN ECO-CLEAN */}
+        {getTheme('obsidian-eco') && (
+          <Link to="/theme/obsidian-eco" className="group block h-full">
+            <div className="h-[450px] rounded-2xl p-8 flex flex-col justify-between transition-transform duration-500 hover:-translate-y-2 border border-gray-100 shadow-sm hover:shadow-xl" style={{ backgroundColor: '#F5F5F1' }}>
               <div className="w-full flex justify-between items-start">
-                <span className="bg-white px-4 py-1 rounded-full text-xs font-bold tracking-widest text-gray-500 uppercase">Modern</span>
-                <div className="w-3 h-3 rounded-full bg-gray-400"></div>
+                <span className="bg-white px-4 py-1 rounded-full text-[10px] font-bold tracking-widest text-[#7C8982] uppercase">Eco / Spa</span>
               </div>
-              
-              <div className="text-center">
-                <span className="text-xs tracking-[0.2em] text-gray-500 mb-6 block">01 — ECO</span>
-                <h3 className="text-4xl font-serif mb-2 text-gray-900">Obsidian</h3>
-                <h4 className="text-3xl font-serif italic text-gray-800 mb-8">Eco-Clean</h4>
-                <p className="text-sm text-gray-600 max-w-[280px] mx-auto leading-relaxed">
-                  Minimal monochrome layout for waterless, eco-conscious detailing.
-                </p>
+              <div className="text-center mt-auto mb-8">
+                <h3 className="text-4xl font-bold mb-2 text-[#2A2C2B]" style={{ fontFamily: '"Playfair Display", serif' }}>Obsidian</h3>
+                <p className="text-sm text-[#5C6661] font-medium">Minimal & Quiet</p>
               </div>
-
-              <div className="w-full mt-auto">
-                <button className="w-full border border-gray-300 rounded-full py-4 text-xs font-bold tracking-[0.2em] text-gray-700 uppercase group-hover:bg-white transition-colors">
-                  Preview Style
-                </button>
-              </div>
+              <button className="w-full border border-[#D1D4CD] rounded-full py-4 text-xs font-bold tracking-[0.2em] text-[#7C8982] uppercase group-hover:bg-[#7C8982] group-hover:text-white transition-colors">
+                Preview Style
+              </button>
             </div>
           </Link>
         )}
 
-        {/* CARD 02: Night Vision Armor */}
-        {nightVisionTheme && (
-          <Link to={`/theme/${nightVisionTheme.slug}`} className="group block">
-            <div className="h-[500px] rounded-xl p-10 flex flex-col justify-between transition-transform duration-500 hover:-translate-y-2 relative" style={{ backgroundColor: '#1A1D20', border: '1px solid #2C3539' }}>
+        {/* 02: NIGHT VISION ARMOR */}
+        {getTheme('night-vision') && (
+          <Link to="/theme/night-vision" className="group block h-full">
+            <div className="h-[450px] rounded-xl p-8 flex flex-col justify-between transition-transform duration-500 hover:-translate-y-2 relative" style={{ backgroundColor: '#1A1D20', border: '1px solid #2C3539' }}>
               <div className="w-full flex justify-between items-start">
-                <span className="text-[10px] font-mono text-[#4ECDC4] tracking-widest">// 02_NIGHT_VISION</span>
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-[#4ECDC4] animate-pulse"></div>
-                  <span className="text-[10px] font-mono text-[#4ECDC4] tracking-widest">ONLINE</span>
-                </div>
+                <span className="text-[10px] font-mono text-[#4ECDC4] tracking-widest">// NIGHT_VISION</span>
               </div>
-              
-              {/* Radar Graphic */}
-              <div className="flex justify-center my-8">
-                <div className="w-32 h-32 rounded-full border border-[#4ECDC4]/30 relative flex items-center justify-center">
-                  <div className="w-24 h-24 rounded-full border border-[#4ECDC4]/20 absolute"></div>
-                  <div className="w-16 h-16 rounded-full border border-[#4ECDC4]/10 absolute"></div>
-                  <div className="w-full h-[1px] bg-[#4ECDC4]/30 absolute"></div>
-                  <div className="h-full w-[1px] bg-[#4ECDC4]/30 absolute"></div>
-                  <div className="w-2 h-2 rounded-full bg-[#4ECDC4] absolute z-10"></div>
-                </div>
+              <div className="mt-auto mb-8">
+                <h3 className="text-2xl font-mono text-white mb-2 font-bold uppercase tracking-tighter">Night Vision</h3>
+                <p className="text-xs font-mono text-gray-400">High-contrast dark UI.</p>
               </div>
-              
-              <div className="mt-auto">
-                <h3 className="text-xl font-mono text-[#4ECDC4] mb-3 font-bold">NIGHT VISION ARMOR_</h3>
-                <p className="text-xs font-mono text-gray-400 mb-8">
-                  &gt; High-contrast dark UI built for ceramic coatings & PPF.
-                </p>
-                <button className="w-full border border-[#4ECDC4]/30 py-4 text-[10px] font-mono text-[#4ECDC4] tracking-[0.3em] uppercase group-hover:bg-[#4ECDC4]/10 transition-colors">
-                  [ PREVIEW STYLE ]
-                </button>
-              </div>
+              <button className="w-full border border-[#4ECDC4]/30 py-4 text-[10px] font-mono text-[#4ECDC4] tracking-[0.3em] uppercase group-hover:bg-[#4ECDC4]/10 transition-colors">
+                [ PREVIEW STYLE ]
+              </button>
             </div>
           </Link>
         )}
-        
-        {/* Placeholder for the remaining cards */}
-        <div className="bg-yellow-400 h-[500px] border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center">
-            <span className="font-black text-2xl uppercase">Mud, Sweat & Gears Layout Pending...</span>
-        </div>
+
+        {/* 03: DETAILFLOW */}
+        {getTheme('detail-flow') && (
+          <Link to="/theme/detail-flow" className="group block h-full">
+            <div className="h-[450px] rounded-3xl p-8 flex flex-col justify-between transition-transform duration-500 hover:-translate-y-2 relative" style={{ backgroundColor: '#0B1221', border: '1px solid rgba(255,255,255,0.05)' }}>
+              <div className="w-full flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-[#8BB0F9]"></div>
+                <span className="text-[10px] font-bold text-[#8BB0F9] tracking-widest uppercase">SaaS / Modern</span>
+              </div>
+              <div className="mt-auto mb-8">
+                <h3 className="text-3xl font-bold text-white mb-2 tracking-tight">DetailFlow</h3>
+                <p className="text-sm text-gray-400 font-light">Clean software aesthetic.</p>
+              </div>
+              <button className="w-full bg-[#8BB0F9]/10 rounded-full py-4 text-xs font-semibold text-[#8BB0F9] group-hover:bg-[#8BB0F9] group-hover:text-[#0B1221] transition-colors">
+                Preview Style
+              </button>
+            </div>
+          </Link>
+        )}
+
+        {/* 04: AERO SHINE */}
+        {getTheme('aero-shine') && (
+          <Link to="/theme/aero-shine" className="group block h-full">
+            <div className="h-[450px] rounded p-8 flex flex-col justify-between transition-transform duration-500 hover:-translate-y-2 relative" style={{ backgroundColor: '#0A0A0A', border: '1px solid rgba(229,57,53,0.2)' }}>
+              <div className="w-full flex justify-between items-start">
+                <span className="text-[10px] font-bold text-[#E53935] tracking-[0.2em] uppercase">Motorsport</span>
+              </div>
+              <div className="mt-auto mb-8">
+                <h3 className="text-4xl font-black text-white mb-2 uppercase tracking-tighter">Aero Shine</h3>
+                <p className="text-xs text-gray-400 uppercase tracking-widest">Race-Team Precision.</p>
+              </div>
+              <button className="w-full border border-[#E53935] py-4 text-[10px] font-bold text-white tracking-[0.2em] uppercase group-hover:bg-[#E53935] transition-colors rounded">
+                Preview Style &rarr;
+              </button>
+            </div>
+          </Link>
+        )}
+
+        {/* 05: PRISM */}
+        {getTheme('prism') && (
+          <Link to="/theme/prism" className="group block h-full">
+            <div className="h-[450px] rounded-xl p-8 flex flex-col justify-between transition-transform duration-500 hover:-translate-y-2 relative" style={{ backgroundColor: '#0A0510', border: '1px solid rgba(255,90,159,0.3)' }}>
+              <div className="w-full flex justify-between items-start">
+                <span className="text-[10px] font-mono text-[#FF5A9F] tracking-[0.2em] drop-shadow-[0_0_5px_rgba(255,90,159,0.5)]">PRISM_OS</span>
+              </div>
+              <div className="mt-auto mb-8">
+                <h3 className="text-4xl font-black text-white mb-2 uppercase tracking-tighter drop-shadow-[0_0_8px_rgba(255,90,159,0.4)]">Prism</h3>
+                <p className="text-xs font-mono text-[#FF5A9F]/80">Neon Synthwave vibes.</p>
+              </div>
+              <button className="w-full bg-[#FF5A9F]/10 border border-[#FF5A9F]/50 py-4 text-[10px] font-bold text-[#FF5A9F] tracking-[0.2em] uppercase group-hover:bg-[#FF5A9F] group-hover:text-[#0A0510] transition-colors rounded-md">
+                Preview Style
+              </button>
+            </div>
+          </Link>
+        )}
+
+        {/* 06: VANTAGE */}
+        {getTheme('vantage') && (
+          <Link to="/theme/vantage" className="group block h-full">
+            <div className="h-[450px] rounded-lg p-8 flex flex-col justify-between transition-transform duration-500 hover:-translate-y-2 border border-[#E8E4D9] shadow-sm hover:shadow-xl" style={{ backgroundColor: '#F5F2EB' }}>
+              <div className="w-full flex justify-between items-start">
+                <span className="text-[10px] font-bold tracking-[0.3em] text-[#C2A476] uppercase">Members Only</span>
+              </div>
+              <div className="text-center mt-auto mb-8">
+                <h3 className="text-4xl font-bold mb-2 text-[#1A1A1A]" style={{ fontFamily: '"Playfair Display", serif' }}>Vantage</h3>
+                <p className="text-xs text-[#6B6B6B] font-medium tracking-widest uppercase">Heritage / Luxury</p>
+              </div>
+              <button className="w-full bg-[#C2A476] text-[#1A1A1A] py-4 text-xs font-bold tracking-widest uppercase hover:bg-[#A88C5E] transition-colors rounded-sm">
+                Preview Style
+              </button>
+            </div>
+          </Link>
+        )}
+
+        {/* 07: MUD, SWEAT & GEARS */}
+        {getTheme('mud-sweat-gears') && (
+          <Link to="/theme/mud-sweat-gears" className="group block h-full md:col-span-2 lg:col-span-3">
+            <div className="h-[250px] md:h-[300px] p-8 flex flex-col md:flex-row items-start md:items-center justify-between transition-all duration-300 hover:translate-x-[2px] hover:translate-y-[2px] border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] bg-[#FFD600]">
+              <div>
+                <span className="text-[10px] font-black tracking-[0.3em] text-black uppercase mb-4 block">
+                  ★ YEG Heavy Duty
+                </span>
+                <h3 className="text-4xl md:text-5xl font-black text-black mb-2 uppercase tracking-tighter">Mud, Sweat & Gears</h3>
+                <p className="text-sm font-bold text-gray-900 uppercase tracking-widest">Brutalist. Loud. Industrial.</p>
+              </div>
+              <button className="mt-8 md:mt-0 bg-black text-[#FFD600] px-10 py-5 text-sm font-black tracking-widest uppercase border-2 border-black hover:bg-gray-800 transition-colors">
+                Preview Style &rarr;
+              </button>
+            </div>
+          </Link>
+        )}
         
       </div>
     </section>
