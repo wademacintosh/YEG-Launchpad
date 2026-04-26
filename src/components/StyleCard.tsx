@@ -62,7 +62,7 @@ function CardShell({
 
 /* ---------- 1. Obsidian Eco-Clean — minimal & airy, sage tint, serif ---------- */
 
-function ObsidianEcoCard({ item }: StyleCardProps) {
+function ObsidianEcoCard({ item, onPreview }: StyleCardProps) {
   return (
     <CardShell
       className="rounded-2xl border border-[#cfd8cf] shadow-[0_1px_2px_rgb(0_0_0/0.04),0_8px_24px_-12px_rgb(0_0_0/0.12)] hover:shadow-[0_24px_48px_-20px_rgb(122_140_126/0.45)]"
@@ -126,7 +126,7 @@ function ObsidianEcoCard({ item }: StyleCardProps) {
 
 /* ---------- 2. Night Vision Armor — dark + neon cyan + monospace ---------- */
 
-function NightVisionCard({ item }: StyleCardProps) {
+function NightVisionCard({ item, onPreview }: StyleCardProps) {
   return (
     <CardShell
       className="shadow-neon-cyan shadow-neon-cyan-hover rounded-md"
@@ -177,7 +177,7 @@ function NightVisionCard({ item }: StyleCardProps) {
 
 /* ---------- 3. The Vantage Collective — luxury magazine, navy + gold ---------- */
 
-function VantageCard({ item }: StyleCardProps) {
+function VantageCard({ item, onPreview }: StyleCardProps) {
   return (
     <CardShell
       className="rounded-none border border-[#0a1628]/15 shadow-[0_1px_2px_rgb(0_0_0/0.04),0_12px_30px_-16px_rgb(10_22_40/0.4)] hover:shadow-[0_24px_60px_-24px_rgb(184_151_102/0.45)]"
@@ -253,7 +253,7 @@ function VantageCard({ item }: StyleCardProps) {
 
 /* ---------- 4. Mud, Sweat & Gears — Neobrutalist ---------- */
 
-function MudSweatGearsCard({ item }: StyleCardProps) {
+function MudSweatGearsCard({ item, onPreview }: StyleCardProps) {
   return (
     <CardShell
       className="shadow-brutal shadow-brutal-hover rounded-none border-4 border-black"
@@ -305,7 +305,7 @@ function MudSweatGearsCard({ item }: StyleCardProps) {
 
 /* ---------- 5. DetailFlow Pro — Glassmorphism ---------- */
 
-function DetailFlowCard({ item }: StyleCardProps) {
+function DetailFlowCard({ item, onPreview }: StyleCardProps) {
   return (
     <CardShell
       className="rounded-3xl"
@@ -368,7 +368,7 @@ function DetailFlowCard({ item }: StyleCardProps) {
 
 /* ---------- 6. Aero Shine Labs — fast, italic, racing red, carbon fiber ---------- */
 
-function AeroShineCard({ item }: StyleCardProps) {
+function AeroShineCard({ item, onPreview }: StyleCardProps) {
   return (
     <CardShell
       className="rounded-xl border border-[#e10600]/40 shadow-[0_8px_30px_-12px_rgb(225_6_0/0.3)] hover:shadow-[0_20px_40px_-12px_rgb(225_6_0/0.6)]"
@@ -433,7 +433,7 @@ function AeroShineCard({ item }: StyleCardProps) {
 
 /* ---------- 7. Route 66 Revive — vintage 1950s, cream + teal script ---------- */
 
-function Route66Card({ item }: StyleCardProps) {
+function Route66Card({ item, onPreview }: StyleCardProps) {
   return (
     <CardShell
       className="rounded-xl border-2 border-[#1f1f1f] shadow-[4px_4px_0_0_#1f1f1f] hover:shadow-[6px_6px_0_0_#1f1f1f]"
@@ -507,7 +507,7 @@ function Route66Card({ item }: StyleCardProps) {
 
 /* ---------- 8. Prism Auto-Works — Vaporwave, magenta/violet, glitch hover ---------- */
 
-function PrismCard({ item }: StyleCardProps) {
+function PrismCard({ item, onPreview }: StyleCardProps) {
   return (
     <CardShell
       className="rounded-xl border border-fuchsia-500/40 shadow-[0_8px_30px_-8px_rgb(217_70_239/0.5)] hover:shadow-[0_20px_50px_-10px_rgb(217_70_239/0.8)]"
@@ -595,7 +595,7 @@ function PrismCard({ item }: StyleCardProps) {
 
 /* ---------- Dispatcher ---------- */
 
-export function StyleCard({ item }: StyleCardProps) {
+export function StyleCard({ item, onPreview }: StyleCardProps) {
   switch (item.variant) {
     case "obsidian-eco":
       return <ObsidianEcoCard item={item} />;
