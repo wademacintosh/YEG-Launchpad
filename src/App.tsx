@@ -9,7 +9,7 @@ function App() {
       <Routes>
         <Route element={<RootLayout />}>
           <Route path="/" element={<HomePage />} />
-          {/* This MUST match the link in StyleGallery */}
+          {/* This ':slug' must match the useParams() in ThemePage */}
           <Route path="/theme/:slug" element={<ThemePage />} />
         </Route>
       </Routes>
