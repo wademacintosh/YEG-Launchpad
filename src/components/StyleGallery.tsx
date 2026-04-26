@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
+import { useNavigate } from "@tanstack/react-router";
 import { StyleCard, type StyleCategory, type StyleItem } from "./StyleCard";
-import { PreviewModal } from "./PreviewModal";
 
 const STYLES: StyleItem[] = [
   {
@@ -8,57 +8,64 @@ const STYLES: StyleItem[] = [
     tagline: "Minimal monochrome layout for waterless, eco-conscious detailing.",
     category: "Modern",
     variant: "obsidian-eco",
+    slug: "obsidian",
   },
   {
     title: "Night Vision Armor",
     tagline: "High-contrast dark UI built for ceramic coatings & PPF.",
     category: "Modern",
     variant: "night-vision",
+    slug: "night-vision",
   },
   {
     title: "The Vantage Collective",
     tagline: "Editorial luxury aesthetic for boutique exotic-car studios.",
     category: "Luxury",
     variant: "vantage",
+    slug: "vantage",
   },
   {
     title: "Mud, Sweat & Gears",
     tagline: "Bold rugged branding for off-road & truck wash specialists.",
     category: "Rugged",
     variant: "mud-sweat-gears",
+    slug: "mud-sweat-gears",
   },
   {
     title: "DetailFlow Pro",
     tagline: "Clean SaaS-style layout focused on online booking conversions.",
     category: "Modern",
     variant: "detailflow",
+    slug: "detailflow",
   },
   {
     title: "Aero Shine Labs",
     tagline: "Tech-lab vibe with motion accents for paint correction pros.",
     category: "Modern",
     variant: "aero-shine",
+    slug: "aero-shine",
   },
   {
     title: "Route 66 Revive",
     tagline: "Retro Americana branding for classic & restoration shops.",
     category: "Rugged",
     variant: "route66",
+    slug: "route-66",
   },
   {
     title: "Prism Auto-Works",
     tagline: "Vibrant gradient design for vinyl wraps & custom finishes.",
     category: "Luxury",
     variant: "prism",
+    slug: "prism",
   },
 ];
 
 const FILTERS: Array<"All" | StyleCategory> = ["All", "Luxury", "Rugged", "Modern"];
 
 export function StyleGallery() {
+  const navigate = useNavigate();
   const [active, setActive] = useState<"All" | StyleCategory>("All");
-  const [previewItem, setPreviewItem] = useState<StyleItem | null>(null);
-  const [modalOpen, setModalOpen] = useState(false);
 
   const items = useMemo(
     () => (active === "All" ? STYLES : STYLES.filter((s) => s.category === active)),
@@ -66,8 +73,7 @@ export function StyleGallery() {
   );
 
   const handlePreview = (item: StyleItem) => {
-    setPreviewItem(item);
-    setModalOpen(true);
+    navigate({ to: "/theme/$slug", params: { slug: item.slug } });
   };
 
   return (
@@ -83,7 +89,7 @@ export function StyleGallery() {
               Browse the lineup
             </h2>
             <p className="mt-3 text-base text-muted-foreground">
-              Eight distinct directions. Each engineered to convert visitors into booked detailing jobs.
+              Eight distinct directions. Click any card to open its full demo site.
             </p>
           </div>
 
@@ -128,12 +134,6 @@ export function StyleGallery() {
           </p>
         )}
       </div>
-
-      <PreviewModal
-        item={previewItem}
-        open={modalOpen}
-        onOpenChange={setModalOpen}
-      />
     </section>
   );
 }
