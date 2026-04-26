@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@500;700;900&family=Space+Grotesk:wght@400;500;700&display=swap");
 
 @theme {
@@ -5,10 +7,6 @@
   --color-asphalt: #2C2C2C;
   --color-silver: #BDC3C7;
 }
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 @layer base {
   :root {
