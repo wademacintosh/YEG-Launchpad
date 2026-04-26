@@ -615,4 +615,4 @@ export function StyleCard({ item, onPreview }: StyleCardProps) {
       return <PrismCard item={item} onPreview={onPreview} />;
   }
 }
-}
+
