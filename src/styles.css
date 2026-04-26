@@ -1,7 +1,7 @@
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@500;700;900&family=Cormorant+Garamond:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&family=Archivo+Black&family=Space+Grotesk:wght@400;500;700&family=Pacifico&family=VT323&display=swap");
 
 @custom-variant dark (&:is(.dark *));
 
@@ -132,3 +132,69 @@
     letter-spacing: -0.02em;
   }
 }
+
+/* ============================================================
+ * Per-card themed utilities — Style Selector previews
+ * Each card showcases a distinct visual language.
+ * ========================================================== */
+
+/* Carbon-fiber pattern overlay (Aero Shine Labs) */
+.bg-carbon-fiber {
+  background-color: #0d0f12;
+  background-image:
+    linear-gradient(45deg, #1a1d22 25%, transparent 25%, transparent 75%, #1a1d22 75%),
+    linear-gradient(45deg, #1a1d22 25%, #0d0f12 25%, #0d0f12 75%, #1a1d22 75%);
+  background-size: 8px 8px;
+  background-position: 0 0, 4px 4px;
+}
+
+/* Neon cyan glow (Night Vision Armor) */
+.shadow-neon-cyan {
+  box-shadow:
+    0 0 0 1px rgb(34 211 238 / 0.6),
+    0 0 18px rgb(34 211 238 / 0.35),
+    inset 0 0 24px rgb(34 211 238 / 0.08);
+}
+.shadow-neon-cyan-hover:hover {
+  box-shadow:
+    0 0 0 1px rgb(34 211 238 / 1),
+    0 0 28px rgb(34 211 238 / 0.6),
+    inset 0 0 32px rgb(34 211 238 / 0.15);
+}
+
+/* Vaporwave glitch (Prism Auto-Works) */
+@keyframes glitch-shift {
+  0%, 100% { transform: translate(0, 0); }
+  20% { transform: translate(-2px, 1px); }
+  40% { transform: translate(2px, -1px); }
+  60% { transform: translate(-1px, -2px); }
+  80% { transform: translate(1px, 2px); }
+}
+.glitch-text {
+  position: relative;
+  text-shadow:
+    1px 0 0 rgb(236 72 153 / 0.9),
+    -1px 0 0 rgb(34 211 238 / 0.9);
+}
+.group:hover .glitch-text-target {
+  animation: glitch-shift 0.4s steps(2, jump-none) infinite;
+}
+
+/* Sticker button shadow (Route 66) */
+.shadow-sticker {
+  box-shadow: 2px 3px 0 0 rgb(0 0 0 / 0.85);
+}
+.shadow-sticker-hover:hover {
+  box-shadow: 4px 5px 0 0 rgb(0 0 0 / 0.85);
+  transform: translate(-1px, -1px);
+}
+
+/* Neobrutalist hard shadow (Mud, Sweat & Gears) */
+.shadow-brutal {
+  box-shadow: 6px 6px 0 0 #000;
+}
+.shadow-brutal-hover:hover {
+  box-shadow: 10px 10px 0 0 #000;
+  transform: translate(-2px, -2px);
+}
+
