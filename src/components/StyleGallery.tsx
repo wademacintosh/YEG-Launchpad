@@ -134,23 +134,20 @@ export default function StyleGallery() {
 
         {/* 07: MUD, SWEAT & GEARS */}
         {getTheme('mud-sweat-gears') && (
-          <Link to="/theme/mud-sweat-gears" className="group block h-full md:col-span-2 lg:col-span-3">
-            <div className="h-[250px] md:h-[300px] p-8 flex flex-col md:flex-row items-start md:items-center justify-between transition-all duration-300 hover:translate-x-[2px] hover:translate-y-[2px] border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] bg-[#FFD600]">
-              <div>
-                <span className="text-[10px] font-black tracking-[0.3em] text-black uppercase mb-4 block">
+          <Link to="/theme/mud-sweat-gears" className="group block h-full">
+            <div className="h-[450px] p-8 flex flex-col justify-between transition-all duration-300 hover:translate-x-[2px] hover:translate-y-[2px] border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] bg-[#FFD600]">
+              <div className="w-full flex justify-between items-start">
+                <span className="text-[10px] font-black tracking-[0.3em] text-black uppercase block">
                   ★ YEG Heavy Duty
                 </span>
-                <h3 className="text-4xl md:text-5xl font-black text-black mb-2 uppercase tracking-tighter">Mud, Sweat & Gears</h3>
-                <p className="text-sm font-bold text-gray-900 uppercase tracking-widest">Brutalist. Loud. Industrial.</p>
               </div>
-              <button className="mt-8 md:mt-0 bg-black text-[#FFD600] px-10 py-5 text-sm font-black tracking-widest uppercase border-2 border-black hover:bg-gray-800 transition-colors">
+              <div className="mt-auto mb-8">
+                <h3 className="text-4xl font-black text-black mb-2 uppercase tracking-tighter">Mud, Sweat <br/>& Gears</h3>
+                <p className="text-xs font-bold text-gray-900 uppercase tracking-widest">Brutalist. Loud. Industrial.</p>
+              </div>
+              <button className="w-full bg-black text-[#FFD600] py-4 text-[10px] font-black tracking-widest uppercase border-2 border-black hover:bg-gray-800 transition-colors">
                 Preview Style &rarr;
               </button>
             </div>
           </Link>
         )}
-        
-      </div>
-    </section>
-  );
-}
