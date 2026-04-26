@@ -1,15 +1,20 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import ThemePage from './pages/ThemePage';
+import RootLayout from './pages/RootLayout';
 
-export default function App() {
+function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/theme/:slug" element={<ThemePage />} />
-        <Route path="*" element={<HomePage />} />
+        <Route element={<RootLayout />}>
+          <Route path="/" element={<HomePage />} />
+          {/* This MUST match the link in StyleGallery */}
+          <Route path="/theme/:slug" element={<ThemePage />} />
+        </Route>
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
 }
+
+export default App;
