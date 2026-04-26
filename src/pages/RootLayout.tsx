@@ -1,5 +1,5 @@
 import { Outlet, Link } from "react-router-dom";
-import { Navbar } from "@/components/Navbar";
+import { Navbar } from "../components/Navbar";
 import appCss from "../styles.css?url";
 
 function NotFoundComponent() {
@@ -31,9 +31,15 @@ export default function RootLayout() {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>YEG Launchpad — Pick Your Finish: 8 Signature Website Styles</title>
-        <meta name="description" content="Browse 8 signature website styles built for Edmonton auto detailing shops. Find the digital aesthetic that matches your horsepower." />
+        <meta
+          name="description"
+          content="Browse 8 signature website styles built for Edmonton auto detailing shops. Find the digital aesthetic that matches your horsepower."
+        />
         <meta property="og:title" content="YEG Launchpad — Style Selector" />
-        <meta property="og:description" content="8 signature website styles for auto detailing shops. Pick the finish that fits your brand." />
+        <meta
+          property="og:description"
+          content="8 signature website styles for auto detailing shops. Pick the finish that fits your brand."
+        />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary" />
         <link rel="stylesheet" href={appCss} />
