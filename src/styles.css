@@ -1,22 +1,21 @@
 @import "tailwindcss";
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@500;700;900&family=Space+Grotesk:wght@400;500;700&display=swap");
-
 @theme {
-  --color-primary: #FF6600;
-  --color-asphalt: #2C2C2C;
-  --color-silver: #BDC3C7;
+  /* Use --color- prefix so Tailwind recognizes them as utility classes */
+  --color-brand-primary: #FF6600;
+  --color-brand-asphalt: #2C2C2C;
+  --color-brand-silver: #BDC3C7;
+  
+  /* Fonts */
+  --font-inter: "Inter", sans-serif;
+  --font-display: "Playfair Display", serif;
 }
 
+/* Ensure your Google Fonts import is AFTER the tailwind import or in your index.html */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display:wght@700&display=swap");
+
 @layer base {
-  :root {
-    --background: #FFFFFF;
-    --foreground: #2C2C2C;
-  }
   body {
-    background-color: var(--background);
-    color: var(--foreground);
-    font-family: 'Inter', sans-serif;
-    margin: 0;
+    @apply bg-white text-brand-asphalt font-inter;
   }
 }
