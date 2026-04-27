@@ -55,22 +55,22 @@ const STYLES: StyleItem[] = [
     variant: "aero-shine",
   },
   {
-    title: "Lumina Spa",
-    tagline: "Medical-grade interior restoration and wellness-focused sanitization.",
+    title: "Lumina Ceramic",
+    tagline: "Multi-stage paint correction and liquid-glass finishing for a permanent showroom shine.",
     category: "Modern",
-    variant: "lumina-spa",
+    variant: "lumina-ceramic",
   },
   {
-    title: "Kinetic Studio",
-    tagline: "Street-level detailing and liquid polymer coatings for active builds.",
+    title: "Kinetic Coatings",
+    tagline: "Express high-velocity detailing and polymer sealant systems for daily drivers.",
     category: "Modern",
-    variant: "kinetic-street",
+    variant: "kinetic-coatings",
   },
   {
-    title: "Vanguard Tactical",
-    tagline: "Heavy-duty surface defense for off-road and fleet vehicles.",
+    title: "Vanguard Armor",
+    tagline: "Ballistic-grade PPF and extreme surface defense for rugged off-road builds.",
     category: "Rugged",
-    variant: "vanguard-tactical",
+    variant: "vanguard-armor",
   }
 ];
 
