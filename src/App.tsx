@@ -225,150 +225,6 @@ const PrismLayout = ({ item, onBack }: { item: StyleItem; onBack: () => void }) 
   </div>
 );
 
-// LUMINA SPA: Soft, Wellness, Warm Minimalism - Vibe: Interior Restoration & Car Spa
-const LuminaLayout = ({ item, onBack }: { item: StyleItem; onBack: () => void }) => (
-  <div className="min-h-screen bg-[#FAFAF8] text-[#4A4643] font-sans p-6 md:p-12">
-    <div className="max-w-5xl mx-auto">
-      <nav className="flex justify-between items-center mb-24">
-        <button onClick={onBack} className="text-sm tracking-widest uppercase opacity-50 hover:opacity-100 transition-opacity">
-          ← Return
-        </button>
-        <span className="text-xs tracking-[0.3em] uppercase bg-[#E8E6E1] px-4 py-2 rounded-full text-[#7A7571]">
-          Sanitization Studio
-        </span>
-      </nav>
-
-      <div className="flex flex-col md:flex-row gap-16 items-center">
-        <div className="flex-1 space-y-10">
-          <h1 className="text-5xl md:text-7xl font-light tracking-tight text-[#2C2A28] leading-tight">
-            {item.title || "Breathe easier."}
-          </h1>
-          <p className="text-lg md:text-xl text-[#7A7571] leading-relaxed max-w-lg font-light">
-            {item.tagline || "A sanctuary for your interior."} We utilize medical-grade ozone generators, steam extraction, and pH-balanced leather serums to reset your cabin's ecosystem.
-          </p>
-          <button className="bg-[#4A4643] text-white px-8 py-4 rounded-full tracking-widest text-xs uppercase hover:bg-[#2C2A28] transition-colors shadow-lg shadow-stone-200">
-            Book Interior Spa
-          </button>
-        </div>
-
-        <div className="flex-1 w-full flex flex-col gap-6">
-          <div className="bg-white p-8 rounded-[2rem] shadow-sm border border-[#E8E6E1]/50">
-            <h3 className="text-xl font-medium mb-2 text-[#2C2A28]">Leather Nourishment</h3>
-            <p className="text-sm text-[#7A7571] leading-relaxed">Deep pore cleansing followed by aloe-based hide conditioning to prevent UV cracking and restore suppleness.</p>
-          </div>
-          <div className="bg-[#E8E6E1] p-8 rounded-[2rem]">
-            <h3 className="text-xl font-medium mb-2 text-[#2C2A28]">Ozone Shock Treatment</h3>
-            <p className="text-sm text-[#7A7571] leading-relaxed">Complete eradication of biological odors, pet dander, and smoke at the molecular level.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-);
-
-// KINETIC: Streetwear, Tuner, Underground - Vibe: JDM, Wraps, Aggressive Styling
-const KineticLayout = ({ item, onBack }: { item: StyleItem; onBack: () => void }) => (
-  <div className="min-h-screen bg-[#09090B] text-white font-sans overflow-hidden selection:bg-[#C4F82A] selection:text-black">
-    {/* Marquee Background Effect */}
-    <div className="absolute top-20 -left-20 w-[120vw] -rotate-3 opacity-10 pointer-events-none whitespace-nowrap overflow-hidden">
-      <h2 className="text-[12rem] font-black italic tracking-tighter text-transparent" style={{ WebkitTextStroke: '2px white' }}>
-        KINETIC STUDIO KINETIC STUDIO KINETIC
-      </h2>
-    </div>
-
-    <nav className="relative z-10 p-8 flex justify-between items-center border-b border-white/10">
-      <button onClick={onBack} className="text-[#C4F82A] font-bold uppercase tracking-widest hover:underline decoration-2 underline-offset-4">
-        [ EXIT ]
-      </button>
-      <div className="w-12 h-12 bg-[#C4F82A] rounded-full flex items-center justify-center text-black font-black italic">
-        K//
-      </div>
-    </nav>
-
-    <main className="relative z-10 max-w-7xl mx-auto px-8 py-20 flex flex-col items-start">
-      <div className="bg-[#C4F82A] text-black px-3 py-1 font-black uppercase italic tracking-wider mb-6 transform -skew-x-12">
-        Street Level Detailing
-      </div>
-      
-      <h1 className="text-6xl md:text-9xl font-black uppercase tracking-tighter mb-8 leading-[0.85] italic">
-        {item.title || "Liquid Glass."}
-      </h1>
-      
-      <p className="text-xl text-gray-400 max-w-2xl font-medium mb-12 border-l-4 border-[#C4F82A] pl-6">
-        {item.tagline || "Built for the underground."} Advanced paint correction and self-healing liquid polymer coatings for those who actually drive their builds.
-      </p>
-
-      <div className="flex flex-wrap gap-6 mb-20">
-        <div className="border border-white/20 p-6 w-full md:w-64 backdrop-blur-sm hover:border-[#C4F82A] transition-colors group">
-          <h4 className="font-black italic text-2xl mb-2 group-hover:text-[#C4F82A] transition-colors">STAGE 1</h4>
-          <p className="text-sm text-gray-500 uppercase font-bold tracking-wider">Gloss Enhancement</p>
-        </div>
-        <div className="border border-white/20 p-6 w-full md:w-64 backdrop-blur-sm hover:border-[#C4F82A] transition-colors group">
-          <h4 className="font-black italic text-2xl mb-2 group-hover:text-[#C4F82A] transition-colors">STAGE 2</h4>
-          <p className="text-sm text-gray-500 uppercase font-bold tracking-wider">Major Defect Removal</p>
-        </div>
-        <div className="border border-[#C4F82A] bg-[#C4F82A]/10 p-6 w-full md:w-64 backdrop-blur-sm shadow-[0_0_30px_rgba(196,248,42,0.1)]">
-          <h4 className="font-black italic text-2xl mb-2 text-[#C4F82A]">10H COATING</h4>
-          <p className="text-sm text-gray-300 uppercase font-bold tracking-wider">5-Year Armor</p>
-        </div>
-      </div>
-
-      <button className="bg-white text-black hover:bg-[#C4F82A] font-black uppercase text-2xl px-12 py-6 transform -skew-x-12 transition-all hover:scale-105 active:scale-95">
-        <span className="block transform skew-x-12">Lock In Your Spot</span>
-      </button>
-    </main>
-  </div>
-);
-
-// VANGUARD: Tactical, Utilitarian, Military Grid - Vibe: Fleet, Off-Road, Heavy Armor
-const VanguardLayout = ({ item, onBack }: { item: StyleItem; onBack: () => void }) => (
-  <div className="min-h-screen bg-[#212320] text-[#E5E5E5] font-mono p-4 md:p-8">
-    <div className="border-2 border-[#4A4D46] min-h-[90vh] bg-[#1A1B19]">
-      {/* Top Bar */}
-      <div className="border-b-2 border-[#4A4D46] flex flex-wrap">
-        <button onClick={onBack} className="p-4 md:p-6 border-r-2 border-[#4A4D46] hover:bg-[#4A4D46] hover:text-white transition-colors uppercase text-sm font-bold tracking-widest text-[#F59E0B]">
-          [X] Return to Base
-        </button>
-        <div className="p-4 md:p-6 border-r-2 border-[#4A4D46] uppercase text-sm font-bold tracking-widest flex-1">
-          Cmd: Vanguard Tactical Detailing
-        </div>
-        <div className="p-4 md:p-6 text-sm font-bold text-[#4A4D46] hidden md:block">
-          STATUS: OPERATIONAL
-        </div>
-      </div>
-
-      {/* Grid Content */}
-      <div className="grid md:grid-cols-2 h-full">
-        <div className="p-8 md:p-16 border-b-2 md:border-b-0 md:border-r-2 border-[#4A4D46] flex flex-col justify-center">
-          <div className="text-[#F59E0B] text-xs font-bold uppercase tracking-[0.2em] mb-4">/// Mission Profile</div>
-          <h1 className="text-5xl md:text-7xl font-bold uppercase tracking-tighter mb-6 text-white leading-none">
-            {item.title || "Tactical Surface Defense."}
-          </h1>
-          <p className="text-lg text-[#A3A3A3] max-w-md mb-12">
-            {item.tagline || "We armor your rig for the elements."} Specializing in heavy-duty decontamination, undercarriage blast cleaning, and extreme-durability 10H elastomeric coatings for overland and fleet vehicles.
-          </p>
-          <button className="bg-[#F59E0B] text-[#1A1B19] font-black uppercase px-8 py-4 w-fit hover:bg-white transition-colors">
-            Deploy Services
-          </button>
-        </div>
-
-        <div className="p-8 md:p-16 bg-[#212320] flex flex-col justify-center gap-8">
-          <div className="border border-[#4A4D46] p-6 relative">
-             <div className="absolute top-0 left-0 bg-[#F59E0B] text-[#1A1B19] text-[10px] font-bold px-2 py-1 uppercase -translate-y-1/2 translate-x-4">Spec 01</div>
-             <h3 className="text-xl font-bold text-white mb-2 uppercase">Undercarriage Assault</h3>
-             <p className="text-sm text-[#A3A3A3]">High-pressure chassis degreasing, salt neutralization, and rust-inhibitor application.</p>
-          </div>
-          <div className="border border-[#4A4D46] p-6 relative">
-             <div className="absolute top-0 left-0 bg-[#F59E0B] text-[#1A1B19] text-[10px] font-bold px-2 py-1 uppercase -translate-y-1/2 translate-x-4">Spec 02</div>
-             <h3 className="text-xl font-bold text-white mb-2 uppercase">Kevlar-Infused Ceramic</h3>
-             <p className="text-sm text-[#A3A3A3]">Application of industrial-grade ceramic polymers designed to withstand bush pinstriping and chemical fallout.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-);
-
 // DETAILFLOW: Smooth, UI-focused, Corporate - Vibe: Mobile Detailing SaaS / Subscription App
 const DetailFlowLayout = ({ item, onBack }: { item: StyleItem; onBack: () => void }) => {
   const [billingCycle, setBillingCycle] = useState<"one-time" | "monthly">("monthly");
@@ -621,6 +477,150 @@ const AeroLabLayout = ({ item, onBack }: { item: StyleItem; onBack: () => void }
   </div>
 );
 
+// LUMINA SPA: Soft, Wellness, Warm Minimalism - Vibe: Interior Restoration & Car Spa
+const LuminaLayout = ({ item, onBack }: { item: StyleItem; onBack: () => void }) => (
+  <div className="min-h-screen bg-[#FAFAF8] text-[#4A4643] font-sans p-6 md:p-12">
+    <div className="max-w-5xl mx-auto">
+      <nav className="flex justify-between items-center mb-24">
+        <button onClick={onBack} className="text-sm tracking-widest uppercase opacity-50 hover:opacity-100 transition-opacity">
+          ← Return
+        </button>
+        <span className="text-xs tracking-[0.3em] uppercase bg-[#E8E6E1] px-4 py-2 rounded-full text-[#7A7571]">
+          Sanitization Studio
+        </span>
+      </nav>
+
+      <div className="flex flex-col md:flex-row gap-16 items-center">
+        <div className="flex-1 space-y-10">
+          <h1 className="text-5xl md:text-7xl font-light tracking-tight text-[#2C2A28] leading-tight">
+            {item.title || "Breathe easier."}
+          </h1>
+          <p className="text-lg md:text-xl text-[#7A7571] leading-relaxed max-w-lg font-light">
+            {item.tagline || "A sanctuary for your interior."} We utilize medical-grade ozone generators, steam extraction, and pH-balanced leather serums to reset your cabin's ecosystem.
+          </p>
+          <button className="bg-[#4A4643] text-white px-8 py-4 rounded-full tracking-widest text-xs uppercase hover:bg-[#2C2A28] transition-colors shadow-lg shadow-stone-200">
+            Book Interior Spa
+          </button>
+        </div>
+
+        <div className="flex-1 w-full flex flex-col gap-6">
+          <div className="bg-white p-8 rounded-[2rem] shadow-sm border border-[#E8E6E1]/50">
+            <h3 className="text-xl font-medium mb-2 text-[#2C2A28]">Leather Nourishment</h3>
+            <p className="text-sm text-[#7A7571] leading-relaxed">Deep pore cleansing followed by aloe-based hide conditioning to prevent UV cracking and restore suppleness.</p>
+          </div>
+          <div className="bg-[#E8E6E1] p-8 rounded-[2rem]">
+            <h3 className="text-xl font-medium mb-2 text-[#2C2A28]">Ozone Shock Treatment</h3>
+            <p className="text-sm text-[#7A7571] leading-relaxed">Complete eradication of biological odors, pet dander, and smoke at the molecular level.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+// KINETIC: Streetwear, Tuner, Underground - Vibe: JDM, Wraps, Aggressive Styling
+const KineticLayout = ({ item, onBack }: { item: StyleItem; onBack: () => void }) => (
+  <div className="min-h-screen bg-[#09090B] text-white font-sans overflow-hidden selection:bg-[#C4F82A] selection:text-black">
+    {/* Marquee Background Effect */}
+    <div className="absolute top-20 -left-20 w-[120vw] -rotate-3 opacity-10 pointer-events-none whitespace-nowrap overflow-hidden">
+      <h2 className="text-[12rem] font-black italic tracking-tighter text-transparent" style={{ WebkitTextStroke: '2px white' }}>
+        KINETIC STUDIO KINETIC STUDIO KINETIC
+      </h2>
+    </div>
+
+    <nav className="relative z-10 p-8 flex justify-between items-center border-b border-white/10">
+      <button onClick={onBack} className="text-[#C4F82A] font-bold uppercase tracking-widest hover:underline decoration-2 underline-offset-4">
+        [ EXIT ]
+      </button>
+      <div className="w-12 h-12 bg-[#C4F82A] rounded-full flex items-center justify-center text-black font-black italic">
+        K//
+      </div>
+    </nav>
+
+    <main className="relative z-10 max-w-7xl mx-auto px-8 py-20 flex flex-col items-start">
+      <div className="bg-[#C4F82A] text-black px-3 py-1 font-black uppercase italic tracking-wider mb-6 transform -skew-x-12">
+        Street Level Detailing
+      </div>
+      
+      <h1 className="text-6xl md:text-9xl font-black uppercase tracking-tighter mb-8 leading-[0.85] italic">
+        {item.title || "Liquid Glass."}
+      </h1>
+      
+      <p className="text-xl text-gray-400 max-w-2xl font-medium mb-12 border-l-4 border-[#C4F82A] pl-6">
+        {item.tagline || "Built for the underground."} Advanced paint correction and self-healing liquid polymer coatings for those who actually drive their builds.
+      </p>
+
+      <div className="flex flex-wrap gap-6 mb-20">
+        <div className="border border-white/20 p-6 w-full md:w-64 backdrop-blur-sm hover:border-[#C4F82A] transition-colors group">
+          <h4 className="font-black italic text-2xl mb-2 group-hover:text-[#C4F82A] transition-colors">STAGE 1</h4>
+          <p className="text-sm text-gray-500 uppercase font-bold tracking-wider">Gloss Enhancement</p>
+        </div>
+        <div className="border border-white/20 p-6 w-full md:w-64 backdrop-blur-sm hover:border-[#C4F82A] transition-colors group">
+          <h4 className="font-black italic text-2xl mb-2 group-hover:text-[#C4F82A] transition-colors">STAGE 2</h4>
+          <p className="text-sm text-gray-500 uppercase font-bold tracking-wider">Major Defect Removal</p>
+        </div>
+        <div className="border border-[#C4F82A] bg-[#C4F82A]/10 p-6 w-full md:w-64 backdrop-blur-sm shadow-[0_0_30px_rgba(196,248,42,0.1)]">
+          <h4 className="font-black italic text-2xl mb-2 text-[#C4F82A]">10H COATING</h4>
+          <p className="text-sm text-gray-300 uppercase font-bold tracking-wider">5-Year Armor</p>
+        </div>
+      </div>
+
+      <button className="bg-white text-black hover:bg-[#C4F82A] font-black uppercase text-2xl px-12 py-6 transform -skew-x-12 transition-all hover:scale-105 active:scale-95">
+        <span className="block transform skew-x-12">Lock In Your Spot</span>
+      </button>
+    </main>
+  </div>
+);
+
+// VANGUARD: Tactical, Utilitarian, Military Grid - Vibe: Fleet, Off-Road, Heavy Armor
+const VanguardLayout = ({ item, onBack }: { item: StyleItem; onBack: () => void }) => (
+  <div className="min-h-screen bg-[#212320] text-[#E5E5E5] font-mono p-4 md:p-8">
+    <div className="border-2 border-[#4A4D46] min-h-[90vh] bg-[#1A1B19]">
+      {/* Top Bar */}
+      <div className="border-b-2 border-[#4A4D46] flex flex-wrap">
+        <button onClick={onBack} className="p-4 md:p-6 border-r-2 border-[#4A4D46] hover:bg-[#4A4D46] hover:text-white transition-colors uppercase text-sm font-bold tracking-widest text-[#F59E0B]">
+          [X] Return to Base
+        </button>
+        <div className="p-4 md:p-6 border-r-2 border-[#4A4D46] uppercase text-sm font-bold tracking-widest flex-1">
+          Cmd: Vanguard Tactical Detailing
+        </div>
+        <div className="p-4 md:p-6 text-sm font-bold text-[#4A4D46] hidden md:block">
+          STATUS: OPERATIONAL
+        </div>
+      </div>
+
+      {/* Grid Content */}
+      <div className="grid md:grid-cols-2 h-full">
+        <div className="p-8 md:p-16 border-b-2 md:border-b-0 md:border-r-2 border-[#4A4D46] flex flex-col justify-center">
+          <div className="text-[#F59E0B] text-xs font-bold uppercase tracking-[0.2em] mb-4">/// Mission Profile</div>
+          <h1 className="text-5xl md:text-7xl font-bold uppercase tracking-tighter mb-6 text-white leading-none">
+            {item.title || "Tactical Surface Defense."}
+          </h1>
+          <p className="text-lg text-[#A3A3A3] max-w-md mb-12">
+            {item.tagline || "We armor your rig for the elements."} Specializing in heavy-duty decontamination, undercarriage blast cleaning, and extreme-durability 10H elastomeric coatings for overland and fleet vehicles.
+          </p>
+          <button className="bg-[#F59E0B] text-[#1A1B19] font-black uppercase px-8 py-4 w-fit hover:bg-white transition-colors">
+            Deploy Services
+          </button>
+        </div>
+
+        <div className="p-8 md:p-16 bg-[#212320] flex flex-col justify-center gap-8">
+          <div className="border border-[#4A4D46] p-6 relative">
+             <div className="absolute top-0 left-0 bg-[#F59E0B] text-[#1A1B19] text-[10px] font-bold px-2 py-1 uppercase -translate-y-1/2 translate-x-4">Spec 01</div>
+             <h3 className="text-xl font-bold text-white mb-2 uppercase">Undercarriage Assault</h3>
+             <p className="text-sm text-[#A3A3A3]">High-pressure chassis degreasing, salt neutralization, and rust-inhibitor application.</p>
+          </div>
+          <div className="border border-[#4A4D46] p-6 relative">
+             <div className="absolute top-0 left-0 bg-[#F59E0B] text-[#1A1B19] text-[10px] font-bold px-2 py-1 uppercase -translate-y-1/2 translate-x-4">Spec 02</div>
+             <h3 className="text-xl font-bold text-white mb-2 uppercase">Kevlar-Infused Ceramic</h3>
+             <p className="text-sm text-[#A3A3A3]">Application of industrial-grade ceramic polymers designed to withstand bush pinstriping and chemical fallout.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
 /* -------------------------------------------------------------------------- */
 /* 2. MAIN APP CONTROLLER                                                     */
 /* -------------------------------------------------------------------------- */
@@ -669,7 +669,16 @@ function App() {
     } 
     else if (isStyle("detail") || isStyle("flow")) {
       return <DetailFlowLayout item={activeStyle} onBack={goBack} />;
-    } 
+    }
+    else if (isStyle("lumina") || isStyle("spa")) {
+      return <LuminaLayout item={activeStyle} onBack={goBack} />;
+    }
+    else if (isStyle("kinetic") || isStyle("street")) {
+      return <KineticLayout item={activeStyle} onBack={goBack} />;
+    }
+    else if (isStyle("vanguard") || isStyle("tactical")) {
+      return <VanguardLayout item={activeStyle} onBack={goBack} />;
+    }
     else {
       // Ultimate fallback if absolutely nothing matches
       return (
