@@ -44,41 +44,11 @@ function CardShell({ children, className = "", hoverClassName = "hover:-translat
   );
 }
 
-/* ---------- 0. Generic Card (For New Styles) ---------- */
-function GenericCard({ item, onPreview }: StyleCardProps) {
-  const handleClick = (e: MouseEvent) => {
-    e.preventDefault();
-    onPreview?.(item);
-  };
-
-  return (
-    <CardShell className="rounded-2xl border border-gray-100 bg-white shadow-sm">
-      <div className="flex flex-1 flex-col p-8">
-        <div className="flex items-center justify-between mb-8">
-          <CategoryBadge className="bg-gray-50 text-gray-500 border border-gray-100">{item.category}</CategoryBadge>
-          <div className="h-1.5 w-1.5 rounded-full bg-black/20" />
-        </div>
-        <div className="flex-1">
-          <h3 className="text-2xl font-bold tracking-tighter text-black uppercase">{item.title}</h3>
-          <p className="mt-4 text-sm leading-relaxed text-gray-500 font-medium">{item.tagline}</p>
-        </div>
-        <a
-          href="#"
-          onClick={handleClick}
-          className="mt-10 block w-full rounded-xl border border-black py-4 text-center text-[10px] font-bold uppercase tracking-[0.2em] transition-all hover:bg-black hover:text-white"
-        >
-          Preview Style
-        </a>
-      </div>
-    </CardShell>
-  );
-}
-
 /* ---------- 1. Obsidian Eco-Clean ---------- */
 function ObsidianEcoCard({ item, onPreview }: StyleCardProps) {
   const handleClick = (e: MouseEvent) => { e.preventDefault(); onPreview?.(item); };
   return (
-    <CardShell className="rounded-2xl border border-[#cfd8cf] shadow-sm" hoverClassName="hover:-translate-y-1">
+    <CardShell className="rounded-2xl border border-[#cfd8cf] shadow-sm">
       <div className="flex flex-1 flex-col p-7" style={{ backgroundColor: "#eef2ec" }}>
         <div className="flex items-center justify-between">
           <CategoryBadge className="bg-white/80 text-[#3a4a3d]">Modern</CategoryBadge>
@@ -116,7 +86,7 @@ function NightVisionCard({ item, onPreview }: StyleCardProps) {
         </div>
         <h3 className="text-base font-bold uppercase tracking-wider text-cyan-300">{item.title} <span className="animate-pulse text-cyan-400">_</span></h3>
         <p className="mt-2 text-xs leading-relaxed text-zinc-400">&gt; {item.tagline}</p>
-        <a href="#" onClick={handleClick} className="mt-6 w-full rounded-sm border border-cyan-400/60 bg-cyan-400/5 py-3 text-center text-xs font-bold uppercase tracking-[0.25em] text-cyan-300 transition-all hover:bg-cyan-400/15 hover:shadow-[0_0_16px_rgb(34_211_238/0.5)]">
+        <a href="#" onClick={handleClick} className="mt-6 w-full rounded-sm border border-cyan-400/60 bg-cyan-400/5 py-3 text-center text-xs font-bold uppercase tracking-[0.25em] text-cyan-300 transition-all hover:bg-cyan-400/15">
           [ Preview Style ]
         </a>
       </div>
@@ -167,27 +137,101 @@ function MudSweatGearsCard({ item, onPreview }: StyleCardProps) {
   );
 }
 
+/* ---------- 5. Prism Auto-Works ---------- */
+function PrismCard({ item, onPreview }: StyleCardProps) {
+  const handleClick = (e: MouseEvent) => { e.preventDefault(); onPreview?.(item); };
+  return (
+    <CardShell className="rounded-xl border border-fuchsia-500/40 shadow-[0_8px_30px_-8px_rgb(217_70_239/0.5)]">
+      <div className="relative flex flex-1 flex-col overflow-hidden p-6" style={{ backgroundColor: "#0a0014" }}>
+        <div className="relative flex items-center justify-between">
+          <span className="rounded-sm border border-fuchsia-400/60 bg-black/40 px-2 py-1 text-[10px] font-bold text-fuchsia-300 uppercase">▲ PRISM_OS</span>
+        </div>
+        <div className="relative mt-24 flex-1">
+          <h3 className="text-2xl font-black uppercase text-white tracking-tight">PRISM <br /> AUTO-WORKS</h3>
+          <p className="mt-3 text-xs text-fuchsia-200/85">{item.tagline}</p>
+        </div>
+        <a href="#" onClick={handleClick} className="relative mt-5 block w-full rounded-md py-3 text-center text-sm font-bold uppercase text-white bg-gradient-to-r from-[#c026d3] to-[#ec4899]">
+          ▸ Preview Style
+        </a>
+      </div>
+    </CardShell>
+  );
+}
+
+/* ---------- 6. DetailFlow Pro ---------- */
+function DetailFlowCard({ item, onPreview }: StyleCardProps) {
+  const handleClick = (e: MouseEvent) => { e.preventDefault(); onPreview?.(item); };
+  return (
+    <CardShell className="rounded-3xl shadow-lg border border-white/20">
+      <div className="relative flex flex-1 flex-col p-6 bg-gradient-to-br from-[#1e3a8a] to-[#0f172a]">
+        <CategoryBadge className="self-start border border-white/40 bg-white/20 text-white">Modern · SaaS</CategoryBadge>
+        <div className="my-10 flex-1">
+          <h3 className="text-xl font-bold text-white uppercase">{item.title}</h3>
+          <p className="mt-2 text-xs text-white/80">{item.tagline}</p>
+        </div>
+        <a href="#" onClick={handleClick} className="w-full rounded-full bg-white/20 border border-white/40 py-2.5 text-center text-sm font-semibold text-white backdrop-blur-md">
+          Preview Style
+        </a>
+      </div>
+    </CardShell>
+  );
+}
+
+/* ---------- 7. Route 66 Revive ---------- */
+function Route66Card({ item, onPreview }: StyleCardProps) {
+  const handleClick = (e: MouseEvent) => { e.preventDefault(); onPreview?.(item); };
+  return (
+    <CardShell className="rounded-xl border-2 border-[#1f1f1f] shadow-[4px_4px_0_0_#1f1f1f]">
+      <div className="flex flex-1 flex-col p-6" style={{ backgroundColor: "#f7eed7" }}>
+        <h3 className="text-4xl leading-none text-[#0d8a8a] mb-2" style={{ fontFamily: "'Pacifico', cursive" }}>Route 66</h3>
+        <span className="text-xl font-black text-[#1f1f1f] uppercase tracking-tight mb-4">REVIVE</span>
+        <p className="flex-1 text-xs text-[#3a2a2a] italic">{item.tagline}</p>
+        <a href="#" onClick={handleClick} className="mt-5 block w-full rounded-full border-2 border-[#1f1f1f] bg-[#7C1D1D] py-3 text-center text-sm font-black text-[#f7eed7] uppercase">
+          Preview Style
+        </a>
+      </div>
+    </CardShell>
+  );
+}
+
+/* ---------- 8. Aero Shine Labs ---------- */
+function AeroShineCard({ item, onPreview }: StyleCardProps) {
+  const handleClick = (e: MouseEvent) => { e.preventDefault(); onPreview?.(item); };
+  return (
+    <CardShell className="rounded-xl border border-[#e10600]/40 shadow-md">
+      <div className="relative flex flex-1 flex-col p-6 bg-[#000000] text-white">
+        <span className="inline-flex self-start rounded-sm bg-[#e10600] px-2 py-1 text-[10px] font-bold italic tracking-wider">⚡ AERO LAB</span>
+        <h3 className="mt-10 text-2xl font-black italic uppercase leading-none">AERO <span className="text-[#e10600]">SHINE</span> LABS</h3>
+        <p className="mt-4 flex-1 text-xs italic text-white/75">{item.tagline}</p>
+        <a href="#" onClick={handleClick} className="mt-5 w-full rounded-sm border-l-4 border-[#e10600] bg-white/5 py-3 text-center text-xs font-bold italic text-white">
+          Preview Style →
+        </a>
+      </div>
+    </CardShell>
+  );
+}
+
 /* ---------- Dispatcher ---------- */
 export function StyleCard({ item, onPreview }: StyleCardProps) {
   switch (item.variant) {
-    case "obsidian-eco":
-      return <ObsidianEcoCard item={item} onPreview={onPreview} />;
-    case "night-vision":
-      return <NightVisionCard item={item} onPreview={onPreview} />;
-    case "vantage":
-      return <VantageCard item={item} onPreview={onPreview} />;
-    case "mud-sweat-gears":
-      return <MudSweatGearsCard item={item} onPreview={onPreview} />;
-    // New and other styles use the GenericCard until specific UI is built
-    case "prism":
-    case "detailflow":
-    case "route66":
-    case "aero-shine":
-    case "lumina-spa":
-    case "kinetic-street":
-    case "vanguard-tactical":
-      return <GenericCard item={item} onPreview={onPreview} />;
+    case "obsidian-eco": return <ObsidianEcoCard item={item} onPreview={onPreview} />;
+    case "night-vision": return <NightVisionCard item={item} onPreview={onPreview} />;
+    case "vantage": return <VantageCard item={item} onPreview={onPreview} />;
+    case "mud-sweat-gears": return <MudSweatGearsCard item={item} onPreview={onPreview} />;
+    case "prism": return <PrismCard item={item} onPreview={onPreview} />;
+    case "detailflow": return <DetailFlowCard item={item} onPreview={onPreview} />;
+    case "route66": return <Route66Card item={item} onPreview={onPreview} />;
+    case "aero-shine": return <AeroShineCard item={item} onPreview={onPreview} />;
     default:
-      return <GenericCard item={item} onPreview={onPreview} />;
+      return (
+        <CardShell className="rounded-2xl border border-gray-100 bg-white p-8">
+          <CategoryBadge className="self-start bg-gray-50 text-gray-500 mb-6">{item.category}</CategoryBadge>
+          <h3 className="text-2xl font-bold text-black uppercase mb-4">{item.title}</h3>
+          <p className="flex-1 text-sm text-gray-500 mb-8">{item.tagline}</p>
+          <a href="#" onClick={(e) => { e.preventDefault(); onPreview?.(item); }} className="block w-full rounded-xl border border-black py-4 text-center text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-black hover:text-white transition-all">
+            Preview Style
+          </a>
+        </CardShell>
+      );
   }
 }
