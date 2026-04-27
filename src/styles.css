@@ -1,199 +1,34 @@
-@import "tailwindcss" source(none);
-@source "../src";
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@500;700;900&family=Cormorant+Garamond:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&family=Archivo+Black&family=Space+Grotesk:wght@400;500;700&family=Pacifico&family=VT323&display=swap");
-
-@custom-variant dark (&:is(.dark *));
-
-/*
- * YEG Launchpad — Style Selector Design System
- *
- * Brand palette:
- *   Ignition Orange     #FF6600  → primary
- *   Stark White         #FFFFFF  → background
- *   Edmonton Asphalt    #2C2C2C  → secondary / dark sections
- *   High Level Silver   #BDC3C7  → accents / borders
- */
-
-@theme inline {
-  --font-sans:
-    "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --radius-2xl: calc(var(--radius) + 8px);
-
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --color-ring-offset-background: var(--background);
-
-  --color-asphalt: var(--asphalt);
-  --color-silver: var(--silver);
-  --color-ignition: var(--ignition);
-
-  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.04), 0 8px 24px -12px rgb(0 0 0 / 0.12);
-  --shadow-card-hover:
-    0 4px 12px rgb(255 102 0 / 0.15), 0 24px 48px -16px rgb(0 0 0 / 0.25);
-}
-
-:root {
-  --radius: 0.5rem;
-
-  /* Brand */
-  --ignition: oklch(0.706 0.196 41.5);   /* #FF6600 */
-  --asphalt: oklch(0.291 0 0);           /* #2C2C2C */
-  --silver: oklch(0.81 0.011 232);       /* #BDC3C7 */
-
-  /* Semantic — light theme */
-  --background: oklch(1 0 0);                  /* #FFFFFF */
-  --foreground: var(--asphalt);
-  --card: oklch(1 0 0);
-  --card-foreground: var(--asphalt);
-  --popover: oklch(1 0 0);
-  --popover-foreground: var(--asphalt);
-
-  --primary: var(--ignition);
-  --primary-foreground: oklch(1 0 0);
-
-  --secondary: var(--asphalt);
-  --secondary-foreground: oklch(1 0 0);
-
-  --muted: oklch(0.97 0.003 232);
-  --muted-foreground: oklch(0.45 0.005 232);
-
-  --accent: var(--silver);
-  --accent-foreground: var(--asphalt);
-
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.984 0 0);
-
-  --border: var(--silver);
-  --input: var(--silver);
-  --ring: var(--ignition);
-}
-
-.dark {
-  --background: var(--asphalt);
-  --foreground: oklch(0.984 0 0);
-  --card: oklch(0.22 0 0);
-  --card-foreground: oklch(0.984 0 0);
-  --popover: oklch(0.22 0 0);
-  --popover-foreground: oklch(0.984 0 0);
-  --primary: var(--ignition);
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.35 0 0);
-  --secondary-foreground: oklch(0.984 0 0);
-  --muted: oklch(0.3 0 0);
-  --muted-foreground: oklch(0.75 0 0);
-  --accent: var(--silver);
-  --accent-foreground: var(--asphalt);
-  --border: oklch(1 0 0 / 12%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: var(--ignition);
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @layer base {
-  * {
-    border-color: var(--color-border);
-  }
-
+  /* 1. Global resets and HTML/Body defaults */
   html {
-    font-family: var(--font-sans);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
   }
 
   body {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
-    font-family: var(--font-sans);
-  }
-
-  h1, h2, h3, h4 {
-    letter-spacing: -0.02em;
+    @apply bg-white text-gray-900 antialiased;
   }
 }
 
-/* ============================================================
- * Per-card themed utilities — Style Selector previews
- * Each card showcases a distinct visual language.
- * ========================================================== */
+@layer components {
+  /* 2. Reusable component patterns using @apply */
+  .btn-primary {
+    @apply px-4 py-2 bg-brand-primary text-white rounded-md 
+           transition-colors hover:bg-blue-700 active:scale-95;
+  }
 
-/* Carbon-fiber pattern overlay (Aero Shine Labs) */
-.bg-carbon-fiber {
-  background-color: #0d0f12;
-  background-image:
-    linear-gradient(45deg, #1a1d22 25%, transparent 25%, transparent 75%, #1a1d22 75%),
-    linear-gradient(45deg, #1a1d22 25%, #0d0f12 25%, #0d0f12 75%, #1a1d22 75%);
-  background-size: 8px 8px;
-  background-position: 0 0, 4px 4px;
+  .card-layout {
+    @apply p-6 border border-gray-200 rounded-xl shadow-sm bg-white;
+  }
 }
 
-/* Neon cyan glow (Night Vision Armor) */
-.shadow-neon-cyan {
-  box-shadow:
-    0 0 0 1px rgb(34 211 238 / 0.6),
-    0 0 18px rgb(34 211 238 / 0.35),
-    inset 0 0 24px rgb(34 211 238 / 0.08);
+@layer utilities {
+  /* 3. Custom one-off helpers that don't fit in the config */
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+  }
 }
-.shadow-neon-cyan-hover:hover {
-  box-shadow:
-    0 0 0 1px rgb(34 211 238 / 1),
-    0 0 28px rgb(34 211 238 / 0.6),
-    inset 0 0 32px rgb(34 211 238 / 0.15);
-}
-
-/* Vaporwave glitch (Prism Auto-Works) */
-@keyframes glitch-shift {
-  0%, 100% { transform: translate(0, 0); }
-  20% { transform: translate(-2px, 1px); }
-  40% { transform: translate(2px, -1px); }
-  60% { transform: translate(-1px, -2px); }
-  80% { transform: translate(1px, 2px); }
-}
-.glitch-text {
-  position: relative;
-  text-shadow:
-    1px 0 0 rgb(236 72 153 / 0.9),
-    -1px 0 0 rgb(34 211 238 / 0.9);
-}
-.group:hover .glitch-text-target {
-  animation: glitch-shift 0.4s steps(2, jump-none) infinite;
-}
-
-/* Sticker button shadow (Route 66) */
-.shadow-sticker {
-  box-shadow: 2px 3px 0 0 rgb(0 0 0 / 0.85);
-}
-.shadow-sticker-hover:hover {
-  box-shadow: 4px 5px 0 0 rgb(0 0 0 / 0.85);
-  transform: translate(-1px, -1px);
-}
-
-/* Neobrutalist hard shadow (Mud, Sweat & Gears) */
-.shadow-brutal {
-  box-shadow: 6px 6px 0 0 #000;
-}
-.shadow-brutal-hover:hover {
-  box-shadow: 10px 10px 0 0 #000;
-  transform: translate(-2px, -2px);
-}
-
