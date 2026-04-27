@@ -31,16 +31,16 @@ const STYLES: StyleItem[] = [
     variant: "mud-sweat-gears",
   },
   {
+    title: "Prism Auto-Works",
+    tagline: "Vibrant gradient design for vinyl wraps & custom finishes.",
+    category: "Modern",
+    variant: "prism",
+  },
+  {
     title: "DetailFlow Pro",
     tagline: "Clean SaaS-style layout focused on online booking conversions.",
     category: "Modern",
     variant: "detailflow",
-  },
-  {
-    title: "Aero Shine Labs",
-    tagline: "Tech-lab vibe with motion accents for paint correction pros.",
-    category: "Modern",
-    variant: "aero-shine",
   },
   {
     title: "Route 66 Revive",
@@ -49,11 +49,29 @@ const STYLES: StyleItem[] = [
     variant: "route66",
   },
   {
-    title: "Prism Auto-Works",
-    tagline: "Vibrant gradient design for vinyl wraps & custom finishes.",
+    title: "Aero Shine Labs",
+    tagline: "Tech-lab vibe with motion accents for paint correction pros.",
     category: "Modern",
-    variant: "prism",
+    variant: "aero-shine",
   },
+  {
+    title: "Lumina Spa",
+    tagline: "Medical-grade interior restoration and wellness-focused sanitization.",
+    category: "Modern",
+    variant: "lumina-spa",
+  },
+  {
+    title: "Kinetic Studio",
+    tagline: "Street-level detailing and liquid polymer coatings for active builds.",
+    category: "Modern",
+    variant: "kinetic-street",
+  },
+  {
+    title: "Vanguard Tactical",
+    tagline: "Heavy-duty surface defense for off-road and fleet vehicles.",
+    category: "Rugged",
+    variant: "vanguard-tactical",
+  }
 ];
 
 const CATEGORIES: (StyleCategory | "All")[] = ["All", "Luxury", "Rugged", "Modern"];
@@ -67,16 +85,16 @@ export function StyleGallery({ onPreview }: StyleGalleryProps) {
 
   return (
     <section className="px-6 max-w-7xl mx-auto">
-      {/* Category Filter */}
-      <div className="flex flex-wrap justify-center gap-4 mb-16">
+      {/* Category Filter Tabs */}
+      <div className="flex flex-wrap justify-center gap-3 mb-16">
         {CATEGORIES.map((cat) => (
           <button
             key={cat}
             onClick={() => setActiveCategory(cat)}
-            className={`px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest transition-all border ${
+            className={`px-8 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-[0.2em] transition-all duration-300 border ${
               activeCategory === cat
-                ? "bg-black text-white border-black"
-                : "bg-transparent text-muted-foreground border-silver/40 hover:border-black"
+                ? "bg-black text-white border-black shadow-lg"
+                : "bg-white text-gray-400 border-gray-100 hover:border-black hover:text-black"
             }`}
           >
             {cat}
@@ -85,7 +103,7 @@ export function StyleGallery({ onPreview }: StyleGalleryProps) {
       </div>
 
       {/* Style Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
         {filteredStyles.map((item) => (
           <StyleCard 
             key={item.variant} 
@@ -95,10 +113,13 @@ export function StyleGallery({ onPreview }: StyleGalleryProps) {
         ))}
       </div>
 
+      {/* Empty State */}
       {filteredStyles.length === 0 && (
-        <p className="text-center py-20 text-muted-foreground italic">
-          No styles found in this category.
-        </p>
+        <div className="text-center py-32 border-2 border-dashed border-gray-100 rounded-3xl">
+          <p className="text-gray-400 font-serif italic text-xl">
+            More {activeCategory} concepts coming soon...
+          </p>
+        </div>
       )}
     </section>
   );
