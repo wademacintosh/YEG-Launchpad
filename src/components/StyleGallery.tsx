@@ -28,11 +28,11 @@ const StyleGallery = () => {
           return (
             <div
               key={theme.id}
-              className={`group relative overflow-hidden rounded-[2.5rem] border transition-all duration-500 flex flex-col min-h-[400px]
+              className={`group relative overflow-hidden rounded-[2.5rem] border transition-all duration-500 flex flex-col min-h-[420px]
                 ${isCurrentlyActive 
-                  ? 'border-ignition ring-4 ring-ignition/20 shadow-2xl scale-[1.02] bg-black/20 backdrop-blur-xl' 
+                  ? 'border-ignition ring-4 ring-ignition/20 shadow-2xl scale-[1.02] bg-white/10 backdrop-blur-2xl' 
                   : activePreview 
-                    ? 'border-white/10 bg-black/5 hover:bg-black/10 shadow-sm hover:shadow-xl hover:-translate-y-2'
+                    ? 'border-white/20 bg-white/5 backdrop-blur-md shadow-lg hover:bg-white/10 hover:-translate-y-2'
                     : 'border-gray-100 bg-white shadow-sm hover:shadow-xl hover:-translate-y-2'}`}
             >
               {/* 🎨 Theme Visual Preview Box */}
@@ -52,7 +52,7 @@ const StyleGallery = () => {
                     {theme.name}
                   </h3>
                   <p className={`text-sm line-clamp-3 font-medium leading-relaxed transition-colors
-                    ${isCurrentlyActive ? 'text-white/80' : activePreview ? 'text-white/60' : 'text-gray-500'}`}>
+                    ${isCurrentlyActive ? 'text-white' : activePreview ? 'text-white/80' : 'text-gray-500'}`}>
                     {theme.description}
                   </p>
                 </div>
@@ -63,8 +63,10 @@ const StyleGallery = () => {
                     onClick={() => setPreview(isCurrentlyActive ? null : theme.id)}
                     className={`flex items-center justify-center gap-2 py-4 rounded-2xl text-xs font-black uppercase tracking-widest transition-all
                       ${isCurrentlyActive 
-                        ? 'bg-ignition text-white shadow-lg shadow-orange-500/40 scale-95' 
-                        : 'bg-asphalt text-white hover:bg-ignition shadow-md active:scale-95'}`}
+                        ? 'bg-ignition text-white shadow-lg shadow-orange-500/40' 
+                        : activePreview
+                          ? 'bg-white/20 text-white backdrop-blur-md hover:bg-ignition border border-white/10'
+                          : 'bg-asphalt text-white hover:bg-ignition shadow-md active:scale-95'}`}
                   >
                     <Eye size={16} />
                     {isCurrentlyActive ? 'Style Active' : 'Test Drive'}
@@ -74,9 +76,9 @@ const StyleGallery = () => {
                     to={`/theme/${theme.id}`}
                     className={`flex items-center justify-center font-black text-[10px] uppercase tracking-[0.2em] py-3 transition-all
                       ${isCurrentlyActive 
-                        ? 'text-white opacity-60 hover:opacity-100' 
+                        ? 'text-white opacity-80 hover:opacity-100' 
                         : activePreview 
-                          ? 'text-white opacity-40 hover:opacity-100 hover:text-ignition'
+                          ? 'text-white opacity-60 hover:opacity-100'
                           : 'text-asphalt opacity-40 hover:opacity-100 hover:text-ignition'}`}
                   >
                     View Style Guide <ArrowRight className="ml-2" size={14} />
