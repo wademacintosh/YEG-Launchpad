@@ -1,7 +1,7 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App'
-import './styles.css' // FIXED: Changed from styles.css to style.css
+import React from 'react';
+import { createRoot } from 'react-dom/client'; // FIXED: Use named import to avoid 'Identifier.bind' error
+import App from './App';
+import './styles.css'; // FIXED: Matches your actual filename on GitHub
 
 /**
  * CONFIGURATION: Root Element ID
@@ -12,12 +12,8 @@ const rootElement = document.getElementById(ROOT_ID);
 
 /**
  * ARCHITECTURAL NOTE: Removal of TanStack Router
- * * We have shifted away from TanStack Router to a standard React entry pattern.
- * This change resolves "404 Not Found" errors encountered on Vercel deployments
- * during hard refreshes or direct URL navigation. 
- * * By using a simplified entry point, we ensure the SPA (Single Page Application) 
- * bundle is always served correctly, relying on standard React rendering 
- * while Vercel handles the static file serving.
+ * We use a simplified entry point to ensure the SPA bundle is always 
+ * served correctly on Vercel deployments.
  */
 
 if (!rootElement) {
@@ -29,8 +25,8 @@ if (!rootElement) {
   );
 }
 
-// Initialize the React Root with the confirmed element
-const root = ReactDOM.createRoot(rootElement);
+// Initialize the React 19 Root with the confirmed element
+const root = createRoot(rootElement);
 
 root.render(
   <React.StrictMode>
