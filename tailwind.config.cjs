@@ -3,6 +3,14 @@ module.exports = {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      // 1. Your custom colors
+      colors: {
+        brand: {
+          primary: '#2563EB', // This is Tailwind's blue-600 hex code
+        }
+      },
+      
+      // 2. Your custom keyframes
       keyframes: {
         'fade-up': {
           '0%': { opacity: '0', transform: 'translateY(20px)' },
@@ -17,6 +25,8 @@ module.exports = {
           '50%': { transform: 'translateY(-10px)' },
         }
       },
+      
+      // 3. Your custom animations
       animation: {
         'fade-up': 'fade-up 0.6s ease-out forwards',
         'fade-in': 'fade-in 0.8s ease-out forwards',
