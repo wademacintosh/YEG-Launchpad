@@ -5,6 +5,7 @@ import Footer from './components/Footer';
 import Home from './pages/HomePage';
 import Contact from './pages/Contact';
 import ThemeShowcase from './pages/ThemeShowcase';
+import { ThemeProvider, useThemePreview } from './context/ThemeContext'; // Import the provider
 
 /**
  * ScrollToTop Helper
@@ -18,29 +19,36 @@ const ScrollToTop = () => {
   return null;
 };
 
+/**
+ * Layout Wrapper
+ * This component listens for the active preview and applies the 
+ * theme classes to the entire application container.
+ */
+const AppLayout = ({ children }: { children: React.ReactNode }) => {
+  const { activePreview } = useThemePreview();
+  
+  return (
+    <div className={`min-h-screen flex flex-col transition-all duration-700 selection:bg-ignition selection:text-white ${activePreview?.containerClass || ''}`}>
+      <Navbar />
+      <main className="flex-grow">
+        {children}
+      </main>
+      <Footer />
+    </div>
+  );
+};
+
 function App() {
   return (
-    <Router>
-      <ScrollToTop />
-      <div className="min-h-screen flex flex-col selection:bg-ignition selection:text-white">
-        {/* The Navbar will now have access to all 8 styles via the dropdown */}
-        <Navbar />
-
-        <main className="flex-grow">
+    <ThemeProvider>
+      <Router>
+        <ScrollToTop />
+        <AppLayout>
           <Routes>
-            {/* Landing Page with Hero & Features */}
             <Route path="/" element={<Home />} />
-            
-            {/* Contact Page */}
             <Route path="/contact" element={<Contact />} />
-            
-            {/* Dynamic Theme Route 
-                Handles: eco-clean, night-vision-armour, the-vantage-collective, 
-                mud-sweat-gears, detailflow-pro, aero-shine-labs, 
-                route-66-review, prism-auto-works
-            */}
             <Route path="/theme/:themeId" element={<ThemeShowcase />} />
-
+            
             {/* Catch-all 404 Route */}
             <Route 
               path="*" 
@@ -53,11 +61,9 @@ function App() {
               } 
             />
           </Routes>
-        </main>
-
-        <Footer />
-      </div>
-    </Router>
+        </AppLayout>
+      </Router>
+    </ThemeProvider>
   );
 }
 
