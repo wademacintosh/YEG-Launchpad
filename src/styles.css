@@ -1,79 +1,21 @@
-@import "tailwindcss";
-@import "tw-animate-css";
-@source "../src";
-
 @theme {
-  /* --- BRAND DEFINITIONS --- */
-  --color-ignition: oklch(0.706 0.196 41.5);   /* YEG Ignition Orange */
-  --color-asphalt: oklch(0.291 0 0);           /* Edmonton Asphalt */
+  /* Brand Colors */
+  --color-ignition: #FF6600;      /* Ignition Orange */
+  --color-asphalt: #2C2C2C;       /* Edmonton Asphalt */
+  --color-silver: #BDC3C7;        /* High Level Silver */
+
+  /* Semantic Mapping */
+  --color-primary: var(--color-ignition);
+  --color-secondary: var(--color-asphalt);
   
-  /* Theme-Specific Colors */
-  --color-eco-green: #2ecc71;
-  --color-night-cyan: #22d3ee;
-  --color-vantage-gold: #c5a059;
-  --color-mud-brown: #4a3728;
-  --color-prism-pink: #ec4899;
-
-  /* --- FONTS --- */
-  --font-display: "Playfair Display", serif;
-  --font-mono: "JetBrains Mono", monospace;
-  --font-brutal: "Archivo Black", sans-serif;
-  --font-retro: "Pacifico", cursive;
-
-  /* --- ANIMATIONS --- */
+  /* Animations */
   --animate-fade-up: fade-up 0.6s ease-out forwards;
-}
-
-@layer utilities {
-  /* 1. Aero Shine Labs (Carbon Fiber) */
-  .bg-carbon-fiber {
-    background-color: #0d0f12;
-    background-image:
-      linear-gradient(45deg, #1a1d22 25%, transparent 25%, transparent 75%, #1a1d22 75%),
-      linear-gradient(45deg, #1a1d22 25%, #0d0f12 25%, #0d0f12 75%, #1a1d22 75%);
-    background-size: 8px 8px;
-  }
-
-  /* 2. Night Vision Armour (Neon Glow) */
-  .shadow-night-vision {
-    box-shadow: 0 0 15px var(--color-night-cyan), inset 0 0 5px var(--color-night-cyan);
-  }
-
-  /* 3. Prism Auto-Works (Glitch) */
-  .glitch-text {
-    text-shadow: 2px 0 #ff00ff, -2px 0 #00ffff;
-  }
-
-  /* 4. Mud, Sweat & Gears (Neobrutalist) */
-  .shadow-brutal {
-    box-shadow: 8px 8px 0 0 #000;
-  }
-
-  /* 5. Route 66 Review (Retro Sticker) */
-  .shadow-sticker {
-    box-shadow: 3px 3px 0 0 #333;
-    @apply border-2 border-black;
-  }
-
-  /* 6. The Vantage Collective (Minimal Luxury) */
-  .vantage-border {
-    border-left: 1px solid var(--color-vantage-gold);
-    @apply pl-4 italic;
-  }
-
-  /* 7. Eco-Clean (Soft Glass) */
-  .glass-eco {
-    @apply bg-white/70 backdrop-blur-md border border-white/20;
-  }
-
-  /* 8. DetailFlow Pro (Modern Tech) */
-  .detail-gradient {
-    background: linear-gradient(135deg, #2c3e50, #000000);
-  }
+  --animate-float: float 3s ease-in-out infinite;
 }
 
 @layer components {
   .btn-primary {
-    @apply px-6 py-3 bg-ignition text-white rounded-xl font-bold transition-all hover:scale-105 active:scale-95;
+    @apply px-8 py-4 bg-ignition text-white rounded-xl font-black 
+           transition-all hover:scale-105 active:scale-95 shadow-lg hover:shadow-orange-500/20;
   }
 }
