@@ -1,35 +1,126 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
-  theme: {
-    extend: {
-      // Move reusable animations here
-      animation: {
-        'fade-in': 'fadeIn 0.5s ease-out forwards',
-        'slide-up': 'slideUp 0.4s ease-out',
-      },
-      // Define the keyframes that power the animations
-      keyframes: {
-        fadeIn: {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' },
-        },
-        slideUp: {
-          '0%': { transform: 'translateY(10px)', opacity: '0' },
-          '100%': { transform: 'translateY(0)', opacity: '1' },
-        },
-      },
-      // Example: Adding custom brand colors
-      colors: {
-        brand: {
-          primary: '#3b82f6',
-          secondary: '#6366f1',
-        },
-      },
-    },
+import { useState } from "react";
+import { StyleCard, type StyleItem, type StyleCategory } from "./StyleCard";
+
+interface StyleGalleryProps {
+  onPreview: (item: StyleItem) => void;
+}
+
+const STYLES: StyleItem[] = [
+  {
+    title: "Obsidian Eco-Clean",
+    tagline: "Minimal monochrome layout for waterless, eco-conscious detailing.",
+    category: "Modern",
+    variant: "obsidian-eco",
   },
-  plugins: [],
+  {
+    title: "Night Vision Armor",
+    tagline: "High-contrast dark UI built for ceramic coatings & PPF.",
+    category: "Modern",
+    variant: "night-vision",
+  },
+  {
+    title: "The Vantage Collective",
+    tagline: "Editorial luxury aesthetic for boutique exotic-car studios.",
+    category: "Luxury",
+    variant: "vantage",
+  },
+  {
+    title: "Mud, Sweat & Gears",
+    tagline: "Bold rugged branding for off-road & truck wash specialists.",
+    category: "Rugged",
+    variant: "mud-sweat-gears",
+  },
+  {
+    title: "Prism Auto-Works",
+    tagline: "Vibrant gradient design for vinyl wraps & custom finishes.",
+    category: "Modern",
+    variant: "prism",
+  },
+  {
+    title: "DetailFlow Pro",
+    tagline: "Clean SaaS-style layout focused on online booking conversions.",
+    category: "Modern",
+    variant: "detailflow",
+  },
+  {
+    title: "Route 66 Revive",
+    tagline: "Retro Americana branding for classic & restoration shops.",
+    category: "Luxury",
+    variant: "route66",
+  },
+  {
+    title: "Aero Shine Labs",
+    tagline: "Tech-lab vibe with motion accents for paint correction pros.",
+    category: "Modern",
+    variant: "aero-shine",
+  },
+  {
+    title: "Lumina Spa",
+    tagline: "Medical-grade interior restoration and wellness-focused sanitization.",
+    category: "Modern",
+    variant: "lumina-spa",
+  },
+  {
+    title: "Kinetic Studio",
+    tagline: "Street-level detailing and liquid polymer coatings for active builds.",
+    category: "Modern",
+    variant: "kinetic-street",
+  },
+  {
+    title: "Vanguard Tactical",
+    tagline: "Heavy-duty surface defense for off-road and fleet vehicles.",
+    category: "Rugged",
+    variant: "vanguard-tactical",
+  }
+];
+
+const CATEGORIES: (StyleCategory | "All")[] = ["All", "Luxury", "Rugged", "Modern"];
+
+export function StyleGallery({ onPreview }: StyleGalleryProps) {
+  const [activeCategory, setActiveCategory] = useState<StyleCategory | "All">("All");
+
+  const filteredStyles = STYLES.filter(
+    (style) => activeCategory === "All" || style.category === activeCategory
+  );
+
+  return (
+    <section className="px-6 max-w-7xl mx-auto">
+      {/* Category Filter Tabs */}
+      <div className="flex flex-wrap justify-center gap-3 mb-16">
+        {CATEGORIES.map((cat) => (
+          <button
+            key={cat}
+            onClick={() => setActiveCategory(cat)}
+            className={`px-8 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-[0.2em] transition-all duration-300 border ${
+              activeCategory === cat
+                ? "bg-black text-white border-black shadow-lg"
+                : "bg-white text-gray-400 border-gray-100 hover:border-black hover:text-black"
+            }`}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+
+      {/* Style Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        {filteredStyles.map((item) => (
+          <StyleCard 
+            key={item.variant} 
+            item={item} 
+            onPreview={onPreview} 
+          />
+        ))}
+      </div>
+
+      {/* Empty State */}
+      {filteredStyles.length === 0 && (
+        <div className="text-center py-32 border-2 border-dashed border-gray-100 rounded-3xl">
+          <p className="text-gray-400 font-serif italic text-xl">
+            More {activeCategory} concepts coming soon...
+          </p>
+        </div>
+      )}
+    </section>
+  );
 }
