@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
-import './styles.css'
+import './style.css' // FIXED: Changed from styles.css to style.css
 
 /**
  * CONFIGURATION: Root Element ID
