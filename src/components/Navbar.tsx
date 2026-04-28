@@ -10,13 +10,13 @@ const Navbar = () => {
     <nav className="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
-          <Link to="/" className="text-2xl font-bold text-blue-600">YEG Launchpad</Link>
+          <Link to="/" className="text-2xl font-bold text-ignition">YEG Launchpad</Link>
 
           {/* Desktop Links */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link to="/" className="text-gray-600 hover:text-blue-600">Home</Link>
+            <Link to="/" className="text-gray-600 hover:text-ignition">Home</Link>
             <div className="relative group">
-              <button className="flex items-center text-gray-600 hover:text-blue-600">
+              <button className="flex items-center text-gray-600 hover:text-ignition">
                 Themes <ChevronDown size={16} className="ml-1" />
               </button>
               <div className="absolute top-full left-0 hidden group-hover:block w-48 bg-white shadow-lg rounded-md py-2">
@@ -31,7 +31,7 @@ const Navbar = () => {
                 ))}
               </div>
             </div>
-            <Link to="/contact" className="bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-700">Get Started</Link>
+            <Link to="/contact" className="bg-ignition text-white px-5 py-2 rounded-full hover:bg-blue-700">Get Started</Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -54,7 +54,7 @@ const Navbar = () => {
                 {theme} Style
               </Link>
             ))}
-            <Link to="/contact" className="block py-2 text-blue-600 font-semibold">Contact Us</Link>
+            <Link to="/contact" className="block py-2 text-ignition font-semibold">Contact Us</Link>
           </div>
         </div>
       )}
