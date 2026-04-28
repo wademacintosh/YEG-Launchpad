@@ -1,26 +1,37 @@
 import React from 'react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, MousePointer2 } from 'lucide-react';
 
-export default function Hero() {
+const Hero = () => {
   return (
-    <section className="relative py-20 px-6 bg-[#2C2C2C] text-white overflow-hidden">
-      <div className="max-w-7xl mx-auto relative z-10">
-        <h1 className="text-6xl md:text-8xl font-black tracking-tighter uppercase leading-none mb-6 animate-fade-in-up">
-          Launch Your <span className="text-[#FF6600]">Brand</span>
+    <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 text-center z-10">
+        <h1 className="text-5xl md:text-7xl font-extrabold text-gray-900 mb-6 animate-fade-up">
+          Launch Your Vision in <span className="text-blue-600">Edmonton</span>
         </h1>
-        <p className="text-xl md:text-2xl font-light max-w-2xl opacity-80 mb-10 leading-tight">
-          Premium detailing visual identities for Edmonton's elite automotive shops.
+        <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto animate-fade-up delay-100">
+          We build high-performance web applications tailored to the YEG business landscape.
         </p>
-        <div className="flex gap-4">
-          <button className="px-8 py-4 bg-[#FF6600] font-bold uppercase tracking-widest hover:bg-orange-600 transition">
-            View Gallery
+        
+        {/* CTAs */}
+        <div className="flex flex-col sm:flex-row justify-center gap-4 animate-fade-up delay-200">
+          <button className="flex items-center justify-center bg-blue-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-blue-700 transition-all hover:scale-105">
+            See Styles <ArrowRight className="ml-2" size={20} />
+          </button>
+          <button className="flex items-center justify-center bg-white border-2 border-gray-200 text-gray-700 px-8 py-4 rounded-xl font-bold hover:border-blue-600 transition-all">
+            Contact Us
           </button>
         </div>
-      </div>
-      {/* Abstract Background Element */}
-      <div className="absolute top-0 right-0 w-1/2 h-full opacity-10 pointer-events-none">
-        <div className="w-full h-full bg-gradient-to-l from-white to-transparent" />
+
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-50">
+          <div className="flex flex-col items-center">
+            <span className="text-xs font-semibold mb-2 uppercase tracking-widest">Scroll</span>
+            <MousePointer2 size={24} />
+          </div>
+        </div>
       </div>
     </section>
   );
-}
+};
+
+export default Hero;
