@@ -1,7 +1,28 @@
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation, Link } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import Home from './pages/HomePage';
+import Contact from './pages/Contact';
+import ThemeShowcase from './pages/ThemeShowcase';
+import { ThemeProvider, useThemePreview } from './context/ThemeContext';
+
+/**
+ * ScrollToTop Helper
+ * Ensures that when you click a new theme, the page starts at the top.
+ */
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+};
+
 /**
  * Layout Wrapper
- * We add 'bg-white' as the fallback so that when a preview is active,
- * the containerClass (like bg-carbon-fiber) takes over the whole screen.
+ * Listens for the active preview and applies theme classes globally.
+ * We use 'bg-white' as the fallback so original branding looks clean.
  */
 const AppLayout = ({ children }: { children: React.ReactNode }) => {
   const { activePreview } = useThemePreview();
@@ -24,17 +45,23 @@ function App() {
         <ScrollToTop />
         <AppLayout>
           <Routes>
+            {/* Landing Page */}
             <Route path="/" element={<Home />} />
+            
+            {/* Contact Page */}
             <Route path="/contact" element={<Contact />} />
+            
+            {/* Dynamic Theme Showcase (Eco-Clean, Prism, Aero, etc.) */}
             <Route path="/theme/:themeId" element={<ThemeShowcase />} />
             
+            {/* Catch-all 404 Route */}
             <Route 
               path="*" 
               element={
                 <div className="flex flex-col items-center justify-center min-h-[60vh] pt-20">
-                  <h2 className="text-4xl font-black text-asphalt">404</h2>
-                  <p className="text-gray-500 mb-6">This page hasn't launched yet.</p>
-                  <a href="/" className="btn-primary">Take Me Home</a>
+                  <h2 className="text-4xl font-black text-asphalt uppercase tracking-tighter">404</h2>
+                  <p className="text-gray-500 mb-6 font-medium">This page hasn't launched yet.</p>
+                  <Link to="/" className="btn-primary">Take Me Home</Link>
                 </div>
               } 
             />
@@ -44,3 +71,5 @@ function App() {
     </ThemeProvider>
   );
 }
+
+export default App;
