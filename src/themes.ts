@@ -5,80 +5,80 @@ export interface Theme {
   containerClass: string;
   buttonClass: string;
   accentColor: string;
-  strategy: string; // New field for unique client messaging
+  strategy: string;
 }
 
 export const themes: Record<string, Theme> = {
   "eco-clean": {
     id: "eco-clean",
     name: "Eco-Clean",
-    description: "Sustainable, fresh, and organic aesthetics for green businesses.",
+    description: "Fresh greens and soft whites for eco-conscious detailing.",
     containerClass: "bg-emerald-50 text-emerald-900 border-emerald-200",
     buttonClass: "bg-emerald-600 text-white hover:bg-emerald-700",
     accentColor: "#059669",
-    strategy: "Perfect for health, wellness, and environmental brands in Edmonton. This layout emphasizes purity and organic growth, building immediate trust with eco-conscious consumers."
+    strategy: "This palette uses 'Sustainability Green' to signal chemical-free steam cleaning and interior health. The airy white space suggests a 'breath of fresh air' for the client's vehicle."
   },
   "night-vision-armour": {
     id: "night-vision-armour",
     name: "Night Vision Armour",
-    description: "High-contrast, tactical neon for security and tech firms.",
+    description: "Tactical cyan and deep slate for ceramic coating specialists.",
     containerClass: "bg-slate-950 text-cyan-400 shadow-night-vision",
     buttonClass: "bg-cyan-500 text-black font-bold",
     accentColor: "#22d3ee",
-    strategy: "Designed for 24/7 service industries and tech security. The high-contrast 'always-on' aesthetic signals reliability, precision, and tactical superiority in the local market."
+    strategy: "The high-contrast cyan glow mimics high-tech paint protection labs. It visually reinforces the idea of a 'shield' or 'armour' being applied to the vehicle's clear coat."
   },
   "the-vantage-collective": {
     id: "the-vantage-collective",
     name: "The Vantage Collective",
-    description: "Minimalist luxury with a focus on typography and space.",
+    description: "Warm gold and stone tones for high-end exotic detailing.",
     containerClass: "bg-[#fcfaf7] text-stone-800 vantage-border",
     buttonClass: "border border-stone-800 text-stone-800 hover:bg-stone-800 hover:text-white",
     accentColor: "#c5a059",
-    strategy: "Tailored for law firms, real estate, and high-end consultancies. This minimalist 'Vantage' approach strips away noise to highlight your brand's authority and attention to detail."
+    strategy: "Luxury-focused gold accents and serif typography shift the focus to 'concierge-level' care. This style justifies premium pricing for exotic and collector vehicle services."
   },
   "mud-sweat-gears": {
     id: "mud-sweat-gears",
     name: "Mud, Sweat & Gears",
-    description: "Raw, neobrutalist energy for the rugged and adventurous.",
+    description: "Rugged orange and heavy black for off-road and truck detailing.",
     containerClass: "bg-orange-50 text-black shadow-brutal border-4 border-black",
     buttonClass: "bg-yellow-400 text-black border-4 border-black shadow-brutal",
     accentColor: "#fbbf24",
-    strategy: "Built for Edmonton's industrial and outdoor adventure sectors. The 'Brutal' design language screams durability and no-nonsense performance, perfect for trade-based businesses."
+    strategy: "The aggressive 'Neobrutalist' lines and construction-orange palette signal durability. It appeals to truck owners who want a shop that isn't afraid of real Edmonton mud."
   },
   "detailflow-pro": {
     id: "detailflow-pro",
     name: "DetailFlow Pro",
-    description: "Corporate precision with smooth gradients and professional lines.",
-    containerClass: "bg-slate-50 text-blue-900 border-blue-100",
+    description: "Professional blue and clinical white for high-volume shops.",
+    containerClass: "bg-blue-50 text-blue-900 border-blue-100",
     buttonClass: "bg-blue-600 text-white rounded-lg",
     accentColor: "#2563eb",
-    strategy: "Ideal for SaaS, fintech, and professional service providers. It uses modern gradients to project a 'Future-Ready' image while maintaining the strict structure required for corporate trust."
+    strategy: "Blue is the color of reliability and systematic efficiency. This clean, corporate look tells the customer that their vehicle will be handled with professional, standardized precision."
   },
   "aero-shine-labs": {
     id: "aero-shine-labs",
     name: "Aero Shine Labs",
-    description: "Speed-inspired carbon fiber textures for the automotive industry.",
+    description: "Carbon textures and silver accents for performance-first shops.",
     containerClass: "bg-carbon-fiber text-white",
-    buttonClass: "bg-white text-black font-black italic",
-    accentColor: "#ffffff",
-    strategy: "Specifically engineered for the high-performance automotive and detailing world. The carbon-fiber texture and 'Aero' accents imply speed, quality, and premium craftsmanship."
+    buttonClass: "bg-white text-black font-black italic hover:bg-gray-200",
+    accentColor: "#f8fafc",
+    strategy: "Carbon fiber textures and mono-spaced fonts lean into the 'Race-Prep' aesthetic. It visually promises a finish that looks fast even when the car is standing still."
   },
   "route-66-review": {
     id: "route-66-review",
     name: "Route 66 Review",
-    description: "Retro Americana with a sticker-book aesthetic and bold colors.",
+    description: "Retro red and cream for classic car restoration and detailing.",
     containerClass: "bg-red-50 text-red-600 shadow-sticker rotate-1",
     buttonClass: "bg-red-600 text-white shadow-sticker",
     accentColor: "#dc2626",
-    strategy: "Perfect for local diners, community-focused hubs, and lifestyle brands. The retro 'Americana' vibe builds immediate nostalgic warmth and makes your brand feel like a local staple."
+    strategy: "Nostalgic reds and 'sticker-style' shadows evoke the golden age of the garage. It targets classic car owners who value heritage and 'old-school' attention to detail."
   },
   "prism-auto-works": {
     id: "prism-auto-works",
     name: "Prism Auto-Works",
-    description: "Vaporwave synthwave vibes with glitch effects and deep blacks.",
-    containerClass: "bg-black text-white border-2 border-pink-500 shadow-[0_0_30px_rgba(236,72,153,0.3)]",
+    description: "Vaporwave pink and glitch effects for custom and show cars.",
+    containerClass: "bg-black text-white border-2 border-pink-500 shadow-[0_0_20px_rgba(236,72,153,0.2)]",
     buttonClass: "border-2 border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-black",
     accentColor: "#ec4899",
-    strategy: "A bold choice for after-dark businesses, gaming, or modern custom shops. This 'Synthwave' identity uses neon contrast to ensure your brand is impossible to ignore in a digital-first world."
+    strategy: "Synthwave pinks and glitch textures appeal to the custom 'show-car' crowd. It suggests your shop specializes in aesthetic perfection and 'pop-culture' car builds."
   }
 };
