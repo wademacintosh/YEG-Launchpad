@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Footer from './components/Footer'; // Make sure to create this
-import Home from './pages/HomePage';
-import Contact from './pages/Contact';
-import ThemeShowcase from './pages/ThemeShowcase';
+import Footer from './components/Footer'; // Make sure Footer.tsx exists!
+import Home from './pages/HomePage';      // Updated to match HomePage.tsx
+import Contact from './pages/Contact';    // Make sure Contact.tsx exists!
+import ThemeShowcase from './pages/ThemeShowcase'; // Make sure ThemeShowcase.tsx exists!
 
 function App() {
   return (
