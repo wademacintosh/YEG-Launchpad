@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* Tells Tailwind to look for your classes in the src folder */
 @source "../src";
 
 @theme {
@@ -32,13 +33,13 @@
 
 @layer components {
   .btn-primary {
-    /* Bold, Ignition Orange Buttons */
     @apply px-8 py-4 bg-ignition text-white rounded-xl font-black 
-           transition-all hover:scale-105 active:scale-95 shadow-lg hover:shadow-orange-500/20;
+           transition-all hover:scale-105 active:scale-95 shadow-lg;
   }
 }
 
 @layer utilities {
+  /* Aero Shine Labs - Carbon Fiber Texture */
   .bg-carbon-fiber {
     background-color: #0d0f12;
     background-image:
