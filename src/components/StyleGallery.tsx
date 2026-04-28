@@ -30,8 +30,10 @@ const StyleGallery = () => {
               key={theme.id}
               className={`group relative overflow-hidden rounded-[2.5rem] border transition-all duration-500 flex flex-col min-h-[400px]
                 ${isCurrentlyActive 
-                  ? 'border-ignition ring-4 ring-ignition/20 shadow-2xl scale-[1.02] bg-white/10 backdrop-blur-md' 
-                  : 'border-gray-100 bg-white shadow-sm hover:shadow-xl hover:-translate-y-2'}`}
+                  ? 'border-ignition ring-4 ring-ignition/20 shadow-2xl scale-[1.02] bg-black/20 backdrop-blur-xl' 
+                  : activePreview 
+                    ? 'border-white/10 bg-black/5 hover:bg-black/10 shadow-sm hover:shadow-xl hover:-translate-y-2'
+                    : 'border-gray-100 bg-white shadow-sm hover:shadow-xl hover:-translate-y-2'}`}
             >
               {/* 🎨 Theme Visual Preview Box */}
               <div className={`h-32 w-full p-6 transition-all duration-500 ${theme.containerClass} flex items-start justify-between`}>
@@ -46,11 +48,11 @@ const StyleGallery = () => {
               <div className="p-8 flex-grow flex flex-col justify-between">
                 <div>
                   <h3 className={`text-2xl font-black mb-3 transition-colors uppercase tracking-tighter
-                    ${isCurrentlyActive ? 'text-ignition' : 'text-asphalt group-hover:text-ignition'}`}>
+                    ${isCurrentlyActive ? 'text-ignition' : activePreview ? 'text-white' : 'text-asphalt group-hover:text-ignition'}`}>
                     {theme.name}
                   </h3>
                   <p className={`text-sm line-clamp-3 font-medium leading-relaxed transition-colors
-                    ${isCurrentlyActive ? 'text-white/80' : 'text-gray-500'}`}>
+                    ${isCurrentlyActive ? 'text-white/80' : activePreview ? 'text-white/60' : 'text-gray-500'}`}>
                     {theme.description}
                   </p>
                 </div>
@@ -65,7 +67,7 @@ const StyleGallery = () => {
                         : 'bg-asphalt text-white hover:bg-ignition shadow-md active:scale-95'}`}
                   >
                     <Eye size={16} />
-                    {isCurrentlyActive ? 'Active' : 'Test Drive'}
+                    {isCurrentlyActive ? 'Style Active' : 'Test Drive'}
                   </button>
 
                   <Link
@@ -73,7 +75,9 @@ const StyleGallery = () => {
                     className={`flex items-center justify-center font-black text-[10px] uppercase tracking-[0.2em] py-3 transition-all
                       ${isCurrentlyActive 
                         ? 'text-white opacity-60 hover:opacity-100' 
-                        : 'text-asphalt opacity-40 hover:opacity-100 hover:text-ignition'}`}
+                        : activePreview 
+                          ? 'text-white opacity-40 hover:opacity-100 hover:text-ignition'
+                          : 'text-asphalt opacity-40 hover:opacity-100 hover:text-ignition'}`}
                   >
                     View Style Guide <ArrowRight className="ml-2" size={14} />
                   </Link>
