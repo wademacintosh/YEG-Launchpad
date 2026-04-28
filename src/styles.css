@@ -1,20 +1,15 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-/* Tell Tailwind v4 to look at your components */
 @source "../src";
 
 @theme {
-  /* Brand Colors */
-  --color-ignition: #FF6600;      /* Ignition Orange */
-  --color-asphalt: #2C2C2C;       /* Edmonton Asphalt */
-  --color-silver: #BDC3C7;        /* High Level Silver */
+  /* 🏎️ THE IGNITION BRAND COLORS */
+  --color-ignition: #FF6600;      /* Primary: Ignition Orange */
+  --color-asphalt: #2C2C2C;       /* Secondary: Edmonton Asphalt */
+  --color-silver: #BDC3C7;        /* Accent: High Level Silver */
 
-  /* Semantic Mapping */
-  --color-primary: var(--color-ignition);
-  --color-secondary: var(--color-asphalt);
-  
-  /* Animations */
+  /* Global Animations */
   --animate-fade-up: fade-up 0.6s ease-out forwards;
   --animate-float: float 3s ease-in-out infinite;
 
@@ -30,19 +25,20 @@
 
 @layer base {
   body {
+    /* Use Asphalt for text by default for that high-contrast look */
     @apply bg-white text-asphalt antialiased;
   }
 }
 
 @layer components {
   .btn-primary {
+    /* Bold, Ignition Orange Buttons */
     @apply px-8 py-4 bg-ignition text-white rounded-xl font-black 
-           transition-all hover:scale-105 active:scale-95 shadow-lg;
+           transition-all hover:scale-105 active:scale-95 shadow-lg hover:shadow-orange-500/20;
   }
 }
 
 @layer utilities {
-  /* Custom Carbon Fiber for Aero Shine Labs */
   .bg-carbon-fiber {
     background-color: #0d0f12;
     background-image:
