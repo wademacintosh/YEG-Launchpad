@@ -1,33 +1,43 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
-      // Move reusable animations here
-      animation: {
-        'fade-in': 'fadeIn 0.5s ease-out forwards',
-        'slide-up': 'slideUp 0.4s ease-out',
-      },
-      // Define the keyframes that power the animations
       keyframes: {
-        fadeIn: {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' },
+        'fade-up': {
+          '0%': { 
+            opacity: '0', 
+            transform: 'translateY(20px)' 
+          },
+          '100%': { 
+            opacity: '1', 
+            transform: 'translateY(0)' 
+          },
         },
-        slideUp: {
-          '0%': { transform: 'translateY(10px)', opacity: '0' },
-          '100%': { transform: 'translateY(0)', opacity: '1' },
+        'fade-in': {
+          '0%': { 
+            opacity: '0' 
+          },
+          '100%': { 
+            opacity: '1' 
+          },
         },
+        'float': {
+          '0%, 100%': { 
+            transform: 'translateY(0)' 
+          },
+          '50%': { 
+            transform: 'translateY(-10px)' 
+          },
+        }
       },
-      // Example: Adding custom brand colors
-      colors: {
-        brand: {
-          primary: '#3b82f6',
-          secondary: '#6366f1',
-        },
+      animation: {
+        'fade-up': 'fade-up 0.6s ease-out forwards',
+        'fade-in': 'fade-in 0.8s ease-out forwards',
+        'float': 'float 3s ease-in-out infinite',
       },
     },
   },
