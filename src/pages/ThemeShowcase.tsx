@@ -105,22 +105,68 @@ export default function ThemeShowcase() {
             </div>
           </div>
 
-          {/* Engineering Card */}
-          <div className={`p-8 flex flex-col justify-between transition-all
-            ${isBrutal ? 'bg-yellow-400 text-black border-4 border-black shadow-brutal rounded-none' : 'bg-asphalt text-white rounded-[2rem] shadow-xl'}`}>
-            <div>
-              <div className="flex items-center mb-4">
-                <Settings className={`mr-3 ${isBrutal ? 'text-black' : 'text-ignition'}`} />
-                <h3 className="font-black text-xl uppercase tracking-tight">Vercel Edge Ready</h3>
-              </div>
-              <p className="opacity-70 text-sm leading-relaxed mb-6">
-                This theme is built on Tailwind v4 and React 19. It is optimized for sub-second LCP (Largest Contentful Paint) in the Edmonton region.
-              </p>
-            </div>
-            <button className={`flex items-center font-bold text-sm uppercase tracking-widest hover:gap-3 transition-all ${isBrutal ? 'text-black' : 'text-ignition'}`}>
-              Review Architecture <ExternalLink size={16} className="ml-2" />
-            </button>
-          </div>
+         {/* Feature Grid */}
+<div className="grid md:grid-cols-2 gap-8 mt-12 animate-fade-up [animation-delay:400ms]">
+  
+  {/* Color Palette Card */}
+  <div className={`p-8 bg-white border border-gray-100 shadow-sm transition-all
+    ${isBrutal ? 'border-4 border-black shadow-brutal rounded-none' : 'rounded-[3rem]'}
+    ${isRetro ? 'shadow-sticker -rotate-1' : ''}`}>
+    
+    <div className="flex items-center mb-6">
+      <Palette className={`mr-3 ${isBrutal ? 'text-black' : 'text-ignition'}`} />
+      <h3 className="font-black text-xl uppercase tracking-tight">Color Palette</h3>
+    </div>
+    
+    <div className="flex gap-3 h-24">
+      <div className="flex-1 rounded-2xl shadow-inner border border-black/5" style={{ backgroundColor: theme.accentColor }}></div>
+      <div className="flex-1 rounded-2xl bg-[#2C2C2C]"></div> 
+      <div className="flex-1 rounded-2xl bg-[#BDC3C7]"></div>
+    </div>
+    
+    <div className="mt-6 flex justify-between items-end font-mono text-[10px] uppercase opacity-50">
+      <span>Primary: {theme.accentColor}</span>
+      <span>Secondary: Asphalt & Silver</span>
+    </div>
+  </div>
+
+  {/* Client Strategy Card (New!) */}
+  <div className={`p-8 flex flex-col justify-between transition-all
+    ${isBrutal ? 'bg-yellow-400 text-black border-4 border-black shadow-brutal rounded-none' : 'bg-asphalt text-white rounded-[3rem] shadow-xl'}`}>
+    
+    <div>
+      <div className="flex items-center mb-4">
+        <Sparkles className={`mr-3 ${isBrutal ? 'text-black' : 'text-ignition'}`} size={24} />
+        <h3 className="font-black text-xl uppercase tracking-tight">Strategic Fit</h3>
+      </div>
+      
+      <p className="opacity-80 text-sm leading-relaxed mb-6">
+        This design language is engineered to build authority and trust. It is particularly effective for 
+        <strong> {theme.name} </strong> style brands looking to stand out in the competitive Edmonton market.
+      </p>
+
+      <ul className="space-y-2 text-xs font-semibold uppercase tracking-wide opacity-90">
+        <li className="flex items-center">
+          <div className={`w-1.5 h-1.5 rounded-full mr-2 ${isBrutal ? 'bg-black' : 'bg-ignition'}`} />
+          High-Conversion Layout
+        </li>
+        <li className="flex items-center">
+          <div className={`w-1.5 h-1.5 rounded-full mr-2 ${isBrutal ? 'bg-black' : 'bg-ignition'}`} />
+          Mobile-First User Experience
+        </li>
+        <li className="flex items-center">
+          <div className={`w-1.5 h-1.5 rounded-full mr-2 ${isBrutal ? 'bg-black' : 'bg-ignition'}`} />
+          Local Search Optimized
+        </li>
+      </ul>
+    </div>
+
+    <Link to="/contact" className={`mt-8 flex items-center font-bold text-sm uppercase tracking-widest group ${isBrutal ? 'text-black' : 'text-ignition'}`}>
+      Request This Build <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-2" />
+    </Link>
+  </div>
+
+</div>
 
         </div>
       </div>
