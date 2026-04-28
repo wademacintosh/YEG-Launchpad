@@ -2,15 +2,17 @@ import React from 'react';
 import Hero from '../components/Hero';
 import BridgeDivider from '../components/BridgeDivider';
 import StyleGallery from '../components/StyleGallery';
-// import Footer from '../components/Footer'; (if you have it here)
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white animate-fade-in"> 
       <Hero />
-      {/* The new Walterdale Bridge SVG sits right here */}
+      {/* The Walterdale Bridge SVG Divider */}
       <BridgeDivider />
-      <StyleGallery />
+      
+      <main className="max-w-7xl mx-auto py-12">
+        <StyleGallery />
+      </main>
     </div>
   );
 }
