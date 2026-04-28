@@ -1,89 +1,128 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, ExternalLink, Palette, Sparkles } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Palette, Sparkles, Zap, Shield, Leaf, Crown, Settings, Gauge, Camera, Monitor } from 'lucide-react';
 import { themes } from '../themes';
 
 export default function ThemeShowcase() {
-  // 1. Get the theme ID from the URL (e.g., /theme/prism-auto-works)
   const { themeId } = useParams<{ themeId: string }>();
-  
-  // 2. Find the matching theme data from your themes.ts
   const theme = themeId ? themes[themeId] : null;
 
-  // 3. Fallback if the theme doesn't exist
+  // Handles the "Build Error" case by keeping JSX inside the .tsx file
   if (!theme) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 pt-20">
-        <h2 className="text-2xl font-bold mb-4">Style Not Found</h2>
-        <Link to="/" className="text-ignition underline font-medium">Return to Launchpad</Link>
+      <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 pt-20 px-4 text-center">
+        <div className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100">
+          <h2 className="text-3xl font-black text-asphalt mb-2">STYLE NOT FOUND</h2>
+          <p className="text-gray-500 mb-8">The requested design system is currently off-grid.</p>
+          <Link to="/" className="btn-primary inline-flex items-center">
+            <ArrowLeft size={18} className="mr-2" /> Return to Launchpad
+          </Link>
+        </div>
       </div>
     );
   }
+
+  // Helper flags for special effects
+  const isBrutal = theme.id === 'mud-sweat-gears';
+  const isRetro = theme.id === 'route-66-review';
+  const isPrism = theme.id === 'prism-auto-works';
+  const isAero = theme.id === 'aero-shine-labs';
 
   return (
     <div className={`min-h-screen pt-24 pb-20 transition-all duration-700 ${theme.containerClass.includes('bg-') ? '' : 'bg-white'}`}>
       <div className="max-w-6xl mx-auto px-4">
         
-        {/* Navigation / Header */}
+        {/* Navigation */}
         <div className="flex justify-between items-center mb-12 animate-fade-in">
           <Link to="/" className="flex items-center text-sm font-bold uppercase tracking-widest opacity-60 hover:opacity-100 transition-opacity">
-            <ArrowLeft size={18} className="mr-2" /> Back
+            <ArrowLeft size={18} className="mr-2" /> Back to All Styles
           </Link>
-          <div className="px-4 py-1 rounded-full border border-current text-xs font-bold uppercase tracking-tighter opacity-50">
-            {theme.id} // v4.2.4
+          <div className="px-4 py-1 rounded-full border border-current text-[10px] font-black uppercase tracking-tighter opacity-50">
+            SYSTEM_ID: {theme.id} // V4.2.4
           </div>
         </div>
 
         {/* Hero Preview Card */}
-        <div className={`relative overflow-hidden p-8 md:p-20 rounded-[2rem] transition-all duration-1000 ${theme.containerClass}`}>
+        <div className={`relative overflow-hidden p-8 md:p-20 rounded-[2.5rem] transition-all duration-1000 
+          ${theme.containerClass} 
+          ${isBrutal ? 'border-4 border-black shadow-brutal' : ''} 
+          ${isRetro ? 'shadow-sticker rotate-1' : ''}`}>
+          
           <div className="relative z-10 max-w-3xl">
-            <h1 className={`text-5xl md:text-8xl font-black mb-8 leading-[0.9] ${theme.id === 'prism-auto-works' ? 'glitch-text' : ''}`}>
+            <h1 className={`text-5xl md:text-8xl font-black mb-8 leading-[0.85] tracking-tighter
+              ${isPrism ? 'glitch-text' : ''} 
+              ${isBrutal ? 'uppercase italic' : ''}
+              ${isRetro ? 'font-retro' : ''}`}>
               {theme.name}
             </h1>
-            <p className="text-xl md:text-2xl mb-12 leading-relaxed opacity-90 max-w-xl">
+            
+            <p className="text-xl md:text-2xl mb-12 leading-relaxed opacity-90 max-w-xl font-medium">
               {theme.description || "A custom-engineered visual identity optimized for high-performance YEG business growth."}
             </p>
             
             <div className="flex flex-wrap gap-4">
-              <button className={`px-10 py-5 text-lg font-black transition-all hover:scale-105 active:scale-95 ${theme.buttonClass}`}>
-                Launch This Style
+              <button className={`px-10 py-5 text-lg font-black transition-all active:scale-95 
+                ${theme.buttonClass} 
+                ${isBrutal ? 'hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[12px_12px_0_0_#000]' : 'hover:scale-105'}`}>
+                Launch With This Style
               </button>
-              <button className="px-10 py-5 text-lg font-bold border-2 border-current opacity-40 hover:opacity-100 transition-all rounded-xl">
-                View Project Files
+              <button className={`px-10 py-5 text-lg font-bold border-2 border-current transition-all rounded-xl
+                ${isBrutal ? 'bg-black text-white' : 'opacity-40 hover:opacity-100'}`}>
+                Brand Assets
               </button>
             </div>
           </div>
 
-          {/* Decorative background icon for flair */}
-          <Sparkles className="absolute top-10 right-10 opacity-10" size={200} />
+          {/* Dynamic Background Icon */}
+          <div className="absolute top-10 right-10 opacity-10 pointer-events-none">
+            {isBrutal && <Zap size={240} className="rotate-12" />}
+            {isAero && <Gauge size={240} className="-rotate-12" />}
+            {isRetro && <Camera size={240} className="rotate-3" />}
+            {isPrism && <Monitor size={240} />}
+            {!isBrutal && !isAero && !isRetro && !isPrism && <Sparkles size={240} />}
+          </div>
         </div>
 
-        {/* Feature Grid - Reusing your styles for secondary items */}
+        {/* Technical & Visual Details Grid */}
         <div className="grid md:grid-cols-2 gap-8 mt-12 animate-fade-up [animation-delay:400ms]">
-          <div className="p-8 rounded-3xl bg-white border border-gray-100 shadow-sm">
-            <div className="flex items-center mb-4">
-              <Palette className="mr-3 text-ignition" />
-              <h3 className="font-black text-xl uppercase italic">Color Palette</h3>
+          
+          {/* Palette Card */}
+          <div className={`p-8 bg-white border border-gray-100 shadow-sm transition-all
+            ${isBrutal ? 'border-4 border-black shadow-brutal rounded-none' : 'rounded-[2rem]'}
+            ${isRetro ? 'shadow-sticker -rotate-1' : ''}`}>
+            <div className="flex items-center mb-6">
+              <Palette className={`mr-3 ${isBrutal ? 'text-black' : 'text-ignition'}`} />
+              <h3 className="font-black text-xl uppercase tracking-tight">Design Token: Color</h3>
             </div>
-            <div className="flex gap-2">
-              <div className="h-16 flex-1 rounded-lg" style={{ backgroundColor: theme.accentColor }}></div>
-              <div className="h-16 flex-1 rounded-lg bg-asphalt"></div>
-              <div className="h-16 flex-1 rounded-lg bg-silver"></div>
+            <div className="flex gap-3 h-24">
+              <div className="flex-1 rounded-xl shadow-inner border border-black/5" style={{ backgroundColor: theme.accentColor }}></div>
+              <div className="flex-1 rounded-xl bg-asphalt"></div>
+              <div className="flex-1 rounded-xl bg-silver"></div>
             </div>
-            <p className="mt-4 text-sm text-gray-500 font-mono">PRIMARY ACCENT: {theme.accentColor}</p>
+            <div className="mt-6 flex justify-between items-end font-mono text-[10px] uppercase opacity-50">
+              <span>Primary: {theme.accentColor}</span>
+              <span>Edmonton Asphalt</span>
+            </div>
           </div>
 
-          <div className="p-8 rounded-3xl bg-asphalt text-white flex flex-col justify-between">
+          {/* Engineering Card */}
+          <div className={`p-8 flex flex-col justify-between transition-all
+            ${isBrutal ? 'bg-yellow-400 text-black border-4 border-black shadow-brutal rounded-none' : 'bg-asphalt text-white rounded-[2rem] shadow-xl'}`}>
             <div>
-              <h3 className="font-black text-xl uppercase italic mb-2">Technical SEO</h3>
-              <p className="opacity-60 text-sm">Every theme in the Launchpad is pre-configured for Core Web Vitals and Edmonton local search authority.</p>
+              <div className="flex items-center mb-4">
+                <Settings className={`mr-3 ${isBrutal ? 'text-black' : 'text-ignition'}`} />
+                <h3 className="font-black text-xl uppercase tracking-tight">Vercel Edge Ready</h3>
+              </div>
+              <p className="opacity-70 text-sm leading-relaxed mb-6">
+                This theme is built on Tailwind v4 and React 19. It is optimized for sub-second LCP (Largest Contentful Paint) in the Edmonton region.
+              </p>
             </div>
-            <button className="mt-6 flex items-center text-ignition font-bold hover:underline">
-              Check Specs <ExternalLink size={16} className="ml-2" />
+            <button className={`flex items-center font-bold text-sm uppercase tracking-widest hover:gap-3 transition-all ${isBrutal ? 'text-black' : 'text-ignition'}`}>
+              Review Architecture <ExternalLink size={16} className="ml-2" />
             </button>
           </div>
-        </div>
 
+        </div>
       </div>
     </div>
   );
