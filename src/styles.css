@@ -16,11 +16,10 @@
 }
 
 @layer components {
-  /* 2. Reusable component patterns using @apply */
-  .btn-primary {
-    @apply px-4 py-2 bg-brand-primary text-white rounded-md 
-           transition-colors hover:bg-blue-700 active:scale-95;
-  }
+.btn-primary {
+  /* Changed bg-brand-primary to bg-blue-600 */
+  @apply px-4 py-2 bg-blue-600 text-white rounded-md transition-colors hover:bg-blue-700 active:scale-95;
+}  }
 
   .card-layout {
     @apply p-6 border border-gray-200 rounded-xl shadow-sm bg-white;
