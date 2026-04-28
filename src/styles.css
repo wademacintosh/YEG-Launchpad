@@ -1,10 +1,11 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* Critical: Tell Tailwind v4 to look at your React files */
 @source "../src";
 
 @theme {
-  /* 🏎️ THE IGNITION BRAND COLORS */
+  /* Brand Colors */
   --color-ignition: #FF6600;      /* Ignition Orange */
   --color-asphalt: #2C2C2C;       /* Edmonton Asphalt */
   --color-silver: #BDC3C7;        /* High Level Silver */
@@ -19,9 +20,14 @@
   }
 }
 
+@layer base {
+  body {
+    @apply bg-white text-asphalt antialiased;
+  }
+}
+
 @layer components {
   .btn-primary {
-    /* Updated from blue-600 to ignition */
     @apply px-8 py-4 bg-ignition text-white rounded-xl font-black 
            transition-all hover:scale-105 active:scale-95 shadow-lg;
   }
