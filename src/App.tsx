@@ -1,34 +1,13 @@
-import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import Home from './pages/HomePage';
-import Contact from './pages/Contact';
-import ThemeShowcase from './pages/ThemeShowcase';
-import { ThemeProvider, useThemePreview } from './context/ThemeContext'; // Import the provider
-
-/**
- * ScrollToTop Helper
- * Ensures that when you click a new theme, the page starts at the top.
- */
-const ScrollToTop = () => {
-  const { pathname } = useLocation();
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-  return null;
-};
-
 /**
  * Layout Wrapper
- * This component listens for the active preview and applies the 
- * theme classes to the entire application container.
+ * We add 'bg-white' as the fallback so that when a preview is active,
+ * the containerClass (like bg-carbon-fiber) takes over the whole screen.
  */
 const AppLayout = ({ children }: { children: React.ReactNode }) => {
   const { activePreview } = useThemePreview();
   
   return (
-    <div className={`min-h-screen flex flex-col transition-all duration-700 selection:bg-ignition selection:text-white ${activePreview?.containerClass || ''}`}>
+    <div className={`min-h-screen flex flex-col transition-all duration-700 selection:bg-ignition selection:text-white ${activePreview?.containerClass || 'bg-white'}`}>
       <Navbar />
       <main className="flex-grow">
         {children}
@@ -49,7 +28,6 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/theme/:themeId" element={<ThemeShowcase />} />
             
-            {/* Catch-all 404 Route */}
             <Route 
               path="*" 
               element={
@@ -66,5 +44,3 @@ function App() {
     </ThemeProvider>
   );
 }
-
-export default App;
