@@ -1,11 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Eye, Sparkles, Gauge } from 'lucide-react';
+import { ArrowRight, Eye, Sparkles, Gauge, Layout } from 'lucide-react';
 import { themes } from '../themes';
 import { useThemePreview } from '../context/ThemeContext';
+// Import LayoutDispatcher and StyleItem. Adjust the path if necessary!
+import LayoutDispatcher from './LayoutDispatcher'; 
+import { type StyleItem } from './StyleCard'; 
 
 const StyleGallery = () => {
   const { setPreview, activePreview, isDarkMode } = useThemePreview();
+  // State to manage the active full-screen immersive layout
+  const [activeLayout, setActiveLayout] = useState<StyleItem | null>(null);
+
+  // If an immersive layout is active, render it exclusively
+  if (activeLayout) {
+    return (
+      <LayoutDispatcher 
+        item={activeLayout} 
+        onBack={() => setActiveLayout(null)} 
+      />
+    );
+  }
 
   return (
     <section
@@ -86,6 +101,15 @@ const StyleGallery = () => {
                 ? 'text-white opacity-60'
                 : 'text-asphalt opacity-60'
               : 'text-asphalt opacity-40 hover:opacity-100 hover:text-ignition';
+              
+          // Construct a StyleItem from the theme object to pass to the dispatcher
+          const styleItemForDispatcher: StyleItem = {
+            title: theme.name,
+            tagline: theme.description,
+            // You might need to adjust category if themes.ts doesn't map exactly to StyleCategory
+            category: "Modern", 
+            variant: theme.id as any // Type assertion to match the variant type
+          };
 
           return (
             <div
@@ -127,6 +151,7 @@ const StyleGallery = () => {
                 </div>
 
                 <div className="mt-8 flex flex-col gap-3">
+                  {/* Keep original button to trigger global reskin */}
                   <button
                     type="button"
                     onClick={() => setPreview(isCurrentlyActive ? null : theme.id)}
@@ -134,6 +159,17 @@ const StyleGallery = () => {
                   >
                     <Eye size={16} />
                     {isCurrentlyActive ? 'Style Active' : 'Test Drive'}
+                  </button>
+                  
+                  {/* NEW BUTTON: Open full-screen immersive layout */}
+                   <button
+                    type="button"
+                    onClick={() => setActiveLayout(styleItemForDispatcher)}
+                    className={`flex items-center justify-center gap-2 py-3 rounded-2xl text-[10px] font-bold uppercase tracking-widest transition-all border border-current hover:bg-current hover:text-white`}
+                    style={{ color: isCurrentlyActive ? '#FF6600' : 'inherit' }}
+                  >
+                    <Layout size={14} />
+                    Immersive View
                   </button>
 
                   <Link
@@ -153,4 +189,3 @@ const StyleGallery = () => {
 };
 
 export default StyleGallery;
-
