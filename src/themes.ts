@@ -1,84 +1,188 @@
-export interface Theme {
+// Centralized theme tokens with semantic naming
+// Each theme defines CSS variables that components can use predictably
+export interface ThemeTokens {
   id: string;
   name: string;
   description: string;
-  containerClass: string;
-  buttonClass: string;
-  accentColor: string;
   strategy: string;
+  // Semantic tokens instead of raw class strings
+  containerBg: string;
+  containerText: string;
+  containerBorder: string;
+  buttonBg: string;
+  buttonText: string;
+  accentColor: string;
+  isDark: boolean;
 }
 
-export const themes: Record<string, Theme> = {
+export const themes: Record<string, ThemeTokens> = {
   "eco-clean": {
     id: "eco-clean",
     name: "Eco-Clean",
     description: "Sustainability-focused detailing with fresh greens and organic tones.",
-    containerClass: "bg-emerald-50 text-emerald-900 border-emerald-200",
-    buttonClass: "bg-emerald-600 text-white",
+    strategy: "Green signals 'Safety' and 'Health.' This strategy builds immediate trust for interior steam-cleaning services, appealing to families and eco-conscious daily drivers.",
+    containerBg: "bg-emerald-50",
+    containerText: "text-emerald-900",
+    containerBorder: "border-emerald-200",
+    buttonBg: "bg-emerald-600",
+    buttonText: "text-white",
     accentColor: "#059669",
-    strategy: "Green signals 'Safety' and 'Health.' This strategy builds immediate trust for interior steam-cleaning services, appealing to families and eco-conscious daily drivers."
+    isDark: false,
   },
   "night-vision-armour": {
     id: "night-vision-armour",
     name: "Night Vision Armour",
     description: "Tactical cyan and deep slate for ceramic coating specialists.",
-    containerClass: "bg-slate-950 text-cyan-400 border-cyan-500/20",
-    buttonClass: "bg-cyan-500 text-black font-bold",
+    strategy: "The cyan glow mimics high-tech lab lighting. It visually justifies the high price of Ceramic Coatings by making the shop look like a technical 'Armour' facility.",
+    containerBg: "bg-slate-950",
+    containerText: "text-cyan-400",
+    containerBorder: "border-cyan-500/20",
+    buttonBg: "bg-cyan-500",
+    buttonText: "text-black",
     accentColor: "#22d3ee",
-    strategy: "The cyan glow mimics high-tech lab lighting. It visually justifies the high price of Ceramic Coatings by making the shop look like a technical 'Armour' facility."
+    isDark: true,
   },
   "the-vantage-collective": {
     id: "the-vantage-collective",
     name: "The Vantage Collective",
     description: "Luxury gold and stone tones for exotic car concierge services.",
-    containerClass: "bg-[#fcfaf7] text-stone-800 border-stone-200",
-    buttonClass: "bg-stone-900 text-white",
+    strategy: "Luxury gold tones shift the focus to 'Concierge' care. This style targets collector car owners who view detailing as a premium investment rather than a chore.",
+    containerBg: "bg-[#fcfaf7]",
+    containerText: "text-stone-800",
+    containerBorder: "border-stone-200",
+    buttonBg: "bg-stone-900",
+    buttonText: "text-white",
     accentColor: "#c5a059",
-    strategy: "Luxury gold tones shift the focus to 'Concierge' care. This style targets collector car owners who view detailing as a premium investment rather than a chore."
+    isDark: false,
   },
   "mud-sweat-gears": {
     id: "mud-sweat-gears",
     name: "Mud, Sweat & Gears",
     description: "Rugged orange and heavy black for off-road and truck specialists.",
-    containerClass: "bg-orange-50 text-black border-4 border-black shadow-brutal",
-    buttonClass: "bg-yellow-400 text-black border-4 border-black shadow-brutal",
+    strategy: "The aggressive lines and high-vis orange signal 'Heavy Duty.' It tells truck owners your shop isn't afraid of mud and can handle the toughest Edmonton road grime.",
+    containerBg: "bg-orange-50",
+    containerText: "text-black",
+    containerBorder: "border-4 border-black shadow-brutal",
+    buttonBg: "bg-yellow-400",
+    buttonText: "text-black",
     accentColor: "#fbbf24",
-    strategy: "The aggressive lines and high-vis orange signal 'Heavy Duty.' It tells truck owners your shop isn't afraid of mud and can handle the toughest Edmonton road grime."
+    isDark: false,
   },
   "detailflow-pro": {
     id: "detailflow-pro",
     name: "DetailFlow Pro",
     description: "Professional blue and clinical white for high-volume precision shops.",
-    containerClass: "bg-blue-50 text-blue-900 border-blue-100",
-    buttonClass: "bg-blue-600 text-white rounded-lg",
+    strategy: "Blue is the color of reliability. This clinical look suggests a 'Systematic' approach to detailing, promising the customer a perfect result through standardized precision.",
+    containerBg: "bg-blue-50",
+    containerText: "text-blue-900",
+    containerBorder: "border-blue-100",
+    buttonBg: "bg-blue-600",
+    buttonText: "text-white",
     accentColor: "#2563eb",
-    strategy: "Blue is the color of reliability. This clinical look suggests a 'Systematic' approach to detailing, promising the customer a perfect result through standardized precision."
+    isDark: false,
   },
   "aero-shine-labs": {
     id: "aero-shine-labs",
     name: "Aero Shine Labs",
     description: "Carbon textures and silver accents for performance-first shops.",
-    containerClass: "bg-carbon-fiber text-white border-white/10",
-    buttonClass: "bg-white text-black font-black italic",
+    strategy: "Carbon textures and italic fonts lean into 'Speed.' It targets performance enthusiasts who want their car to look fast even when standing perfectly still.",
+    containerBg: "bg-carbon-fiber",
+    containerText: "text-white",
+    containerBorder: "border-white/10",
+    buttonBg: "bg-white",
+    buttonText: "text-black",
     accentColor: "#f8fafc",
-    strategy: "Carbon textures and italic fonts lean into 'Speed.' It targets performance enthusiasts who want their car to look fast even when standing perfectly still."
+    isDark: true,
   },
   "route-66-review": {
     id: "route-66-review",
     name: "Route 66 Review",
     description: "Retro red and cream for classic car restoration and detailing.",
-    containerClass: "bg-red-50 text-red-600 shadow-sticker rotate-1",
-    buttonClass: "bg-red-600 text-white shadow-sticker",
+    strategy: "Retro reds evoke the 'Golden Age' of the garage. It appeals to classic car owners who value heritage, hand-waxing, and 'old-school' attention to detail.",
+    containerBg: "bg-red-50",
+    containerText: "text-red-600",
+    containerBorder: "shadow-sticker rotate-1",
+    buttonBg: "bg-red-600",
+    buttonText: "text-white",
     accentColor: "#dc2626",
-    strategy: "Retro reds evoke the 'Golden Age' of the garage. It appeals to classic car owners who value heritage, hand-waxing, and 'old-school' attention to detail."
+    isDark: false,
   },
   "prism-auto-works": {
     id: "prism-auto-works",
     name: "Prism Auto-Works",
     description: "Vaporwave pink and glitch effects for custom show-cars.",
-    containerClass: "bg-black text-white border-2 border-pink-500 shadow-[0_0_20px_rgba(236,72,153,0.3)]",
-    buttonClass: "border-2 border-cyan-400 text-cyan-400 hover:bg-cyan-400",
+    strategy: "Synthwave pinks and glitch textures appeal to the custom 'show-car' crowd. It suggests your shop specializes in aesthetic perfection and head-turning finishes.",
+    containerBg: "bg-black",
+    containerText: "text-white",
+    containerBorder: "border-2 border-pink-500 shadow-[0_0_20px_rgba(236,72,153,0.3)]",
+    buttonBg: "border-2 border-cyan-400",
+    buttonText: "text-cyan-400",
     accentColor: "#ec4899",
-    strategy: "Synthwave pinks and glitch textures appeal to the custom 'show-car' crowd. It suggests your shop specializes in aesthetic perfection and head-turning finishes."
+    isDark: true,
+  },
+  "apex-fleet": {
+    id: "apex-fleet",
+    name: "Apex Fleet Solutions",
+    description: "Deep corporate blues for commercial and executive fleet management.",
+    strategy: "Navy and steel blue signal corporate reliability. Perfect for B2B detailing contracts and high-net-worth executive clients.",
+    containerBg: "bg-[#022140]",
+    containerText: "text-white",
+    containerBorder: "border-[#265077]",
+    buttonBg: "bg-[#265077]",
+    buttonText: "text-white",
+    accentColor: "#2D5F5D",
+    isDark: true,
+  },
+  "midnight-syndicate": {
+    id: "midnight-syndicate",
+    name: "Midnight Syndicate",
+    description: "Dark violet-grey with striking purple accents for custom wrap and exotic shops.",
+    strategy: "The popping purple acts like a neon sign in a dark garage, appealing to exclusive clientele and custom aesthetic modifiers.",
+    containerBg: "bg-[#2D283E]",
+    containerText: "text-[#D1D7E0]",
+    containerBorder: "border-[#564F6F]",
+    buttonBg: "bg-[#802BB1]",
+    buttonText: "text-white",
+    accentColor: "#802BB1",
+    isDark: true,
+  },
+  "track-spec": {
+    id: "track-spec",
+    name: "Track-Spec Auto",
+    description: "High-contrast acid green and charcoal for performance and EV tuning.",
+    strategy: "Acid green on near-black evokes race telemetry and EV battery tech. It targets precision-focused enthusiasts and track-day drivers.",
+    containerBg: "bg-[#222629]",
+    containerText: "text-white",
+    containerBorder: "border-[#474B4F] border-l-4 border-l-[#86C232]",
+    buttonBg: "bg-[#86C232]",
+    buttonText: "text-[#222629]",
+    accentColor: "#86C232",
+    isDark: true,
+  },
+  "aquaflow-mobile": {
+    id: "aquaflow-mobile",
+    name: "AquaFlow Mobile",
+    description: "Bright, friendly blues for consumer-facing mobile detailing apps.",
+    strategy: "Soft, clean blues remove the intimidation of auto shops, making the service feel approachable, fresh, and modern.",
+    containerBg: "bg-[#C1C8E4]",
+    containerText: "text-[#5680E9]",
+    containerBorder: "border-white/50 backdrop-blur-md",
+    buttonBg: "bg-[#5680E9]",
+    buttonText: "text-white",
+    accentColor: "#84CEEB",
+    isDark: false,
+  },
+  "jdm-tokyo": {
+    id: "jdm-tokyo",
+    name: "JDM Tokyo Nights",
+    description: "Vivid pinks and deep indigos for tuner culture and show-car prep.",
+    strategy: "This synth-heavy palette targets the import and drift community, promising head-turning, aesthetic-focused detailing.",
+    containerBg: "bg-[#2A1B3D]",
+    containerText: "text-white",
+    containerBorder: "border-[#D83F87] shadow-jdm-glow",
+    buttonBg: "bg-[#D83F87]",
+    buttonText: "text-white",
+    accentColor: "#E98074",
+    isDark: true,
   }
 };

@@ -38,6 +38,8 @@
 }
 
 @layer utilities {
+  /* --- ORIGINAL STYLES --- */
+  
   /* 🏎️ Aero Shine Labs - High-Performance Carbon Fiber */
   .bg-carbon-fiber {
     background-color: #0d0f12;
@@ -81,5 +83,34 @@
   /* 📊 DetailFlow Pro - Deep Tech Gradient */
   .detail-gradient {
     background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  }
+
+  /* --- NEW PALETTE STYLES --- */
+
+  /* 🏁 Track-Spec Auto - Telemetry Grid */
+  .bg-track-grid {
+    background-size: 40px 40px;
+    background-image: 
+      linear-gradient(to right, rgba(134, 194, 50, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(134, 194, 50, 0.05) 1px, transparent 1px);
+  }
+
+  /* 🌸 JDM Tokyo Nights - Neon Glow */
+  .shadow-jdm-glow {
+    box-shadow: 0 0 20px rgba(216, 63, 135, 0.4), inset 0 0 10px rgba(216, 63, 135, 0.2);
+  }
+
+  .text-jdm-glow {
+    text-shadow: 0 0 10px rgba(216, 63, 135, 0.8), 0 0 20px rgba(216, 63, 135, 0.5);
+  }
+
+  /* 🟣 Midnight Syndicate - Underglow Shadow */
+  .shadow-midnight-neon {
+    box-shadow: 0 0 25px rgba(128, 43, 177, 0.3), inset 0 0 10px rgba(128, 43, 177, 0.1);
+  }
+
+  /* 🏢 Apex Fleet Solutions - Executive Gradient Backdrop */
+  .bg-apex-corporate {
+    background: linear-gradient(180deg, #022140 0%, #1E4258 100%);
   }
 }

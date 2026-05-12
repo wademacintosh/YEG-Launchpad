@@ -21,14 +21,20 @@ const ScrollToTop = () => {
 
 /**
  * Layout Wrapper
- * Listens for the active preview and applies theme classes globally.
- * We use 'bg-white' as the fallback so original branding looks clean.
+ * Uses semantic theme tokens instead of raw class strings for predictability.
  */
 const AppLayout = ({ children }: { children: React.ReactNode }) => {
   const { activePreview } = useThemePreview();
   
   return (
-    <div className={`min-h-screen flex flex-col transition-all duration-700 selection:bg-ignition selection:text-white ${activePreview?.containerClass || 'bg-white'}`}>
+    <div className={`
+      min-h-screen flex flex-col transition-all duration-700 
+      selection:bg-ignition selection:text-white
+      ${activePreview 
+        ? `${activePreview.containerBg} ${activePreview.containerText} ${activePreview.containerBorder}`
+        : 'bg-white text-asphalt'
+      }
+    `}>
       <Navbar />
       <main className="flex-grow">
         {children}
@@ -58,7 +64,7 @@ function App() {
             <Route 
               path="*" 
               element={
-                <div className="flex flex-col items-center justify-center min-h-[60vh] pt-20">
+                <div className="flex flex-col items-center justify-center min-h-[60vh] pt-20 bg-white">
                   <h2 className="text-4xl font-black text-asphalt uppercase tracking-tighter">404</h2>
                   <p className="text-gray-500 mb-6 font-medium">This page hasn't launched yet.</p>
                   <Link to="/" className="btn-primary">Take Me Home</Link>
@@ -73,3 +79,4 @@ function App() {
 }
 
 export default App;
+

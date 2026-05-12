@@ -1,43 +1,71 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
-import { themes, Theme } from '../themes';
+import React, { createContext, useContext, useMemo, useState, type ReactNode } from 'react';
+import { themes, type ThemeTokens } from '../themes';
+
+type ThemeId = keyof typeof themes;
 
 interface ThemeContextType {
-  activePreview: Theme | null;
-  setPreview: (themeId: string | null) => void;
+  activePreview: ThemeTokens | null;
+  setPreview: (themeId: ThemeId | null) => void;
   resetPreview: () => void;
+  getThemeTokens: (themeId: string) => ThemeTokens | null;
+  isDarkMode: boolean;
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-export const ThemeProvider = ({ children }: { children: ReactNode }) => {
-  const [activePreview, setActivePreview] = useState<Theme | null>(null);
+interface ThemeProviderProps {
+  children: ReactNode;
+}
 
-  // Robust setter to handle theme selection
-  const setPreview = (themeId: string | null) => {
+export const ThemeProvider = ({ children }: ThemeProviderProps) => {
+  const [activePreview, setActivePreview] = useState<ThemeTokens | null>(null);
+
+  const setPreview = (themeId: ThemeId | null) => {
     if (!themeId) {
       setActivePreview(null);
-    } else {
-      const selectedTheme = themes[themeId];
-      if (selectedTheme) {
-        setActivePreview(selectedTheme);
-      }
+      return;
     }
+
+    const selectedTheme = themes[themeId];
+
+    if (!selectedTheme) {
+      console.warn(`Theme "${themeId}" not found.`);
+      setActivePreview(null);
+      return;
+    }
+
+    setActivePreview(selectedTheme);
   };
 
-  const resetPreview = () => setActivePreview(null);
+  const resetPreview = () => {
+    setActivePreview(null);
+  };
 
-  return (
-    <ThemeContext.Provider value={{ activePreview, setPreview, resetPreview }}>
-      {/* We removed the <div> from here. 
-          The classes will be handled strictly by AppLayout in App.tsx 
-          to avoid layering conflicts. */}
-      {children}
-    </ThemeContext.Provider>
+  const getThemeTokens = (themeId: string): ThemeTokens | null => {
+    return themes[themeId as ThemeId] ?? null;
+  };
+
+  const value = useMemo(
+    () => ({
+      activePreview,
+      setPreview,
+      resetPreview,
+      getThemeTokens,
+      isDarkMode: activePreview?.isDark ?? false,
+    }),
+    [activePreview]
   );
+
+  return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
 };
 
 export const useThemePreview = () => {
   const context = useContext(ThemeContext);
-  if (!context) throw new Error('useThemePreview must be used within ThemeProvider');
+
+  if (!context) {
+    throw new Error('useThemePreview must be used within ThemeProvider');
+  }
+
   return context;
 };
+

@@ -1,121 +1,121 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { 
-  ArrowLeft, 
-  ArrowRight, 
-  Palette, 
-  Sparkles, 
-  Zap, 
-  Gauge, 
-  Camera, 
-  Monitor,
-  Eye,
-  RotateCcw
-} from 'lucide-react';
+import { ArrowLeft, Eye, Sparkles } from 'lucide-react';
 import { themes } from '../themes';
-import { useThemePreview } from '../context/ThemeContext'; // Import the hook
+import { useThemePreview } from '../context/ThemeContext';
+import ThemeDemo from '../components/ThemeDemo';
 
-export default function ThemeShowcase() {
+const ThemeShowcase = () => {
   const { themeId } = useParams<{ themeId: string }>();
-  const { setPreview, activePreview } = useThemePreview(); // Get the theme state
-  const theme = themeId ? themes[themeId] : null;
+  const { activePreview, setPreview, isDarkMode } = useThemePreview();
 
-  if (!theme) return null;
+  const theme = themeId ? themes[themeId as keyof typeof themes] : null;
 
-  const isPrism = theme.id === 'prism-auto-works';
-  const isBrutal = theme.id === 'mud-sweat-gears';
+  if (!theme) {
+    return (
+      <div className="min-h-screen flex items-center justify-center px-4 bg-white">
+        <div className="text-center">
+          <h1 className="text-3xl font-black uppercase tracking-tight text-asphalt mb-4">
+            Theme not found
+          </h1>
+          <Link
+            to="/"
+            className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-ignition"
+          >
+            <ArrowLeft size={16} />
+            Back to home
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
   const isCurrentlyPreviewing = activePreview?.id === theme.id;
 
-  return (
-    <div className={`min-h-screen pt-24 pb-20 transition-all duration-700 ${isPrism ? 'bg-asphalt' : 'bg-white'}`}>
-      <div className="max-w-6xl mx-auto px-4">
-        
-        {/* Navigation */}
-        <div className="flex justify-between items-center mb-12">
-          <Link to="/" className={`flex items-center text-sm font-bold uppercase opacity-60 hover:opacity-100 transition-opacity ${isPrism ? 'text-white' : 'text-asphalt'}`}>
-            <ArrowLeft size={18} className="mr-2" /> Back to All Styles
-          </Link>
-          
-          {/* Reset Button (only shows if a preview is active) */}
-          {activePreview && (
-            <button 
-              onClick={() => setPreview(null)}
-              className="flex items-center text-[10px] font-black uppercase tracking-widest text-ignition hover:underline"
-            >
-              <RotateCcw size={12} className="mr-1" /> Reset Global Style
-            </button>
-          )}
-        </div>
+  const shellClass = activePreview
+    ? isDarkMode
+      ? 'bg-[#0a0a0a] text-white'
+      : 'bg-[#f8f5ef] text-asphalt'
+    : 'bg-white text-asphalt';
 
-        {/* Main Preview Card */}
-        <div className={`relative overflow-hidden p-8 md:p-20 rounded-[2.5rem] transition-all duration-1000 ${theme.containerClass}`}>
+  const heroPanelClass = `${theme.containerBg} ${theme.containerText} ${theme.containerBorder}`;
+
+  const previewButtonClass = isCurrentlyPreviewing
+    ? 'bg-white text-asphalt ring-4 ring-ignition'
+    : `${theme.buttonBg} ${theme.buttonText}`;
+
+  const bodyCopyClass = activePreview
+    ? isDarkMode
+      ? 'text-white/70'
+      : 'text-asphalt/70'
+    : 'text-gray-600';
+
+  return (
+    <div className={`min-h-screen transition-all duration-1000 ${shellClass}`}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+        <Link
+          to="/"
+          className={`inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.2em] mb-8 transition-opacity hover:opacity-100 ${
+            activePreview ? 'opacity-70 text-current' : 'opacity-60 text-asphalt'
+          }`}
+        >
+          <ArrowLeft size={14} />
+          Back to home
+        </Link>
+
+        <div
+          className={`relative overflow-hidden p-8 md:p-20 rounded-[2.5rem] transition-all duration-1000 ${heroPanelClass}`}
+        >
+          <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/10 pointer-events-none" />
+
           <div className="relative z-10 max-w-3xl">
-            <h1 className="text-5xl md:text-8xl font-black mb-8 leading-none tracking-tighter uppercase italic">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center">
+                <Sparkles size={22} className="text-white" />
+              </div>
+
+              <span className="text-[10px] font-black uppercase tracking-[0.25em] text-white/70">
+                Theme showcase
+              </span>
+            </div>
+
+            <h1 className="text-4xl md:text-7xl font-black uppercase italic tracking-tighter mb-6">
               {theme.name}
             </h1>
-            <p className="text-xl md:text-2xl mb-12 opacity-90 max-w-xl font-medium">
+
+            <p className="text-sm md:text-lg font-medium leading-relaxed text-white/85 max-w-2xl mb-8">
               {theme.description}
             </p>
-            
-            <div className="flex flex-wrap gap-4">
-              {/* The Magic Preview Button */}
-              <button 
-                onClick={() => setPreview(theme.id)}
-                className={`flex items-center px-10 py-5 text-lg font-black transition-all active:scale-95 shadow-xl hover:scale-105
-                  ${isCurrentlyPreviewing ? 'bg-white text-asphalt ring-4 ring-ignition' : theme.buttonClass}`}
-              >
-                <Eye className="mr-2" size={20} />
-                {isCurrentlyPreviewing ? 'Currently Previewing' : 'Preview This Style'}
-              </button>
 
-              <Link 
-                to="/contact"
-                className={`px-10 py-5 text-lg font-bold border-2 border-current transition-all rounded-xl opacity-60 hover:opacity-100`}
-              >
-                Launch This Build
-              </Link>
-            </div>
+            <button
+              type="button"
+              onClick={() => setPreview(isCurrentlyPreviewing ? null : theme.id)}
+              className={`inline-flex items-center gap-2 px-8 py-4 rounded-2xl text-sm font-black uppercase tracking-widest transition-all hover:scale-[1.02] active:scale-[0.98] ${previewButtonClass}`}
+            >
+              <Eye size={18} />
+              {isCurrentlyPreviewing ? 'Preview Active' : 'Preview This Theme'}
+            </button>
           </div>
         </div>
 
-        {/* Branding & Strategy Grid */}
-        <div className="grid md:grid-cols-2 gap-8 mt-12 animate-fade-up">
-          
-          {/* Palette Card */}
-          <div className="p-8 bg-white border border-gray-100 rounded-[3rem] shadow-sm">
-            <div className="flex items-center mb-6">
-              <Palette className="mr-3 text-ignition" />
-              <h3 className="font-black text-xl uppercase tracking-tight text-asphalt">Color Palette</h3>
-            </div>
-            <div className="flex gap-3 h-24">
-              <div className="flex-1 rounded-2xl shadow-inner" style={{ backgroundColor: theme.accentColor }}></div>
-              <div className="flex-1 rounded-2xl bg-asphalt"></div> 
-              <div className="flex-1 rounded-2xl bg-silver"></div>
-            </div>
-            <div className="mt-6 flex justify-between items-end font-mono text-[10px] uppercase opacity-50 text-asphalt">
-              <span>Primary: {theme.accentColor}</span>
-              <span>Asphalt & Silver</span>
-            </div>
+        <div className="mt-16">
+          <div className="max-w-3xl mb-10">
+            <h2 className="text-2xl md:text-4xl font-black uppercase tracking-tight mb-4">
+              Live component demo
+            </h2>
+
+            <p className={`text-base font-medium leading-relaxed ${bodyCopyClass}`}>
+              This preview shows how the theme behaves across buttons, surfaces, text hierarchy,
+              and interactive UI patterns using the current token system.
+            </p>
           </div>
 
-          {/* Strategic Fit Card */}
-          <div className="p-8 flex flex-col justify-between bg-asphalt text-white rounded-[3rem] shadow-2xl border border-white/5">
-            <div>
-              <div className="flex items-center mb-4">
-                <Sparkles className="mr-3 text-ignition" size={24} />
-                <h3 className="font-black text-xl uppercase tracking-tight">The "Ignition" Strategy</h3>
-              </div>
-              <p className="opacity-80 text-sm leading-relaxed mb-6 italic">
-                {theme.strategy}
-              </p>
-            </div>
-            <Link to="/contact" className="mt-8 flex items-center font-bold text-sm uppercase tracking-widest text-ignition group">
-              Get Started with {theme.name} <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-2" />
-            </Link>
-          </div>
-
+          <ThemeDemo theme={theme} />
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default ThemeShowcase;
+
