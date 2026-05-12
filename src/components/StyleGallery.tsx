@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Eye, Sparkles, Gauge, Layout } from 'lucide-react';
 import { themes } from '../themes';
 import { useThemePreview } from '../context/ThemeContext';
-// Import LayoutDispatcher and StyleItem. Adjust the path if necessary!
-import LayoutDispatcher from './LayoutDispatcher'; 
+
+// Updated import path: going up one level (../) and into layouts
+import LayoutDispatcher from '../layouts/LayoutDispatcher'; 
 import { type StyleItem } from './StyleCard'; 
 
 const StyleGallery = () => {
@@ -106,7 +107,7 @@ const StyleGallery = () => {
           const styleItemForDispatcher: StyleItem = {
             title: theme.name,
             tagline: theme.description,
-            // You might need to adjust category if themes.ts doesn't map exactly to StyleCategory
+            // Assuming "Modern" as a default fallback category
             category: "Modern", 
             variant: theme.id as any // Type assertion to match the variant type
           };
@@ -151,7 +152,7 @@ const StyleGallery = () => {
                 </div>
 
                 <div className="mt-8 flex flex-col gap-3">
-                  {/* Keep original button to trigger global reskin */}
+                  {/* Original button to trigger global reskin */}
                   <button
                     type="button"
                     onClick={() => setPreview(isCurrentlyActive ? null : theme.id)}
