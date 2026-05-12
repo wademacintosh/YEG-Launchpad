@@ -5,7 +5,7 @@ import { themes } from '../themes';
 import { useThemePreview } from '../context/ThemeContext';
 
 // Updated import path: going up one level (../) and into layouts
-import LayoutDispatcher from '../layouts/LayoutDispatcher'; 
+import LayoutDispatcher from './layouts/LayoutDispatcher'; 
 import { type StyleItem } from './StyleCard'; 
 
 const StyleGallery = () => {
